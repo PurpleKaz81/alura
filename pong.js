@@ -1,21 +1,11 @@
-// ball variables
-let ballX = 300
-let ballY = 200
-let ballDiameter = 15
-let ballRadius = ballDiameter / 2
+// set up canvas
+const canvas = document.getElementById("pong")
+const ctx = canvas.getContext("2d")
 
-// ball speed
-let ballVelocityX = 6
-let ballVelocityY = 6
+// set up ball
+let ballX = canvas.width / 2
+let ballY = canvas.height / 2
+let ballRadius = 10
+let ballVelocityX = 5
+let ballVelocityY = 5
 
-// racket variables (p1R and p2R)
-p1RY = 750
-p2RY = 750
-
-// score variables
-p1Score = 0
-p2Score = 0
-
-const draw = () => {
-  // draw ball and rackets
-}
