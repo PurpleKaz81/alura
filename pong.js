@@ -28,3 +28,67 @@ let sPressed = false
 document.addEventListener("keydown", keyDownHandler)
 document.addEventListener("keyup", keyUpHandler)
 
+function keyDownHandler(e) {
+  if (e.key === "ArrowUp") {
+    upPressed = true
+  }
+  if (e.key === "ArrowDown") {
+    downPressed = true
+  }
+  if (e.key === "w") {
+    wPressed = true
+  }
+  if (e.key === "s") {
+    sPressed = true
+  }
+}
+
+function keyUpHandler(e) {
+  if (e.key === "ArrowUp") {
+    upPressed = false
+  }
+  if (e.key === "ArrowDown") {
+    downPressed = false
+  }
+  if (e.key === "w") {
+    wPressed = false
+  }
+  if (e.key === "s") {
+    sPressed = false
+  }
+}
+
+// draw ball on canvas
+function drawBall() {
+  ctx.beginPath()
+  ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2)
+  ctx.fillStyle = "#fff"
+  ctx.fill()
+  ctx.closePath()
+}
+
+// draw paddles on canvas
+function drawPaddles() {
+  // left paddle
+  ctx.fillStyle = "#fff"
+  ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight)
+
+  // right paddle
+  ctx.fillStyle = "#fff"
+  ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight)
+}
+//  draw score on canvas
+function drawScore() {
+  ctx.font = '30px Arial';
+  ctx.fillStyle = '#fff';
+  ctx.textAlign = 'center';
+  ctx.fillText(leftScore, canvas.width / 4, 50);
+  ctx.fillText(rightScore, canvas.width * 3 / 4, 50);
+}
+
+// reset ball to center of canvas
+function resetBall() {
+  ballX = canvas.width / 2
+  ballY = canvas.height / 2
+}
+
