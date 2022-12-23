@@ -36,12 +36,6 @@ function keyDownHandler(e) {
   if (e.key === "ArrowDown") {
     downPressed = true
   }
-  if (e.key === "w") {
-    wPressed = true
-  }
-  if (e.key === "s") {
-    sPressed = true
-  }
 }
 
 function keyUpHandler(e) {
@@ -50,12 +44,6 @@ function keyUpHandler(e) {
   }
   if (e.key === "ArrowDown") {
     downPressed = false
-  }
-  if (e.key === "w") {
-    wPressed = false
-  }
-  if (e.key === "s") {
-    sPressed = false
   }
 }
 
@@ -118,12 +106,6 @@ function moveBall() {
   }
 }
 
-// reset ball to center of canvas
-function resetBall() {
-  ballX = canvas.width / 2
-  ballY = canvas.height / 2
-}
-
 // move paddles
 function movePaddles() {
   // left paddle
@@ -142,6 +124,13 @@ function movePaddles() {
     rightPaddleY += paddleVelocity
   }
 }
+
+// reset ball to center of canvas
+function resetBall() {
+  ballX = canvas.width / 2
+  ballY = canvas.height / 2
+}
+
 //  main game loop
 function draw() {
   // clear canvas
