@@ -23,8 +23,6 @@ let rightPaddleScore = 0
 // set up keyboard controls
 let upPressed = false
 let downPressed = false
-let wPressed = false
-let sPressed = false
 
 document.addEventListener("keydown", keyDownHandler)
 document.addEventListener("keyup", keyUpHandler)
@@ -85,20 +83,22 @@ function moveBall() {
     // left paddle
     if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
       ballVelocityX = -ballVelocityX
-      ballVelocityY = (ballY - (leftPaddleY + paddleHeight / 2)) * 0.35
+      ballVelocityY = (ballY - (leftPaddleY + paddleHeight / 2)) * 0.20
     } else {
       rightPaddleScore++
       resetBall()
+      resetPaddles()
     }
   }
   if (ballX + ballRadius > canvas.width) {
     //  right paddle
     if (ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
       ballVelocityX = -ballVelocityX
-      ballVelocityY = (ballY - (rightPaddleY +paddleHeight / 2)) * 0.35
+      ballVelocityY = (ballY - (rightPaddleY +paddleHeight / 2)) * 0.20
     } else {
       leftPaddleScore++
       resetBall()
+      resetPaddles()
     }
   }
   if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
@@ -129,6 +129,12 @@ function movePaddles() {
 function resetBall() {
   ballX = canvas.width / 2
   ballY = canvas.height / 2
+}
+
+// reset paddles to center of canvas
+function resetPaddles() {
+  leftPaddleY = (canvas.height - paddleHeight) / 2
+  rightPaddleY = (canvas.height - paddleHeight) / 2
 }
 
 //  main game loop
