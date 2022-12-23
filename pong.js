@@ -102,7 +102,7 @@ function moveBall() {
     }
   }
   if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
-    ballVelocityY += -ballVelocityY
+    ballVelocityY = -ballVelocityY
   }
 }
 
