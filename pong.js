@@ -1,5 +1,5 @@
 // set up canvas
-const canvas = document.getElementById("pong")
+const canvas = document.getElementById("element")
 const ctx = canvas.getContext("2d")
 
 // set up ball
@@ -10,10 +10,11 @@ let ballVelocityX = 5
 let ballVelocityY = 5
 
 // set up paddles
-let paddleHeight = 75
 let paddleWidth = 10
-let leftPaddleY = (canvas.height - paddle.height) / 2
-let rightPaddleY = (canvas.height - paddle.height) / 2
+let paddleHeight = 75
+let paddleVelocity = 5
+let leftPaddleY = (canvas.height - paddleHeight) / 2
+let rightPaddleY = (canvas.height - paddleHeight) / 2
 
 // set up score
 let leftPaddleScore = 0
@@ -82,8 +83,39 @@ function drawScore() {
   ctx.font = '30px Arial';
   ctx.fillStyle = '#fff';
   ctx.textAlign = 'center';
-  ctx.fillText(leftScore, canvas.width / 4, 50);
-  ctx.fillText(rightScore, canvas.width * 3 / 4, 50);
+  ctx.fillText(leftPaddleScore, canvas.width / 4, 50);
+  ctx.fillText(rightPaddleScore, canvas.width * 3 / 4, 50);
+}
+
+// move ball
+function moveBall() {
+  ballX += ballVelocityX
+  ballY += ballVelocityY
+
+  // collision detection
+  if (ballX - ballRadius < 0) {
+    // left paddle
+    if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
+      ballVelocityX = -ballVelocityX
+      ballVelocityY = (ballY - (leftPaddleY + paddleHeight / 2)) * 0.35
+    } else {
+      rightPaddleScore++
+      resetBall()
+    }
+  }
+  if (ballX + ballRadius > canvas.width) {
+    //  right paddle
+    if (ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
+      ballVelocityX = -ballVelocityX
+      ballVelocityY = (ballY - (rightPaddleY +paddleHeight / 2)) * 0.35
+    } else {
+      leftPaddleScore++
+      resetBall()
+    }
+  }
+  if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
+    ballVelocityY += -ballVelocityY
+  }
 }
 
 // reset ball to center of canvas
@@ -92,3 +124,41 @@ function resetBall() {
   ballY = canvas.height / 2
 }
 
+// move paddles
+function movePaddles() {
+  // left paddle
+  if (upPressed && leftPaddleY > 0) {
+    leftPaddleY -= paddleVelocity
+  }
+  if (downPressed && leftPaddleY < canvas.height - paddleHeight) {
+    leftPaddleY += paddleVelocity
+  }
+
+  // right paddle
+  if (ballY < rightPaddleY + paddleHeight / 2 && rightPaddleY > 0) {
+    rightPaddleY -= paddleVelocity
+  }
+  if (ballY > rightPaddleY + paddleHeight / 2 && rightPaddleY < canvas.height - paddleHeight) {
+    rightPaddleY += paddleVelocity
+  }
+}
+//  main game loop
+function draw() {
+  // clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+  // draw elements
+  drawBall()
+  drawPaddles()
+  drawScore()
+
+  // ball and paddle motion
+  moveBall()
+  movePaddles()
+
+  // request new frame
+  requestAnimationFrame(draw)
+}
+
+// start game loop
+draw()
