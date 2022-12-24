@@ -47,7 +47,7 @@ function draw() {
   ctx.textAlign = "center"
   ctx.fillText(leftScore, canvas.width * 1 / 4, 50)
   ctx.fillText(rightScore, canvas.width * 3 / 4, 50)
-  console.alert('scores drawn')
+  console.log('scores drawn')
 
   // TODO update ball position
   ballX += ballVelocityX
@@ -74,6 +74,24 @@ function draw() {
   }
 
   // TODO check for ball collision with top and bottom
+  if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
+    ballVelocityY = -ballVelocityY
+  }
   // TODO move right paddle
+  if (rightPaddleY + paddleHeight / 2 < ballY) {
+    rightPaddleY += 5
+  } else {
+    rightPaddleY -= 5
+  }
+
   // TODO request another frame
+  requestAnimationFrame(draw)
+}
+
+const keyDownHandler = (e) => {
+  if (e.key === "w") {
+    leftPaddleY -= 20
+  } else if (e.key === "s"){
+    leftPaddleY += 20
+  }
 }
