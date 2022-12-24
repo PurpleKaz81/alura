@@ -19,6 +19,9 @@ let rightPaddleY = (canvas.height - paddleHeight) / 2
 let leftScore = 0
 let rightScore = 0
 
+// set gameLoop variable
+let gameLoop
+
 function draw() {
   // clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -98,9 +101,37 @@ const keyDownHandler = (e) => {
 }
 
 // TODO reset ball
+function ballReset() {
+  ballX = canvas.width / 2
+  ballY = canvas.height / 2
+  ballVelocityX = initialBallVelocityX
+  ballVelocityY = initialBallVelocityY
+}
+
 // TODO start game
+function startGame() {
+  gameLoop = requestAnimationFrame(draw)
+}
+
 // TODO stop game
+function stopGame() {
+  cancelAnimationFrame(gameLoop)
+}
+
 // TODO reset game
+function resetGame() {
+  stopGame()
+}
+
 // TODO add event pertinent listeners: keydown and resizing window
+document.addEventListener("keydown", keyDownHandler)
+window.addEventListener("resize", () => {
+  // resize canvas viz window
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
   // TODO reset ball within resizing event listener
+  ballReset()
+})
+
 // TODO start game
+startGame()
