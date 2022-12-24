@@ -20,11 +20,11 @@ let leftScore = 0
 let rightScore = 0
 
 function draw() {
-  // TODO clear canvas
+  // clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   console.log('canvas cleared')
 
-  // TODO draw ball
+  // draw ball
   ctx.beginPath()
   ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2)
   ctx.fillStyle = "#fff"
@@ -32,29 +32,29 @@ function draw() {
   ctx.closePath()
   console.log('ball created')
 
-  // TODO draw left paddle
+  // draw left paddle
   ctx.fillStyle = "#fff"
   ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight)
   console.log('left paddle drawn')
 
-  // TODO draw right paddle
+  // draw right paddle
   ctx.fillStyle = "#fff"
   ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight)
   console.log('right paddle drawn')
 
-  // TODO draw scores
+  // draw scores
   ctx.font = "48px sans-serif"
   ctx.textAlign = "center"
   ctx.fillText(leftScore, canvas.width * 1 / 4, 50)
   ctx.fillText(rightScore, canvas.width * 3 / 4, 50)
   console.log('scores drawn')
 
-  // TODO update ball position
+  // update ball position
   ballX += ballVelocityX
   ballY += ballVelocityY
   console.log('ball position updated')
 
-  // TODO check for ball collision with paddles
+  // check for ball collision with paddles
   if (ballX - ballRadius < paddleWidth) {
     if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
       ballVelocityX = -ballVelocityX
@@ -73,21 +73,22 @@ function draw() {
     console.log('checked for ball collision with paddles')
   }
 
-  // TODO check for ball collision with top and bottom
+  // check for ball collision with top and bottom
   if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
     ballVelocityY = -ballVelocityY
   }
-  // TODO move right paddle
+  // move right paddle
   if (rightPaddleY + paddleHeight / 2 < ballY) {
     rightPaddleY += 5
   } else {
     rightPaddleY -= 5
   }
 
-  // TODO request another frame
+  // request another frame
   requestAnimationFrame(draw)
 }
 
+// set keyDownHandler function
 const keyDownHandler = (e) => {
   if (e.key === "w") {
     leftPaddleY -= 20
@@ -95,3 +96,11 @@ const keyDownHandler = (e) => {
     leftPaddleY += 20
   }
 }
+
+// TODO reset ball
+// TODO start game
+// TODO stop game
+// TODO reset game
+// TODO add event pertinent listeners: keydown and resizing window
+  // TODO reset ball within resizing event listener
+// TODO start game
