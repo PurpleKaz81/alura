@@ -73,7 +73,6 @@ function draw() {
     console.log('checked for ball collision with paddles')
   }
 
-  // TODO check for ball collision with edges
   // TODO check for ball collision with top and bottom
   // TODO move right paddle
   // TODO request another frame
