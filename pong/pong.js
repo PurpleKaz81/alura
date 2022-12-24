@@ -2,16 +2,18 @@
 const canvas = document.getElementById("game")
 const ctx = canvas.getContext("2d")
 
+// set up constants
+const ballRadius = 10
+const paddleWidth = 10
+const paddleHeight = 75
+const initialBallVelocityX = 5
+const initialBallVelocityY = 5
+
 // set up ball
 let ballX = canvas.width / 2
 let ballY = canvas.height / 2
-let ballRadius = 10
-let ballVelocityX = 5
-let ballVelocityY = 5
 
 // set up paddles
-let paddleWidth = 10
-let paddleHeight = 75
 let paddleVelocity = 5
 let leftPaddleY = (canvas.height - paddleHeight) / 2
 let rightPaddleY = (canvas.height - paddleHeight) / 2
@@ -28,21 +30,50 @@ document.addEventListener("keydown", keyDownHandler)
 document.addEventListener("keyup", keyUpHandler)
 
 function keyDownHandler(e) {
-  if (e.key === "ArrowUp") {
+  if (e.key === "w") {
     upPressed = true
   }
-  if (e.key === "ArrowDown") {
+  if (e.key === "s") {
     downPressed = true
   }
 }
 
 function keyUpHandler(e) {
-  if (e.key === "ArrowUp") {
+  if (e.key === "w") {
     upPressed = false
   }
-  if (e.key === "ArrowDown") {
+  if (e.key === "s") {
     downPressed = false
   }
+}
+
+document.addEventListener('click', () => {
+  requestAnimationFrame(draw)
+})
+document.addEventListener('click', () => {
+  cancelAnimationFrame(gameLoop)
+})
+document.addEventListener('click', (resetGame))
+
+function startGame() {
+  requestAnimationFrame(draw)
+}
+
+function stopGame() {
+  cancelAnimationFrame(gameLoop)
+}
+
+function resetGame() {
+  // reset ball position and velocities
+  ballX = canvas.width / 2
+  ballY = canvas.height / 2
+  ballVelocityX = initialBallVelocityX
+  ballVelocityY = initialBallVelocityY
+  // reset scores
+  leftPaddleScore = 0
+  rightPaddleScore = 0
+  // reset paddles
+  resetPaddles()
 }
 
 // draw ball on canvas
@@ -152,7 +183,7 @@ function draw() {
   movePaddles()
 
   // request new frame
-  requestAnimationFrame(draw)
+  gameLoop = requestAnimationFrame(draw)
 }
 
 // start game loop
