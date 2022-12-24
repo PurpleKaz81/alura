@@ -100,7 +100,7 @@ const keyDownHandler = (e) => {
   }
 }
 
-// TODO reset ball
+// reset ball
 function ballReset() {
   ballX = canvas.width / 2
   ballY = canvas.height / 2
@@ -108,30 +108,30 @@ function ballReset() {
   ballVelocityY = initialBallVelocityY
 }
 
-// TODO start game
+// start game
 function startGame() {
   gameLoop = requestAnimationFrame(draw)
 }
 
-// TODO stop game
+// stop game
 function stopGame() {
   cancelAnimationFrame(gameLoop)
 }
 
-// TODO reset game
+// reset game
 function resetGame() {
   stopGame()
 }
 
-// TODO add event pertinent listeners: keydown and resizing window
+// add event pertinent listeners: keydown and resizing window
 document.addEventListener("keydown", keyDownHandler)
 window.addEventListener("resize", () => {
   // resize canvas viz window
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
-  // TODO reset ball within resizing event listener
+  // reset ball within resizing event listener
   ballReset()
 })
 
-// TODO start game
+// start game
 startGame()
