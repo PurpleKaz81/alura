@@ -50,9 +50,29 @@ function draw() {
   console.alert('scores drawn')
 
   // TODO update ball position
-  
+  ballX += ballVelocityX
+  ballY += ballVelocityY
+  console.log('ball position updated')
 
   // TODO check for ball collision with paddles
+  if (ballX - ballRadius < paddleWidth) {
+    if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
+      ballVelocityX = -ballVelocityX
+      ballVelocityY = (ballY - (leftPaddleY + paddleHeight / 2)) * 0.35
+    } else {
+      rightScore++
+      ballReset()
+    }
+    if (ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
+      ballVelocityX = -ballVelocityX
+      ballVelocityY = (ballY - (rightPaddleY + paddleHeight / 2)) * 0.35
+    } else {
+      leftScore++
+      ballReset()
+    }
+    console.log('checked for ball collision with paddles')
+  }
+
   // TODO check for ball collision with edges
   // TODO check for ball collision with top and bottom
   // TODO move right paddle
