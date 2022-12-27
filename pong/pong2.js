@@ -62,6 +62,13 @@ function updateGameState() {
     rightPaddleY -= 5
   }
 
+  // limit right paddle movement to confines of canvas
+  if (rightPaddleY < 0) {
+    rightPaddleY = 0
+  } else if (rightPaddleY + paddleHeight > canvas.height) {
+    rightPaddleY = canvas.height - paddleHeight
+  }
+
   // move left paddle with keyboard input
   if (keyIsDown) {
     leftPaddleY += keyDirection * 5
@@ -109,14 +116,6 @@ function ballReset() {
   ballVelocityY = initialBallVelocityY
 }
 
-function draw() {
-  updateGameState()
-  renderGame()
-
-  // request another frame
-  requestAnimationFrame(draw)
-}
-
 // add event listeners for keyDown and keyUp events
 document.addEventListener("keydown", (e) => {
   if (e.key === "s") {
@@ -135,4 +134,12 @@ document.addEventListener("keyup", (e) => {
   }
 })
 
-draw()
+function draw() {
+  updateGameState()
+  renderGame()
+
+  // request another frame
+  requestAnimationFrame(draw)
+}
+
+requestAnimationFrame(draw)
