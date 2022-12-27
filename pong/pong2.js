@@ -70,13 +70,6 @@ function updateGameState() {
     rightPaddleY = canvas.height - paddleHeight
   }
 
-  // Limit the right paddle's movement to the confines of the canvas
-  if (rightPaddleY < 0) {
-    rightPaddleY = 0;
-  } else if (rightPaddleY + paddleHeight > canvas.height) {
-    rightPaddleY = canvas.height - paddleHeight;
-  }
-
   // move left paddle with keyboard input
   if (keyIsDown) {
     leftPaddleY += keyDirection * 5
