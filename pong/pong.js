@@ -2,12 +2,14 @@
 const canvas = document.getElementById("pong-canvas")
 const ctx = canvas.getContext("2d")
 
-// set up constants (ball, paddle)
+// set up constants (ball, paddles)
 const ballRadius = 10
 const initialBallVelocityX = 5
 const initialBallVelocityY = 5
 const paddleWidth = 10
 const paddleHeight = 75
+const paddleAcceleration = 0.1
+const paddleDeceleration = 0.9
 
 // set up variables (ball, paddle, score)
 let ballX = canvas.width / 2
@@ -16,6 +18,8 @@ let ballVelocityX = initialBallVelocityX
 let ballVelocityY = initialBallVelocityY
 let leftPaddleY = (canvas.height - paddleHeight) / 2
 let rightPaddleY = (canvas.height - paddleHeight) / 2
+// let leftPaddleVelocity = 0
+// let rightPaddleVelocity = 0
 let leftScore = 0
 let rightScore = 0
 
@@ -73,7 +77,6 @@ if (ballX + ballRadius > canvas.width - paddleWidth) {
   }
 }
 
-
   // check for ball collision with top and bottom
   if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
     ballVelocityY = -ballVelocityY
@@ -85,8 +88,44 @@ if (ballX + ballRadius > canvas.width - paddleWidth) {
     rightPaddleY -= 5
   }
 
+  updateRightPaddleVelocity();
+  rightPaddleY += -rightPaddleVelocity;
+
+  updateRightPaddle()
+
   // request another frame
   requestAnimationFrame(draw)
+}
+
+function updateRightPaddle() {
+  // update position based on velocity
+  rightPaddleY += rightPaddleVelocity
+
+  // apply deceleration
+  rightPaddleVelocity *= paddleDeceleration
+
+  // check if paddle has reached top or bottom of canvas
+  if (rightPaddleY < 0) {
+    rightPaddleY = 0
+    rightPaddleVelocity = 0
+  } else if (rightPaddleY + paddleHeight > canvas.height) {
+    rightPaddleY = canvas.height - paddleHeight
+    rightPaddleVelocity = 0
+  }
+}
+
+function updateRightPaddleVelocity() {
+  // calculate the difference in y-coordinates between the ball and the right paddle
+  let yDiff = ballY - (rightPaddleY + paddleHeight / 2);
+
+  // set the right paddle velocity based on the difference in y-coordinates
+  rightPaddleVelocity = yDiff * paddleAcceleration;
+
+  // decelerate the right paddle velocity over time
+  rightPaddleVelocity *= paddleDeceleration;
+
+  // limit the maximum velocity of the right paddle
+  rightPaddleVelocity = Math.max(-5, Math.min(rightPaddleVelocity, 5));
 }
 
 // set keyDownHandler function
