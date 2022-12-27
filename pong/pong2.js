@@ -136,11 +136,12 @@ document.addEventListener("keyup", (e) => {
 })
 
 function draw() {
+  // request another frame
+  requestAnimationFrame(draw)
+
   updateGameState()
   renderGame()
 
-  // request another frame
-  requestAnimationFrame(draw)
 }
 
 requestAnimationFrame(draw)
