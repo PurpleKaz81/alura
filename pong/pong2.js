@@ -6,6 +6,7 @@ const ctx = canvas.getContext("2d")
 const ballRadius = 10
 const initialBallVelocityX = Math.random() < 0.5 ? -2 : 2
 const initialBallVelocityY = Math.random() < 0.5 ? -2 : 2
+const maxBallVelocity = 3
 const paddleWidth = 10
 const paddleHeight = 75
 
@@ -49,12 +50,19 @@ ballY += ballVelocityY
   let spin = 0.35
 
   // check for ball collision with left paddle
-  if (ballX - ballRadius < paddleWidth + ballRadius) {
+  if (ballX - ballRadius < paddleWidth) {
     if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
       let paddleCenterY = leftPaddleY + paddleHeight / 2
       let paddleMovement = ballY - paddleCenterY
       ballVelocityX = -ballVelocityX
       ballVelocityY = paddleMovement * spin + -1
+      // limit ball's speed
+      if (Math.abs(ballVelocityX) > maxBallVelocity) {
+        ballVelocityX = Math.sign(ballVelocityX) + maxBallVelocity
+      }
+      if (Math.abs(ballVelocityY) > maxBallVelocity) {
+        ballVelocityY = Math.sign(ballVelocityY) + maxBallVelocity
+      }
     } else {
       rightScore++;
       ballReset();
@@ -62,12 +70,19 @@ ballY += ballVelocityY
   }
 
   // check for ball collision with right paddle
-  if (ballX + ballRadius > canvas.width - paddleWidth - ballRadius) {
+  if (ballX + ballRadius > canvas.width - paddleWidth) {
     if (ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
       let paddleCenterY = rightPaddleY + paddleHeight / 2
       let paddleMovement = ballY - paddleCenterY
       ballVelocityX = -ballVelocityX
       ballVelocityY = paddleMovement * spin + -1
+      // limit ball's speed
+      if (Math.abs(ballVelocityX) > maxBallVelocity) {
+        ballVelocityX = Math.sign(ballVelocityX) + maxBallVelocity
+      }
+      if (Math.abs(ballVelocityY) > maxBallVelocity) {
+        ballVelocityY = Math.sign(ballVelocityY) + maxBallVelocity
+      }
     } else {
       rightScore++;
       ballReset();
