@@ -4,8 +4,8 @@ const ctx = canvas.getContext("2d")
 
 // set up constants (ball, paddle)
 const ballRadius = 10
-const initialBallVelocityX = Number.parseFloat(3)
-const initialBallVelocityY = Number.parseFloat(3)
+const initialBallVelocityX = Number.parseFloat(1.6)
+const initialBallVelocityY = Number.parseFloat(1.6)
 const paddleWidth = 10
 const paddleHeight = 75
 
@@ -23,18 +23,30 @@ let rightScore = 0
 let keyIsDown = false
 let keyDirection = 0
 
-// set up time variable
-let lastTime = Date.now()
+// set up frame rate in milliseconds
+const frameRate = 1000 / 60
+
+// set up game loop using setInterval
+let gameInterval = setInterval(() => {
+  updateGameState()
+  renderGame()
+}, frameRate)
+
+// use setTimeout to delay the start of the game
+setTimeout(() => {
+  gameInterval = setInterval(() => {
+    updateGameState()
+    renderGame()
+  }, frameRate)
+}, 2000)
 
 function updateGameState() {
-  // update ball position
-  ballX += ballVelocityX
-  ballY += ballVelocityY
+// update ball position
+ballX += ballVelocityX
+ballY += ballVelocityY
 
   // spin coefficient variables
-  let min = 0.1
-  let max = 0.40
-  let spin = Math.random() * (max-min) + min
+  let spin = 0.35
 
   // check for ball collision with left paddle
   if (ballX - ballRadius < paddleWidth) {
@@ -64,11 +76,11 @@ function updateGameState() {
   }
 
   // Calculate the difference between the y-coordinate of the ball and the y-coordinate of the center of the right paddle
-  let paddleCenterY = rightPaddleY + paddleHeight / 2;
-  let paddleMovement = ballY - paddleCenterY;
+  let paddleCenterY = rightPaddleY + paddleHeight / 2
+  let paddleMovement = ballY - paddleCenterY
 
   // Move the right paddle based on the calculated difference
-  rightPaddleY += paddleMovement;
+  rightPaddleY += paddleMovement
 
   // limit right paddle movement to confines of canvas
   if (rightPaddleY < 0) {
@@ -79,7 +91,7 @@ function updateGameState() {
 
   // move left paddle with keyboard input
   if (keyIsDown) {
-    leftPaddleY += keyDirection * 5
+    leftPaddleY += keyDirection * 2.5
   }
 
   // limit left paddle movement to confines of canvas
@@ -142,12 +154,20 @@ document.addEventListener("keyup", (e) => {
   }
 })
 
-function draw() {
-  // request another frame
-  requestAnimationFrame(draw)
+// function draw() {
+//   // request another frame
+//   requestAnimationFrame(draw)
 
+//   updateGameState()
+//   renderGame()
+// }
+
+// draw()
+
+function draw() {
   updateGameState()
   renderGame()
+  requestAnimationFrame(draw)
 }
 
-requestAnimationFrame(draw)
+draw()
