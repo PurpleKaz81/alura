@@ -47,7 +47,7 @@ function updateGameState() {
   }
 
   // check for ball collision with top and bottom of canvas
-  if (ballY - ballRadius < 0 || ballY + ballRadius > canvas-height) {
+  if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
     ballVelocityY = -ballVelocityY
   }
 
@@ -61,6 +61,7 @@ function updateGameState() {
 
 function renderGame() {
   // clear canvas
+  ctx.fillStyle = "#000"
   ctx.fillRect(0, 0, canvas.width, canvas.height)
 
   // draw ball
@@ -92,3 +93,5 @@ function draw() {
   // request another frame
   requestAnimationFrame(draw)
 }
+
+draw()
