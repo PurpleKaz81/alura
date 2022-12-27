@@ -56,12 +56,12 @@ function updateGameState() {
     ballVelocityY = -ballVelocityY
   }
 
-  // move right paddle
-  if (rightPaddleY + paddleHeight / 2 < ballY) {
-    rightPaddleY += 5
-  } else {
-    rightPaddleY -= 5
-  }
+  // Calculate the difference between the y-coordinate of the ball and the y-coordinate of the center of the right paddle
+  let paddleCenterY = rightPaddleY + paddleHeight / 2;
+  let paddleMovement = ballY - paddleCenterY;
+
+  // Move the right paddle based on the calculated difference
+  rightPaddleY += paddleMovement;
 
   // limit right paddle movement to confines of canvas
   if (rightPaddleY < 0) {
@@ -69,13 +69,6 @@ function updateGameState() {
   } else if (rightPaddleY + paddleHeight > canvas.height) {
     rightPaddleY = canvas.height - paddleHeight
   }
-
-  // Calculate the difference between the y-coordinate of the ball and the y-coordinate of the center of the right paddle
-  let paddleCenterY = rightPaddleY + paddleHeight / 2;
-  let paddleMovement = ballY - paddleCenterY;
-
-  // Move the right paddle based on the calculated difference
-  rightPaddleY += paddleMovement;
 
   // Limit the right paddle's movement to the confines of the canvas
   if (rightPaddleY < 0) {
