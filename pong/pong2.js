@@ -21,3 +21,49 @@ let rightScore = 0
 
 // set gameLoop variable
 let gameLoop
+
+function updateGameState() {
+  // update ball position
+  ballX += ballVelocityX
+  ballY += ballVelocityY
+
+  // check for ball collision with left paddle
+  if (ballX - ballRadius < paddleWidth) {
+    if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
+      ballVelocityX = -ballVelocityX;
+      ballVelocityY = (ballY - (leftPaddleY + paddleHeight / 2)) * 0.35;
+    } else {
+      rightScore++;
+      ballReset();
+    }
+  }
+
+  // check for ball collision with right paddle
+  if (ballX + ballRadius > canvas.width - paddleWidth) {
+    if (ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
+      ballVelocityX = -ballVelocityX;
+      ballVelocityY = (ballY - (rightPaddleY + paddleHeight / 2)) * 0.35;
+    } else {
+      leftScore++;
+      ballReset();
+    }
+  }
+
+  // check for ball collision with top and bottom of canvas
+  if (ballY - ballRadius < 0 || ballY + ballRadius > canvas-height) {
+    ballVelocityY = -ballVelocityY
+  }
+
+  // move right paddle
+  if (rightPaddleY + paddleHeight / 2 < ballY) {
+    rightPaddleY += 5
+  } else {
+    rightPaddleY -= 5
+  }
+}
+
+function draw() {
+  updateGameState()
+  renderGame()
+  requestAnimationFrame(draw)
+}
