@@ -19,9 +19,6 @@ let rightPaddleY = (canvas.height - paddleHeight) / 2
 let leftScore = 0
 let rightScore = 0
 
-// set gameLoop variable
-let gameLoop
-
 function updateGameState() {
   // update ball position
   ballX += ballVelocityX
@@ -62,8 +59,36 @@ function updateGameState() {
   }
 }
 
+function renderGame() {
+  // clear canvas
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+  // draw ball
+  ctx.beginPath()
+  ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2)
+  ctx.fillStyle = "#fff"
+  ctx.fill()
+  ctx.closePath()
+
+  // draw left paddle
+  ctx.fillStyle = "#fff"
+  ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight)
+
+  // draw right paddle
+  ctx.fillStyle = "#fff"
+  ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight)
+
+  // draw scores
+  ctx.font = "48px sans-serif"
+  ctx.textAlign = "center"
+  ctx.fillText(leftScore, canvas.width * 1 / 4, 50)
+  ctx.fillText(rightScore, canvas.width * 3 / 4, 50)
+}
+
 function draw() {
   updateGameState()
   renderGame()
+
+  // request another frame
   requestAnimationFrame(draw)
 }
