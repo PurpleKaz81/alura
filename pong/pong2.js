@@ -49,10 +49,12 @@ ballY += ballVelocityY
   let spin = 0.35
 
   // check for ball collision with left paddle
-  if (ballX - ballRadius < paddleWidth) {
+  if (ballX - ballRadius < paddleWidth + ballRadius) {
     if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
-      ballVelocityX = -ballVelocityX;
-      ballVelocityY = (ballY - (leftPaddleY + paddleHeight / 2)) * spin;
+      let paddleCenterY = leftPaddleY + paddleHeight / 2
+      let paddleMovement = ballY - paddleCenterY
+      ballVelocityX = -ballVelocityX
+      ballVelocityY = paddleMovement * spin + -1
     } else {
       rightScore++;
       ballReset();
@@ -60,12 +62,14 @@ ballY += ballVelocityY
   }
 
   // check for ball collision with right paddle
-  if (ballX + ballRadius > canvas.width - paddleWidth) {
+  if (ballX + ballRadius > canvas.width - paddleWidth - ballRadius) {
     if (ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
-      ballVelocityX = -ballVelocityX;
-      ballVelocityY = (ballY - (rightPaddleY + paddleHeight / 2)) * spin;
+      let paddleCenterY = rightPaddleY + paddleHeight / 2
+      let paddleMovement = ballY - paddleCenterY
+      ballVelocityX = -ballVelocityX
+      ballVelocityY = paddleMovement * spin + -1
     } else {
-      leftScore++;
+      rightScore++;
       ballReset();
     }
   }
