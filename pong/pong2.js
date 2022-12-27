@@ -4,8 +4,8 @@ const ctx = canvas.getContext("2d")
 
 // set up constants (ball, paddle)
 const ballRadius = 10
-const initialBallVelocityX = 5
-const initialBallVelocityY = 5
+const initialBallVelocityX = Number.parseFloat(3)
+const initialBallVelocityY = Number.parseFloat(3)
 const paddleWidth = 10
 const paddleHeight = 75
 
@@ -22,6 +22,9 @@ let rightScore = 0
 // set up keyboard variables for left paddle
 let keyIsDown = false
 let keyDirection = 0
+
+// set up time variable
+let lastTime = Date.now()
 
 function updateGameState() {
   // update ball position
