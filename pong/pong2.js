@@ -28,12 +28,16 @@ function updateGameState() {
   ballX += ballVelocityX
   ballY += ballVelocityY
 
+  // spin coefficient variables
+  let min = 0.1
+  let max = 0.40
+  let spin = Math.random() * (max-min) + min
+
   // check for ball collision with left paddle
   if (ballX - ballRadius < paddleWidth) {
     if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
-      let spin = Math.floor(Math.random())
       ballVelocityX = -ballVelocityX;
-      ballVelocityY = (ballY - (leftPaddleY + paddleHeight / 2)) * 0.35;
+      ballVelocityY = (ballY - (leftPaddleY + paddleHeight / 2)) * spin;
     } else {
       rightScore++;
       ballReset();
@@ -44,7 +48,7 @@ function updateGameState() {
   if (ballX + ballRadius > canvas.width - paddleWidth) {
     if (ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
       ballVelocityX = -ballVelocityX;
-      ballVelocityY = (ballY - (rightPaddleY + paddleHeight / 2)) * 0.35;
+      ballVelocityY = (ballY - (rightPaddleY + paddleHeight / 2)) * spin;
     } else {
       leftScore++;
       ballReset();
@@ -141,7 +145,6 @@ function draw() {
 
   updateGameState()
   renderGame()
-
 }
 
 requestAnimationFrame(draw)
