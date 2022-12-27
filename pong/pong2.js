@@ -19,6 +19,10 @@ let rightPaddleY = (canvas.height - paddleHeight) / 2
 let leftScore = 0
 let rightScore = 0
 
+// set up keyboard variables for left paddle
+let keyIsDown = false
+let keyDirection = 0
+
 function updateGameState() {
   // update ball position
   ballX += ballVelocityX
@@ -57,6 +61,18 @@ function updateGameState() {
   } else {
     rightPaddleY -= 5
   }
+
+  // move left paddle with keyboard input
+  if (keyIsDown) {
+    leftPaddleY += keyDirection * 5
+  }
+
+  // limit left paddle movement to confines of canvas
+  if (leftPaddleY < 0) {
+    leftPaddleY = 0
+  } else if (leftPaddleY + paddleHeight > canvas.height) {
+    leftPaddleY = canvas.height - paddleHeight
+  }
 }
 
 function renderGame() {
@@ -86,6 +102,13 @@ function renderGame() {
   ctx.fillText(rightScore, canvas.width * 3 / 4, 50)
 }
 
+function ballReset() {
+  ballX = canvas.width / 2
+  ballY = canvas.height / 2
+  ballVelocityX = initialBallVelocityX
+  ballVelocityY = initialBallVelocityY
+}
+
 function draw() {
   updateGameState()
   renderGame()
@@ -93,5 +116,23 @@ function draw() {
   // request another frame
   requestAnimationFrame(draw)
 }
+
+// add event listeners for keyDown and keyUp events
+document.addEventListener("keydown", (e) => {
+  if (e.key === "s") {
+    keyIsDown = true
+    keyDirection = 1
+  } else if (e.key === "w") {
+    keyIsDown = true
+    keyDirection = -1
+  }
+})
+
+document.addEventListener("keyup", (e) => {
+  if (e.key === "w" || e.key === "s") {
+    keyIsDown = false
+    keyDirection = 0
+  }
+})
 
 draw()
