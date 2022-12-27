@@ -31,6 +31,7 @@ function updateGameState() {
   // check for ball collision with left paddle
   if (ballX - ballRadius < paddleWidth) {
     if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
+      let spin = Math.floor(Math.random())
       ballVelocityX = -ballVelocityX;
       ballVelocityY = (ballY - (leftPaddleY + paddleHeight / 2)) * 0.35;
     } else {
@@ -67,6 +68,20 @@ function updateGameState() {
     rightPaddleY = 0
   } else if (rightPaddleY + paddleHeight > canvas.height) {
     rightPaddleY = canvas.height - paddleHeight
+  }
+
+  // Calculate the difference between the y-coordinate of the ball and the y-coordinate of the center of the right paddle
+  let paddleCenterY = rightPaddleY + paddleHeight / 2;
+  let paddleMovement = ballY - paddleCenterY;
+
+  // Move the right paddle based on the calculated difference
+  rightPaddleY += paddleMovement;
+
+  // Limit the right paddle's movement to the confines of the canvas
+  if (rightPaddleY < 0) {
+    rightPaddleY = 0;
+  } else if (rightPaddleY + paddleHeight > canvas.height) {
+    rightPaddleY = canvas.height - paddleHeight;
   }
 
   // move left paddle with keyboard input
