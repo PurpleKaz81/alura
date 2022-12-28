@@ -84,7 +84,7 @@ ballY += ballVelocityY
         ballVelocityY = Math.sign(ballVelocityY) + maxBallVelocity
       }
     } else {
-      rightScore++;
+      leftScore++;
       ballReset();
     }
   }
@@ -172,16 +172,6 @@ document.addEventListener("keyup", (e) => {
     keyDirection = 0
   }
 })
-
-// function draw() {
-//   // request another frame
-//   requestAnimationFrame(draw)
-
-//   updateGameState()
-//   renderGame()
-// }
-
-// draw()
 
 function draw() {
   updateGameState()
