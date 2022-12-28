@@ -24,22 +24,22 @@ let rightScore = 0
 let keyIsDown = false
 let keyDirection = 0
 
-// set up frame rate in milliseconds
-const frameRate = 1000 / 60
+// // set up frame rate in milliseconds
+// const frameRate = 1000 / 60
 
-// set up game loop using setInterval
-let gameInterval = setInterval(() => {
-  updateGameState()
-  renderGame()
-}, frameRate)
+// // set up game loop using setInterval
+// let gameInterval = setInterval(() => {
+//   updateGameState()
+//   renderGame()
+// }, frameRate)
 
-// use setTimeout to delay the start of the game
-setTimeout(() => {
-  gameInterval = setInterval(() => {
-    updateGameState()
-    renderGame()
-  }, frameRate)
-}, 2000)
+// // use setTimeout to delay the start of the game
+// setTimeout(() => {
+//   gameInterval = setInterval(() => {
+//     updateGameState()
+//     renderGame()
+//   }, frameRate)
+// }, 2000)
 
 function updateGameState() {
 // update ball position
