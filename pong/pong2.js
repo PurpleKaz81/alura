@@ -46,16 +46,13 @@ function updateGameState() {
 ballX += ballVelocityX
 ballY += ballVelocityY
 
-  // spin coefficient variables
-  let spin = 0.30
-
   // check for ball collision with left paddle
   if (ballX - ballRadius < paddleWidth) {
     if (ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
       let paddleCenterY = leftPaddleY + paddleHeight / 2
       let paddleMovement = ballY - paddleCenterY
       ballVelocityX = -ballVelocityX
-      ballVelocityY = paddleMovement * spin + -1
+      ballVelocityY = Math.sin(paddleMovement) * ballVelocityX
       // limit ball's speed
       if (Math.abs(ballVelocityX) > maxBallVelocity) {
         ballVelocityX = Math.sign(ballVelocityX) + maxBallVelocity
@@ -75,7 +72,7 @@ ballY += ballVelocityY
       let paddleCenterY = rightPaddleY + paddleHeight / 2
       let paddleMovement = ballY - paddleCenterY
       ballVelocityX = -ballVelocityX
-      ballVelocityY = paddleMovement * spin + -1
+      ballVelocityY = Math.sin(paddleMovement) * ballVelocityX
       // limit ball's speed
       if (Math.abs(ballVelocityX) > maxBallVelocity) {
         ballVelocityX = Math.sign(ballVelocityX) + maxBallVelocity
