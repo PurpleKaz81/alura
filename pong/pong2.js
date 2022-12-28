@@ -190,4 +190,4 @@ function draw() {
   requestAnimationFrame(draw)
 }
 
-draw()
+requestAnimationFrame(draw)
