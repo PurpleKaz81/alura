@@ -47,7 +47,7 @@ ballX += ballVelocityX
 ballY += ballVelocityY
 
   // spin coefficient variables
-  let spin = 0.35
+  let spin = 0.30
 
   // check for ball collision with left paddle
   if (ballX - ballRadius < paddleWidth) {
@@ -98,8 +98,15 @@ ballY += ballVelocityY
   let paddleCenterY = rightPaddleY + paddleHeight / 2
   let paddleMovement = ballY - paddleCenterY
 
-  // Move the right paddle based on the calculated difference
-  rightPaddleY += paddleMovement
+  // Check if the ball is approaching the right paddle
+  if (ballX + ballRadius > canvas.width - paddleWidth - 20 && ballVelocityX > 0) {
+    // Add a random error margin to the paddle's movement
+    let errorMargin = this.errorMargin(-1, 1)
+    paddleMovement += errorMargin;
+  } else {
+  // Otherwise, move the paddle normally based on the calculated difference
+    rightPaddleY += paddleMovement;
+  }
 
   // limit right paddle movement to confines of canvas
   if (rightPaddleY < 0) {
@@ -146,6 +153,10 @@ function renderGame() {
   ctx.textAlign = "center"
   ctx.fillText(leftScore, canvas.width * 1 / 4, 50)
   ctx.fillText(rightScore, canvas.width * 3 / 4, 50)
+}
+
+function errorMargin(min, max) {
+  return Math.random() * (max-min) + min
 }
 
 function ballReset() {
