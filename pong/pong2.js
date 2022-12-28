@@ -101,7 +101,7 @@ ballY += ballVelocityY
   // Check if the ball is approaching the right paddle
   if (ballX + ballRadius > canvas.width - paddleWidth - 20 && ballVelocityX > 0) {
     // Add a random error margin to the paddle's movement
-    let errorMargin = this.errorMargin(-1, 1)
+    let errorMargin = errorMargin(-1, 1)
     paddleMovement += errorMargin;
   } else {
   // Otherwise, move the paddle normally based on the calculated difference
