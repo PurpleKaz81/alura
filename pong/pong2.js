@@ -117,7 +117,7 @@ ballY += ballVelocityY
 
   // move left paddle with keyboard input
   if (keyIsDown) {
-    leftPaddleY += keyDirection * 2.5
+    leftPaddleY += keyDirection * 2.8
   }
 
   // limit left paddle movement to confines of canvas
