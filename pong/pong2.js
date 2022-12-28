@@ -4,8 +4,8 @@ const ctx = canvas.getContext("2d")
 
 // set up constants (ball, paddle)
 const ballRadius = 10
-const initialBallVelocityX = Math.random() < 0.5 ? -2 : 2
-const initialBallVelocityY = Math.random() < 0.5 ? -2 : 2
+const initialBallVelocityX = Math.random() < 0.5 ? -3 : 3
+const initialBallVelocityY = Math.random() < 0.5 ? -3 : 3
 const maxBallVelocity = 3
 const paddleWidth = 10
 const paddleHeight = 75
