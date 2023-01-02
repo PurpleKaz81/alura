@@ -3,36 +3,41 @@ const canvas = document.querySelector("#my-canvas")
 canvas.width = 1400
 canvas.height = 1200
 
-// create image objects
-let roadImage = new Image()
-roadImage.src = "images/road.png"
-let playerImage = new Image()
-playerImage.src = "images/player-1.png"
-let roadImage = new Image()
-car1Image.src = "images/car-1.png"
-let roadImage = new Image()
-car2Image.src = "images/car-2.png"
-let roadImage = new Image()
-car3Image.src = "images/car-3.png"
+// create image objects array
+let images = [
+  new Image(),
+  new Image(),
+  new Image(),
+  new Image(),
+  new Image()
+]
 
-// draw image on canvas when it has finished loading
-roadImage.onload = function() {
-  // get 2D rendering context for canvas
-  const ctx = canvas.getContext("2d")
+// Source of each image
+images[0].src = "images/road.png"
+images[1].src = "images/player-1.png"
+images[2].src = "images/car-1.png"
+images[3].src = "images/car-2.png"
+images[4].src = "images/car-3.png"
 
-  // calculate images' aspect ratios
-  const aspectRatio = roadImage.naturalWidth / roadImage.naturalHeight
-  const aspectRatio = playerImage.naturalWidth / playerImage.naturalHeight
+// draw images on canvas when they have finished loading
+images.forEach ((image, index) => {
+  image.onload = function() {
+    // Get 2D rendering context for canvas
+    const ctx = canvas.getContext('2d')
 
-  // Calculate the width and height of the image to fit the canvas while maintaining the aspect ratio
-  let width = canvas.width
-  let height = canvas.height
-  if (width / height > aspectRatio) {
-    width = height * aspectRatio
-  } else {
-    height = width /aspectRatio
+    // calculate aspect ratio for images
+    const aspectRatio = image.naturalWidth / image.naturalHeight
+
+    // calculate the width and height of image to fit canvas while maintaining aspect ratio
+    let width = canvas.width / images.length
+    let height = canvas.height
+    if (width / height > aspectRatio) {
+      width = height * aspectRatio
+    } else {
+    height = width / aspectRatio
+    }
+
+  // draw image on canvas
+  ctx.drawImage(image, index * width, 0, width, height)
   }
-
-  // draw road image on canvas
-  ctx.drawImage(roadImage, 0, 0, width, height)
-}
+})
