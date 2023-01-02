@@ -1,7 +1,7 @@
 // Get a reference to the canvas element in the HTML
 const canvas = document.querySelector("#my-canvas")
-canvas.width = 500
-canvas.height = 400
+canvas.width = 1000
+canvas.height = 650
 
 // set canvas background image
 canvas.style.backgroundImage = 'url("images/road.png")'
@@ -38,7 +38,16 @@ images.forEach ((image, index) => {
     height = width / aspectRatio
     }
 
-  // draw image on canvas
-  ctx.drawImage(image, index * width, 0, width, height)
+    // set global composite operation to "destination-over"
+    ctx.globalCompositeOperation = "destination-over"
+
+    // draw image on canvas
+    if (index === 0) {
+      // draw background image centered on canvas
+      ctx.drawImage(image, (canvas.width - width) / 2, (canvas.height - height) / 2, width, height)
+    } else {
+      // draw other images on top of background image
+      ctx.drawImage(image, (index - 1) * width, 0, width, height)
+    }
   }
 })
