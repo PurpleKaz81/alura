@@ -1,11 +1,13 @@
 // Get a reference to the canvas element in the HTML
 const canvas = document.querySelector("#my-canvas")
-canvas.width = 1400
-canvas.height = 1200
+canvas.width = 500
+canvas.height = 400
+
+// set canvas background image
+canvas.style.backgroundImage = 'url("images/road.png")'
 
 // create image objects array
 let images = [
-  new Image(),
   new Image(),
   new Image(),
   new Image(),
@@ -13,11 +15,10 @@ let images = [
 ]
 
 // Source of each image
-images[0].src = "images/road.png"
-images[1].src = "images/player-1.png"
-images[2].src = "images/car-1.png"
-images[3].src = "images/car-2.png"
-images[4].src = "images/car-3.png"
+images[0].src = "images/player-1.png"
+images[1].src = "images/car-1.png"
+images[2].src = "images/car-2.png"
+images[3].src = "images/car-3.png"
 
 // draw images on canvas when they have finished loading
 images.forEach ((image, index) => {
