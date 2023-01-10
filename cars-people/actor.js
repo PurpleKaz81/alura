@@ -6,7 +6,6 @@ let myPoints = 0
 
 function showActor() {
   image(actorImage, xActor, yActor, 25, 25)
-  console.log(yActor)
 }
 
 function moveActor() {

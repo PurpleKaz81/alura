@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(500, 400).position(0, 0, "fixed")
+  createCanvas(500, 400).position(0, 0)
   // soundtrack.loop()
 }
 
