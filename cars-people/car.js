@@ -10,19 +10,13 @@ function showCar() {
 }
 
 function moveCar() {
-  xCars[0] -= carsSpeed[0]
-  xCars[1] -= carsSpeed[1]
-  xCars[2] -= carsSpeed[2]
+  for (let i = 0; i < xCars.length; i += 1)
+    xCars[i] -= carsSpeed[i]
 }
 
 function initCarPosition() {
-  if (xCars[0] < -50) {
-    xCars[0] = 600
-  }
-  if (xCars[1] < -50) {
-    xCars[1] = 600
-  }
-  if (xCars[2] < -50) {
-    xCars[2] = 600
+  for (i = 0; i < xCars.length; i += 1)
+  if (xCars[i] < -50) {
+    xCars[i] = 600
   }
 }
