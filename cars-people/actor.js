@@ -3,7 +3,7 @@ let xActor = 100
 let yActor = 369
 
 function showActor() {
-  image(actorImage, xActor, yActor, 30, 30)
+  image(actorImage, xActor, yActor, 25, 25)
 }
 
 function moveActor() {

@@ -1,5 +1,6 @@
 function setup() {
-  createCanvas(500, 400)
+  let cnv = createCanvas(500, 400)
+  cnv.position(0, 0, "fixed")
 }
 
 function draw () {
