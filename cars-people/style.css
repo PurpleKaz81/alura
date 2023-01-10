@@ -46,14 +46,10 @@ table {
 
 /* basic CSS */
 
-/* html, body {
+html, body {
   margin: 0;
   padding: 0;
 }
 canvas {
   display: block;
-} */
-
-/* #my-canvas {
-  background-position-y: bottom;
-} */
+}

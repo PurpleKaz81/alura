@@ -16,7 +16,7 @@ function preload() {
   car2Image = loadImage("images/car-2.png")
   car3Image = loadImage("images/car-3.png")
   carImages = [car1Image, car2Image, car3Image, car1Image, car2Image, car3Image]
-  soundtrack = loadSound("sounds/trilha.mp3")
-  hitSound = loadSound("sounds/colidiu.mp3")
-  pointSound = loadSound("sounds/pontos.wav")
+  soundtrack = loadSound("sounds/cars_people_soundtrack.mp3")
+  hitSound = loadSound("sounds/scream1.mp3")
+  pointSound = loadSound("sounds/point.mp3")
 }
