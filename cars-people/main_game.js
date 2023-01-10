@@ -1,6 +1,6 @@
 function setup() {
   createCanvas(500, 400).position(0, 0)
-  // soundtrack.loop()
+  soundtrack.loop()
 }
 
 function draw () {
