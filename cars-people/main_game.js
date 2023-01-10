@@ -9,4 +9,5 @@ function draw () {
   moveActor()
   moveCar()
   initCarPosition()
+  verifyCollision()
 }
