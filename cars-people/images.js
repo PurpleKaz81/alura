@@ -10,5 +10,5 @@ function preload() {
   actorImage = loadImage("images/player-1.png")
   car1Image = loadImage("images/car-1.png")
   car2Image = loadImage("images/car-2.png")
-  car3Image = loadImage("images/car-2.png")
+  car3Image = loadImage("images/car-3.png")
 }
