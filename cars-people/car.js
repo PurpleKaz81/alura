@@ -1,17 +1,15 @@
 // car code
 let yCars = [40, 96, 150]
+let carsSpeed = [2, 2.5, 3]
 
 // car 1
 let xCar1 = 600
-let car1Speed = 2
 
 // car 2
 let xCar2 = 600
-let car2Speed = 2.5
 
 // car 3
 let xCar3 = 600
-let car3Speed = 3
 
 function showCar() {
   image(car1Image, xCar1, yCars[0], 50, 40)
@@ -20,9 +18,9 @@ function showCar() {
 }
 
 function moveCar() {
-  xCar1 -= car1Speed
-  xCar2 -= car2Speed
-  xCar3 -= car3Speed
+  xCar1 -= carsSpeed[0]
+  xCar2 -= carsSpeed[1]
+  xCar3 -= carsSpeed[2]
 }
 
 function initCarPosition() {
