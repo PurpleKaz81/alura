@@ -25,9 +25,10 @@ function verifyCollision() {
   for (let i = 0; i < carImages.length; i++) {
     hit = collideRectCircle(xCars[i], yCars[i], carWidth, carHeight, xActor, yActor, 15)
       if (hit) {
+        hitSound.play()
         backToStart()
         if (pointsGreaterThanZero()){
-        myPoints -= 1
+          myPoints -= 1
         }
       }
   }
@@ -47,6 +48,7 @@ function scoreboard() {
 function addPoint() {
   if (yActor < 15) {
     myPoints += 1
+    pointSound.play()
     backToStart()
   }
 }
