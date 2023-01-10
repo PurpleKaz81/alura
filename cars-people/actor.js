@@ -42,5 +42,6 @@ function scoreboard() {
 function addPoint() {
   if (yActor < 15) {
     myPoints += 1
+    backToStart()
   }
 }
