@@ -1,7 +1,7 @@
 // car code
-let xCars = [600, 600, 600]
-let yCars = [40, 96, 150]
-let carsSpeed = [2, 2.5, 3]
+let xCars = [600, 600, 600, 600, 600, 600]
+let yCars = [40, 96, 150, 210, 270, 318]
+let carsSpeed = [2, 2.5, 3, 5, 3.3, 2.3]
 let carWidth = 50
 let carHeight = 40
 
