@@ -44,6 +44,8 @@ table {
   border-spacing: 0;
 }
 
+/* basic CSS */
+
 html, body {
   margin: 0;
   padding: 0;
