@@ -10,12 +10,12 @@ function showCar() {
 }
 
 function moveCar() {
-  for (let i = 0; i < xCars.length; i += 1)
+  for (let i = 0; i < carImages.length; i += 1)
     xCars[i] -= carsSpeed[i]
 }
 
 function initCarPosition() {
-  for (i = 0; i < xCars.length; i += 1)
+  for (i = 0; i < carImages.length; i += 1)
   if (xCars[i] < -50) {
     xCars[i] = 600
   }
