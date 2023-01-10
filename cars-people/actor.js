@@ -14,7 +14,9 @@ function moveActor() {
     yActor -= 3
   }
   if (keyIsDown(DOWN_ARROW)) {
+    if (actorCanMove()){
     yActor += 3
+    }
   }
 }
 
@@ -24,7 +26,7 @@ function verifyCollision() {
     hit = collideRectCircle(xCars[i], yCars[i], carWidth, carHeight, xActor, yActor, 15)
       if (hit) {
         backToStart()
-        if (myPoints > 0){
+        if (pointsGreaterThanZero()){
         myPoints -= 1
         }
       }
@@ -47,4 +49,12 @@ function addPoint() {
     myPoints += 1
     backToStart()
   }
+}
+
+function pointsGreaterThanZero() {
+  return myPoints > 0
+}
+
+function actorCanMove() {
+  return yActor < 369
 }
