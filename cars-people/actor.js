@@ -18,7 +18,7 @@ function moveActor() {
 
 function verifyCollision() {
   // collideRectCircle(x1, y1, width1, height1, cx, cy, diameter)
-  for (let i = 0; i < carImages.length; i += 1) {
+  for (let i = 0; i < carImages.length; i++) {
     hit = collideRectCircle(xCars[i], yCars[i], carWidth, carHeight, xActor, yActor, 15)
       if (hit) {
         backToStart()

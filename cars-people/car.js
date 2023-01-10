@@ -6,18 +6,18 @@ let carWidth = 50
 let carHeight = 40
 
 function showCar() {
-  for (let i = 0; i < carImages.length; i += 1) {
+  for (let i = 0; i < carImages.length; i++) {
     image(carImages[i], xCars[i], yCars[i], carWidth, carHeight)
   }
 }
 
 function moveCar() {
-  for (let i = 0; i < carImages.length; i += 1)
+  for (let i = 0; i < carImages.length; i++)
     xCars[i] -= carsSpeed[i]
 }
 
 function initCarPosition() {
-  for (i = 0; i < carImages.length; i += 1)
+  for (i = 0; i < carImages.length; i++)
     if (completedScreen(xCars[i])) {
       xCars[i] = 600
   }
