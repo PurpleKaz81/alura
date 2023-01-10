@@ -5,7 +5,7 @@ function setup() {
 function draw () {
   background(roadImage)
   showActor()
-  show(car)
+  showCar()
   moveActor()
   moveCar()
   initCarPosition()
