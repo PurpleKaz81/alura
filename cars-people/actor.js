@@ -1,10 +1,12 @@
 // actor starting position
-let xActor = 100
+let xActor = 85
 let yActor = 369
 let hit = false
+let myPoints = 0
 
 function showActor() {
   image(actorImage, xActor, yActor, 25, 25)
+  console.log(yActor)
 }
 
 function moveActor() {
@@ -28,4 +30,17 @@ function verifyCollision() {
 
 function backToStart() {
   yActor = 369
+}
+
+function scoreboard() {
+  textAlign(CENTER)
+  text(myPoints, width / 5, 27)
+  textSize(25)
+  fill(color(255, 240, 60))
+}
+
+function addPoint() {
+  if (yActor < 15) {
+    myPoints += 1
+  }
 }

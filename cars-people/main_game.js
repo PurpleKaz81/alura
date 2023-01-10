@@ -10,4 +10,6 @@ function draw () {
   moveCar()
   initCarPosition()
   verifyCollision()
+  scoreboard()
+  addPoint()
 }
