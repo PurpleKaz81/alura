@@ -6,8 +6,8 @@ const buttonList = document.querySelectorAll(".tecla")
 
 let counter = 0
 
-while (counter < 9) {
-  buttonList[0].onclick = playPomSound
+while (counter < buttonList.length) {
+  buttonList[counter].onclick = playPomSound
   counter += 1
   console.log(counter)
 }
