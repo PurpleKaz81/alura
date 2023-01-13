@@ -6,5 +6,4 @@ function playClapSound() {
   document.querySelector("#som_tecla_clap").play()
 }
 
-// select pom button
-document.querySelector(".tecla_pom")
+document.querySelector(".tecla_pom").onclick = playPomSound
