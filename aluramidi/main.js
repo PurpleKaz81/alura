@@ -2,8 +2,6 @@ function playPomSound() {
   document.querySelector("#som_tecla_pom").play()
 }
 
-function playClapSound() {
-  document.querySelector("#som_tecla_clap").play()
-}
+const buttonList = document.querySelectorAll(".tecla")
 
-document.querySelector(".tecla_pom").onclick = playPomSound
+buttonList[0].onclick = playPomSound
