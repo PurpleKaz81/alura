@@ -12,11 +12,11 @@ while (counter < buttonList.length) {
 
   const audioId = `#som_${instrument}`
 
-  console.log(audioId)
+  // console.log(audioId)
 
   button.onclick = function () {
     playSound(audioId)
   }
   counter += 1
-  console.log(counter)
+  // console.log(counter)
 }
