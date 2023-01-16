@@ -11,6 +11,13 @@ for (let counter= 0; counter < buttonList.length; counter++) {
 
   button.onclick = function () {
     playSound(audioId)
+  }
 
+  button.onkeydown = function () {
+    button.classList.add("ativa")
+  }
+
+  button.onkeyup = function () {
+    button.classList.remove("ativa")
   }
 }
