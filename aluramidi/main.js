@@ -5,10 +5,8 @@ function playSound(audioElement) {
     alert("Element not found")
   }
 
-  if (element != null) {
-    if (element.localName === "audio") {
-      element.play()
-    }
+  if (element != null && element.localName === "audio") {
+    element.play()
   }
 }
 
