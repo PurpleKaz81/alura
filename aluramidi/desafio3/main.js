@@ -4,14 +4,21 @@ telInput.tabIndex = -1
 telInput.focus()
 
 function setupButtonEventListeners(button) {
-  button.addEventListener("mousedown", () => button.classList.add("ativa"))
-  button.addEventListener("mouseup", () => button.classList.remove("ativa"))
-  button.addEventListener("keydown", e => {
-    if (e.key === " " || e.key === "Enter") button.classList.add("ativa")
-  })
-  button.addEventListener("keyup", () => button.classList.remove("ativa"))
-  button.addEventListener("click", () => telInput.value += button.value)
+  const events = [
+    {event: "mousedown", action: () => button.classList.add("ativa")},
+    {event: "mouseup", action: () => button.classList.remove("ativa")},
+    {event: "keydown", action: (e) => {
+      if (e.key === " " || e.key === "Enter") button.classList.add("ativa")
+    }},
+    {event: "keyup", action: () => button.classList.remove("ativa")},
+    {event: "click", action: () => telInput.value += button.value},
+  ];
+
+  events.forEach(({event, action}) => {
+    button.addEventListener(event, action);
+  });
 }
+
 
 for (let index = 0; index < buttonList.length; index++) {
   const button = buttonList[index]
