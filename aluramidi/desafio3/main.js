@@ -3,41 +3,31 @@ const telInput = document.querySelector('input[type=tel]')
 telInput.tabIndex = -1
 telInput.focus()
 
-for (index = 0; index < buttonList.length; index++) {
+for (let index = 0; index < buttonList.length; index++) {
   const button = buttonList[index];
   button.tabIndex = index + 1
 
-  button.addEventListener("mousedown", function() {
-    button.classList.add("ativa")
-  })
-  button.addEventListener("mouseup", function() {
-    button.classList.remove("ativa")
-  })
-  button.addEventListener("keydown", function(e) {
+  button.addEventListener("mousedown", () => button.classList.add("ativa"))
+  button.addEventListener("mouseup", () => button.classList.remove("ativa"))
+  button.addEventListener("keydown", (e) => {
     if (e.key === " " || e.key === "Enter")
     button.classList.add("ativa")
   })
-  button.addEventListener("keyup", function() {
-    button.classList.remove("ativa")
-  })
-  button.addEventListener("click", function() {
-    telInput.value += button.value
-  })
+  button.addEventListener("keyup", () => button.classList.remove("ativa"))
+  button.addEventListener("click", () => telInput.value += button.value)
 }
 
 const firstButton = buttonList[0]
-firstButton.addEventListener("keydown", function(e) {
+firstButton.addEventListener("keydown", (e) => {
   if (e.key === "Tab" && e.shiftKey) {
     e.preventDefault()
     telInput.focus()
   }
 })
 
-telInput.addEventListener("keydown", function(e) {
+telInput.addEventListener("keydown", (e) => {
   if (e.key === " " || e.key === "Enter")
-  telInput.classList.add("ativa")
+    telInput.classList.add("ativa")
 });
 
-telInput.addEventListener("keyup", function() {
-  telInput.classList.remove("ativa")
-});
+telInput.addEventListener("keyup", () => telInput.classList.remove("ativa"))
