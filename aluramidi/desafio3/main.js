@@ -10,13 +10,13 @@ const addEventListeners = (element, events) => {
 };
 
 const buttonEvents = [
-    {event: "mousedown", action: e => e.target.classList.add("ativa")},
-    {event: "mouseup", action: e => e.target.classList.remove("ativa")},
-    {event: "keydown", action: e => {
-        if (e.key === " " || e.key === "Enter") e.target.classList.add("ativa")
-    }},
-    {event: "keyup", action: e => e.target.classList.remove("ativa")},
-    {event: "click", action: e => telInput.value += e.target.value},
+  {event: "mousedown", action: e => e.target.classList.add("ativa")},
+  {event: "mouseup", action: e => e.target.classList.remove("ativa")},
+  {event: "keydown", action: e => {
+      if (e.key === " " || e.key === "Enter") e.target.classList.add("ativa")
+  }},
+  {event: "keyup", action: e => e.target.classList.remove("ativa")},
+  {event: "click", action: e => telInput.value += e.target.value},
 ];
 
 const telEvents = [
@@ -30,12 +30,3 @@ buttonList.forEach((button, index) => {
     button.tabIndex = index + 1;
     addEventListeners(button, buttonEvents);
 });
-
-const firstButton = buttonList[0];
-firstButton.addEventListener("keydown", e => {
-    if (e.key === "Tab" && e.shiftKey) {
-        e.preventDefault();
-        telInput.focus();
-    }
-});
-addEventListeners(telInput, telEvents);
