@@ -37,4 +37,5 @@ firstButton.addEventListener("keydown", e => {
         e.preventDefault();
         telInput.focus();
     }
-  })
+});
+addEventListeners(telInput, telEvents);
