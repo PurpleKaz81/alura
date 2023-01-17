@@ -1,12 +1,10 @@
 function playSound(audioElement) {
   const element = document.querySelector(audioElement)
 
-  if (element === null) {
-    alert("Element not found")
-  }
-
   if (element != null && element.localName === "audio") {
     element.play()
+  } else {
+    alert("Element not found, or invalid selector")
   }
 }
 
