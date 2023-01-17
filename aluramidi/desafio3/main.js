@@ -19,7 +19,6 @@ function setupButtonEventListeners(button) {
   });
 }
 
-
 for (let index = 0; index < buttonList.length; index++) {
   const button = buttonList[index]
   button.tabIndex = index + 1
@@ -34,8 +33,13 @@ firstButton.addEventListener("keydown", e => {
   }
 })
 
-telInput.addEventListener("keydown", e => {
-  if (e.key === " " || e.key === "Enter") telInput.classList.add("ativa")
-});
+const telEvents = [
+  {event: "keydown", action: e => {
+    if (e.key === " " || e.key === "Enter") telInput.classList.add("ativa")
+  }},
+  {event: "keyup", action: () => telInput.classList.remove("ativa")},
+];
 
-telInput.addEventListener("keyup", () => telInput.classList.remove("ativa"))
+telEvents.forEach(({event, action}) => {
+    telInput.addEventListener(event, action);
+});
