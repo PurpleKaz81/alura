@@ -1,5 +1,13 @@
 function playSound(audioElementId) {
-  document.querySelector(audioElementId).play()
+  const element = document.querySelector(audioElementId)
+
+  if (element === null) {
+    alert("Element not found")
+  }
+
+  if (element != null) {
+    element.play()
+  }
 }
 
 const buttonList = document.querySelectorAll(".tecla")
@@ -13,8 +21,10 @@ for (let counter= 0; counter < buttonList.length; counter++) {
     playSound(audioId)
   }
 
-  button.onkeydown = function () {
-    button.classList.add("ativa")
+  button.onkeydown = function (e) {
+    if (e.code === "Space" || e.code === "Enter") {
+      button.classList.add("ativa")
+    }
   }
 
   button.onkeyup = function () {
