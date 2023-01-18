@@ -8,7 +8,7 @@ fetch("audioIds.json")
     const instrument = button.classList[1]
     let audioId = data[instrument]
 
-    button.onclick = function () {
+    button.onclick = () => {
       try {
         let audioElement = document.querySelector(audioId)
         audioElement.play()
