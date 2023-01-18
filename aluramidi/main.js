@@ -3,30 +3,30 @@ fetch("audioIds.json")
   .then((data) => {
     const buttonList = document.querySelectorAll(".tecla");
 
-    for (let counter = 0; counter < buttonList.length; counter++) {
-      const button = buttonList[counter];
+    buttonList.forEach(button => {
       const instrument = button.classList[1];
       let audioId = data[instrument];
 
       button.onclick = () => {
-        try {
-          let audioElement = document.querySelector(audioId);
-          audioElement.play();
-        } catch (e) {
-          console.error(`Error: ${e}`);
-        }
+          try {
+              let audioElement = document.querySelector(audioId);
+              audioElement.play();
+          } catch (e) {
+              console.error(`Error: ${e}`);
+          }
       };
 
       button.onkeydown = (e) => {
-        if (e.code === "Space" || e.code === "Enter") {
-          button.classList.add("ativa");
-        }
+          if (e.code === "Space" || e.code === "Enter") {
+              button.classList.add("ativa");
+          }
       };
 
       button.onkeyup = () => {
-        button.classList.remove("ativa");
+          button.classList.remove("ativa");
       };
-    }
+  });
+
   })
   .catch((error) => {
     console.error(`An error has occurred with ${error}`);
