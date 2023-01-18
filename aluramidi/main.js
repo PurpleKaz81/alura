@@ -8,36 +8,30 @@ function playSound(audioElement) {
   }
 }
 
-const buttonList = document.querySelectorAll(".tecla")
 
-for (let counter = 0; counter < buttonList.length; counter++) {
-  const button = buttonList[counter]
-  const instrument = button.classList[1]
-  const audioIds = {
-    "tecla_pom": "#som_tecla_pom",
-    "tecla_clap": "#som_tecla_clap",
-    "tecla_tim": "#som_tecla_tim",
-    "tecla_puff": "#som_tecla_puff",
-    "tecla_splash": "#som_tecla_splash",
-    "tecla_toim": "#som_tecla_toim",
-    "tecla_psh": "#som_tecla_psh",
-    "tecla_tic": "#som_tecla_tic",
-    "tecla_tom": "#som_tecla_tom"
-  }
+fetch("audioIds.json")
+.then(response => response.json())
+.then(data => {
+  const buttonList = document.querySelectorAll(".tecla")
 
-  let audioId = audioIds[instrument]
+  for (let counter = 0; counter < buttonList.length; counter++) {
+    const button = buttonList[counter]
+    const instrument = button.classList[1]
+    let audioId = data[instrument]
 
-  button.onclick = function () {
-    playSound(audioId)
-  }
+    button.onclick = function () {
+      playSound(audioId)
+    }
 
-  button.onkeydown = function (e) {
-    if (e.code === "Space" || e.code === "Enter") {
-      button.classList.add("ativa")
+    button.onkeydown = function (e) {
+      if (e.code === "Space" || e.code === "Enter") {
+        button.classList.add("ativa")
+      }
+    }
+
+    button.onkeyup = function () {
+      button.classList.remove("ativa")
     }
   }
-
-  button.onkeyup = function () {
-    button.classList.remove("ativa")
-  }
-}
+})
+.catch(error => console.error(error))
