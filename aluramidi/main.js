@@ -17,17 +17,18 @@ fetch("audioIds.json")
       }
     }
 
-    button.onkeydown = function (e) {
+    button.onkeydown = (e) => {
       if (e.code === "Space" || e.code === "Enter") {
         button.classList.add("ativa")
       }
     }
 
-    button.onkeyup = function () {
+    button.onkeyup = () => {
       button.classList.remove("ativa")
     }
   }
 })
 .catch(error => {
-  console.error(`An error has occurred: ${error}`)
+  console.error(`An error has occurred with ${error}`)
+  alert(`Error playing the ${error} sound. Please check the audio file and try again.`)
 })
