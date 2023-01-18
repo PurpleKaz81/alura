@@ -1,14 +1,3 @@
-function playSound(audioElement) {
-  const element = document.querySelector(audioElement)
-
-  if (element && element.localName === "audio") {
-    element.play()
-  } else {
-    alert("Element not found, or invalid selector")
-  }
-}
-
-
 fetch("audioIds.json")
 .then(response => response.json())
 .then(data => {
@@ -20,7 +9,12 @@ fetch("audioIds.json")
     let audioId = data[instrument]
 
     button.onclick = function () {
-      playSound(audioId)
+      try {
+        let audioElement = document.querySelector(audioId)
+        audioElement.play()
+      } catch (e) {
+        console.error(`Error: ${e}`)
+      }
     }
 
     button.onkeydown = function (e) {
@@ -34,4 +28,6 @@ fetch("audioIds.json")
     }
   }
 })
-.catch(error => console.error(error))
+.catch(error => {
+  console.error(`An error has occurred: ${error}`)
+})
