@@ -12,7 +12,6 @@ const buttonList = document.querySelectorAll(".tecla")
 
 for (let counter = 0; counter < buttonList.length; counter++) {
   const button = buttonList[counter]
-  const instButton = button.classList[0]
   const instrument = button.classList[1]
   const audioIds = {
     "tecla_pom": "#som_tecla_pom",
@@ -27,14 +26,6 @@ for (let counter = 0; counter < buttonList.length; counter++) {
   }
 
   let audioId = audioIds[instrument]
-
-  switch (instrument) {
-    case instButton:
-      audioId
-      break
-    default:
-      console.error("Invalid classname")
-  }
 
   button.onclick = function () {
     playSound(audioId)
