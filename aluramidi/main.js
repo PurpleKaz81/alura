@@ -3,6 +3,15 @@ function handleError(error) {
   alert(`Error playing the sound. Please check the audio file and try again.`)
 }
 
+function playSound(audioId) {
+  try {
+    let audioElement = document.querySelector(audioId)
+    audioElement.play()
+  } catch (error) {
+    handleError(error)
+  }
+}
+
 fetch("audioIds.json")
   .then((response) => response.json())
   .then((data) => {
@@ -12,14 +21,7 @@ fetch("audioIds.json")
       const instrument = button.classList[1]
       let audioId = data[instrument]
 
-      button.onclick = () => {
-        try {
-          let audioElement = document.querySelector(audioId)
-          audioElement.play()
-        } catch (error) {
-          handleError(error)
-        }
-      }
+      button.onclick = () => playSound(audioId)
 
       button.addEventListener("keydown", (e) => {
         if (e.code === "Space" || e.code === "Enter") {
