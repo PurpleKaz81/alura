@@ -10,10 +10,42 @@ function playSound(audioElement) {
 
 const buttonList = document.querySelectorAll(".tecla")
 
-for (let counter= 0; counter < buttonList.length; counter++) {
+for (let counter = 0; counter < buttonList.length; counter++) {
   const button = buttonList[counter]
   const instrument = button.classList[1]
-  const audioId = `#som_${instrument}`
+  let audioId = ""
+
+  switch (instrument) {
+    case "tecla_pom":
+      audioId = "#som_tecla_pom"
+      break
+    case "tecla_clap":
+      audioId = "#som_tecla_clap"
+      break
+    case "tecla_tim":
+      audioId = "#som_tecla_tim"
+      break
+    case "tecla_puff":
+      audioId = "#som_tecla_puff"
+      break
+    case "tecla_splash":
+      audioId = "#som_tecla_splash"
+      break
+    case "tecla_toim":
+      audioId = "#som_tecla_toim"
+      break
+    case "tecla_psh":
+      audioId = "#som_tecla_psh"
+      break
+    case "tecla_tic":
+      audioId = "#som_tecla_tic"
+      break
+    case "tecla_tom":
+      audioId = "#som_tecla_tom"
+      break
+    default:
+      console.error("Invalid classname")
+  }
 
   button.onclick = function () {
     playSound(audioId)
