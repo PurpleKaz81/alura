@@ -58,5 +58,5 @@ while (true) {
 
 if (firstName && lastName && age && language && languageStudy) {
   document.getElementById("welcome").innerHTML = `Welcome to the Pleasuredome, ${firstName} ${lastName}. You're ${age} old, too young to reason and too grown up to dream. Relax when you wanna come 🫦`
-  document.getElementById("relax")
+  document.getElementById("relax").style.display = "block"
 }
