@@ -2,7 +2,7 @@ let firstName
 while (true) {
   firstName = window.prompt("What's your first name?")
   if (firstName.match(/^[a-zA-Z-'\s]+$/) && firstName != "") {
-    alert(`Hi, ${firstName}! Welcome to the Pleasuredome.`)
+    alert(`Hi, ${firstName}! Welcome`)
     break
   } else {
     alert("Please input a valid name (letters and spaces only).")
@@ -16,7 +16,7 @@ while (true) {
     alert(`Thanks, ${firstName}!`)
     break
   } else {
-    alert("Please input a valid name (letters and spaces only).")
+    alert("Please input a valid name (letters and spaces only)")
   }
 }
 
@@ -27,7 +27,7 @@ while (true) {
     alert(`You don't look a day over 20, ${firstName}!`)
     break
   } else {
-    alert("Please input a valid age (with numbers only).")
+    alert("Please input a valid age (with numbers only)")
   }
 }
 
@@ -38,6 +38,10 @@ while (true) {
     alert(`A wise choice, ${firstName} ${lastName}.`)
     break
   } else {
-    alert("Please input a valid language (using letters and spaces only).")
+    alert("Please input a valid language (using letters and spaces only)")
   }
+}
+
+if (firstName && lastName && age && language) {
+  document.getElementById("welcome").innerHTML = `Welcome to the Pleasuredome, ${firstName} ${lastName}. You're ${age} old, too young to reason and too grown up to dream. Relax when you wanna come 🫦`
 }
