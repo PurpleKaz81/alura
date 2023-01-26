@@ -1,0 +1,33 @@
+/* Add some basic styling to the page */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#gif-container {
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 50px auto 0;
+}
+
+#gif-container h1 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#gif-container img {
+  max-width: 100%;
+  height: auto;
+}
