@@ -42,7 +42,21 @@ while (true) {
   }
 }
 
-if (firstName && lastName && age && language) {
+let languageStudy
+while (true) {
+  languageStudy = window.prompt(`Do you enjoy studying programming languages? Type Y for yes and N for no`)
+  if (languageStudy.match(/^y$/i)) {
+    alert("That's wonderful news!")
+    break
+  } else if (languageStudy.match(/^n$/i)) {
+    alert("Hmmmm, you probably prefer the language of love, doncha?")
+    break
+  } else {
+    alert("Please input a valid answer, using only 'y' or 'n'")
+  }
+}
+
+if (firstName && lastName && age && language && languageStudy) {
   document.getElementById("welcome").innerHTML = `Welcome to the Pleasuredome, ${firstName} ${lastName}. You're ${age} old, too young to reason and too grown up to dream. Relax when you wanna come 🫦`
   document.getElementById("relax")
 }
