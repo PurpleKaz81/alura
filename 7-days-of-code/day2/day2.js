@@ -1,46 +1,43 @@
-let validFirstName = false
-const firstName = window.prompt("What's your first name?")
-if (firstName != "" && firstName != null) {
-  alert(`Hi, ${firstName}! Welcome to the Pleasuredome.`)
-  validFirstName = true
-} else {
-  alert("Please input a valid name.")
-}
-
-let lastName;
-if (validFirstName) {
-  lastName = window.prompt("What's your surname?")
-  if (lastName != "" && lastName != null) {
-    alert(`Thanks, ${firstName} ${lastName}! We're almost there.`)
+let firstName
+while (true) {
+  firstName = window.prompt("What's your first name?")
+  if (firstName.match(/^[a-zA-Z-'\s]+$/) && firstName != "") {
+    alert(`Hi, ${firstName}! Welcome to the Pleasuredome.`)
+    break
   } else {
-    alert("Please input a valid name.")
+    alert("Please input a valid name (letters and spaces only).")
   }
 }
 
-let validAge = false
-if (lastName) {
-	const age = window.prompt("How old are you?")
-  const parsedAge = parseInt(age)
-	if (!isNaN(parsedAge) && parsedAge != "" && parsedAge != null) {
-	  alert(`Looking fresh as ever, ${firstName} ${lastName}.`)
-	  validAge = true
-	} else {
-	  alert("Please input a valid age.")
-	}
+let lastName
+while (true) {
+  lastName = window.prompt("What's your surname?")
+  if (lastName.match(/^[a-zA-Z-'\s]+$/) && lastName != "") {
+    alert(`Thanks, ${firstName}!`)
+    break
+  } else {
+    alert("Please input a valid name (letters and spaces only).")
+  }
 }
 
-let validLanguage = false
-if (validAge) {
-	const language = window.prompt("What programming language is your main focus of study right now?")
-	if (language != "" && language != null) {
-	  alert("I see...")
-	  validLanguage = true
-	} else {
-	  alert ("Please input a valid language")
-	}
+let age
+while (true) {
+  age = window.prompt(`How old are you, ${firstName}?`)
+  if (age.match(/^(1[0-2]\d|[1-9]?\d|0)$/) && age != "") {
+    alert(`You don't look a day over 20, ${firstName}!`)
+    break
+  } else {
+    alert("Please input a valid age (with numbers only).")
+  }
 }
 
-
-if (validFirstName && lastName && validAge && validLanguage) {
-  alert("Relax!")
+let language
+while (true) {
+  language = window.prompt(`What language have you been focusing on?`)
+  if (language.match(/^[a-zA-Z]+([-_ ]?[a-zA-Z0-9]+)*$/) && language != "") {
+    alert(`A wise choice, ${firstName} ${lastName}.`)
+    break
+  } else {
+    alert("Please input a valid language (using letters and spaces only).")
+  }
 }
