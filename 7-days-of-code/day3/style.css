@@ -72,3 +72,35 @@ body {
     font-size: 3.5vh;
   }
 }
+
+@media (min-width: 320px) and (max-width: 375px) {
+  #gif-container img {
+    width: 50vw;
+    height: 50vh;
+    margin-top: -110px;
+  }
+}
+
+@media (width: 375px) {
+  #gif-container img {
+    width: 50vw;
+    height: 50vh;
+    margin-top: -100px;
+  }
+}
+
+@media (width: 425px) {
+  #gif-container img {
+    width: 45vw;
+    height: 45vh;
+    margin-top: -75px;
+  }
+}
+
+@media (width: 768px) {
+  #gif-container img {
+    width: 30vw;
+    height: 30vh;
+    margin-top: -55px;
+  }
+}
