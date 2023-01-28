@@ -11,12 +11,26 @@ function capitalizeName(name) {
 
 function handleInput() {
   let fullName = window.prompt("What's you full name, champ?")
-  if (fullName.match(/^[a-zA-Z-'\s]+$/) && fullName != "") {
-    alert(`Thanks, ${capitalizeName(fullName)}!`)
+  let regexp = XRegExp('^[\\p{L}\\p{M}\\s.\'’-]+$')
+  if (XRegExp.test(fullName, regexp) && fullName != "" && fullName != null) {
+    fullName = capitalizeName(fullName)
+    alert(`Thanks, ${fullName}!`)
   } else {
     alert("Do us a solid and write in a valid name, letters and spaces only")
+    return handleInput()
+  }
+
+  let age = window.prompt("And how old are you?")
+  if (age && age.match(/^(1[0-2]\d|[1-9]?\d|0)$/) && age != "" && age != null) {
+    alert(`So far so good, ${capitalizeName(fullName)}, ${age} years old.`)
+  } else {
+    alert("No need to lie 😝 Just jot down your real age")
+    return handleInput()
   }
 }
 
-openingGif()
-handleInput()
+document.addEventListener("DOMContentLoaded", openingGif())
+
+window.onload = () => {
+  handleInput()
+}
