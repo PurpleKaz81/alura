@@ -42,28 +42,26 @@ function handleInput() {
     return handleInput()
   }
 
-  let question1 = window.prompt(`Would you like to study front-end or back-end, ${fullName}? Please pick one`)
+  const question1Modal = document.getElementById("question1-modal")
+  question1Modal.style.display = "block"
 
-  let question1Answer = document.getElementById("question1-answer")
-  question1Answer.innerHTML = question1
+  const frontEndButton = document.getElementById("front-end-button")
+  const backEndButton = document.getElementById("back-end-button")
+  const question1Answer = document.getElementById("question1-answer")
 
-  if (question1 === "front-end") {
-    const frontEndButton = document.getElementById("front-end-button")
-    const backEndButton = document.getElementById("back-end-button")
-    let question1Answer = document.getElementById("question1-answer")
+  frontEndButton.addEventListener("click", () => {
+    question1Answer.textContent = `Great, ${fullName}, you've chosen front-end!`
+    question1Modal.style.display = "none"
+  })
 
-    frontEndButton.addEventListener("click", () => {
-      question1Answer.textContent = `Great, ${fullName}, you've chosen front-end!`
-    })
+  backEndButton.addEventListener("click", () => {
+    question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
+    question1Modal.style.display = "none"
+  })
+}
 
-    backEndButton.addEventListener("click", () => {
-      question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
-    })
-  }
+document.addEventListener("DOMContentLoaded", openingGif())
 
-  document.addEventListener("DOMContentLoaded", openingGif())
-
-  window.onload = () => {
-    handleInput()
-  }
+window.onload = () => {
+  handleInput()
 }
