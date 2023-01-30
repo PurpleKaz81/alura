@@ -13,17 +13,21 @@
 
   <body>
     <div class="bg-overlay">
-      <div class="container">
+      <div class="container-main-question">
         <div id="gif-container">
           <h1>Here's a question:</h1>
         </div>
       </div>
 
       <div id="question1-modal" class="modal">
-        <h4>Would you like to study front- or back-end?</h4>
-        <button id="front-end-button">Front-end</button>
-        <button id="back-end-button">Back-end</button>
-        <p id="question1-answer"></p>
+        <div class="question-content">
+          <h4 class="question-headers">Would you like to study front- or back-end?</h4>
+            <div class="buttons flex-parent jc-center">
+              <button id="front-end-button">Front-end</button>
+              <button id="back-end-button">Back-end</button>
+            </div>
+          <p id="question1-answer"></p>
+        </div>
       </div>
 
       <!-- <div class="question2-container">

@@ -32,7 +32,6 @@ body {
   z-index: -1;
 }
 
-
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -71,15 +70,53 @@ body {
   display: none; /* hidden by default */
   position: fixed; /* stay in place */
   z-index: 1; /* sit on top */
-  padding-top: 100px; /* location of the box */
   left: 0;
   top: 0;
-  width: 100%; /* full width */
-  height: 100%; /* full height */
-  overflow: auto; /* enable scroll if needed */
-  background-color: rgb(0,0,0); /* fallback color */
-  background-color: rgba(0,0,0,0.4); /* black w/ opacity */
+  width: 33.33%; /* set the width to one third of the screen */
+  height: 33.33vh; /* set the height to one third of the screen's height */
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  display: flex; /* make the parent container a flex container */
+  align-items: center; /* center the child elements vertically */
+  justify-content: center; /* center the child elements horizontally */
 }
+
+.question-content {
+  display: block;
+  margin: auto;
+}
+
+.question-headers {
+  align-items: center;
+}
+
+.flex-parent {
+  display: flex;
+  min-height: 0px;
+}
+
+.jc-center {
+  justify-content: space-evenly;
+}
+
+.buttons {
+  align-items: center;
+  margin: auto;
+}
+
+#front-end-button {
+  padding: 5px;
+}
+
+#back-end-button {
+  padding: 5px;
+}
+
+/*#question1-modal .modal h4,
+#question1-modal .modal button {
+  display: block;
+  margin: auto; /* center the elements vertically
+} */
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   #gif-container h1 {
