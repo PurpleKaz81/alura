@@ -58,13 +58,19 @@ function handleInput() {
   const question1Answer = document.getElementById("question1-answer")
 
   frontEndButton.addEventListener("click", () => {
-    question1Answer.textContent = `Great, ${fullName}, you've chosen front-end!`
-    question1Modal.style.display = "none"
+    return new Promise(resolve => {
+      question1Answer.textContent = `Great, ${fullName}, you've chosen front-end!`
+      question1Modal.style.display = "none"
+      resolve()
+    })
   })
 
   backEndButton.addEventListener("click", () => {
-    question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
-    question1Modal.style.display = "none"
+    return new Promise((resolve) => {
+      question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
+      question1Modal.style.display = "none"
+      resolve()
+    })
   })
 }
 

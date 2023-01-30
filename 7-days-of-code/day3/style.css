@@ -75,48 +75,41 @@ body {
   width: 33.33%; /* set the width to one third of the screen */
   height: 33.33vh; /* set the height to one third of the screen's height */
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.1);
   display: flex; /* make the parent container a flex container */
   align-items: center; /* center the child elements vertically */
   justify-content: center; /* center the child elements horizontally */
 }
 
 .question-content {
-  display: block;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .question-headers {
   align-items: center;
-}
-
-.flex-parent {
-  display: flex;
-  min-height: 0px;
-}
-
-.jc-center {
-  justify-content: space-evenly;
+  margin-bottom: 1rem;
 }
 
 .buttons {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin: auto;
+
 }
 
-#front-end-button {
-  padding: 5px;
+#front-end-button, #back-end-button{
+  margin: 0 1rem;
 }
 
-#back-end-button {
-  padding: 5px;
-}
-
-/*#question1-modal .modal h4,
-#question1-modal .modal button {
-  display: block;
-  margin: auto; /* center the elements vertically
-} */
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   #gif-container h1 {
