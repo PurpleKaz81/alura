@@ -42,26 +42,28 @@ function handleInput() {
     return handleInput()
   }
 
+  let question1 = window.prompt(`Would you like to study front-end or back-end, ${fullName}? Please pick one`)
+
   let question1Answer = document.getElementById("question1-answer")
-  let question1 = window.prompt("Would you like to study front-end or back-end? Pick one")
   question1Answer.innerHTML = question1
 
-  let question2Container = document.querySelector(".question2-container")
-  let question2Answer = document.querySelector("#question2-answer")
-  let question2
-  if (question1.toLowerCase() === "front-end") {
-    question2 = window.prompt("Which framework would you prefer: React or Vue? Pick one")
-  } else if (question1.toLowerCase() === "back-end") {
-    question2 = window.prompt("Which language would you prefer: C++ or Java? Pick one")
-  } else {
-    alert("Please input a valid answer")
-    return handleInput()
+  if (question1 === "front-end") {
+    const frontEndButton = document.getElementById("front-end-button")
+    const backEndButton = document.getElementById("back-end-button")
+    let question1Answer = document.getElementById("question1-answer")
+
+    frontEndButton.addEventListener("click", () => {
+      question1Answer.textContent = `Great, ${fullName}, you've chosen front-end!`
+    })
+
+    backEndButton.addEventListener("click", () => {
+      question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
+    })
   }
-  question2Answer.innerHTML = question2
-}
 
-document.addEventListener("DOMContentLoaded", openingGif())
+  document.addEventListener("DOMContentLoaded", openingGif())
 
-window.onload = () => {
-  handleInput()
+  window.onload = () => {
+    handleInput()
+  }
 }

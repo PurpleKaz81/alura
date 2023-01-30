@@ -67,6 +67,20 @@ body {
   margin-top: -40px;
 }
 
+.modal {
+  display: none; /* hidden by default */
+  position: fixed; /* stay in place */
+  z-index: 1; /* sit on top */
+  padding-top: 100px; /* location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* full width */
+  height: 100%; /* full height */
+  overflow: auto; /* enable scroll if needed */
+  background-color: rgb(0,0,0); /* fallback color */
+  background-color: rgba(0,0,0,0.4); /* black w/ opacity */
+}
+
 @media screen and (min-width: 320px) and (max-width: 768px) {
   #gif-container h1 {
     font-size: 3.5vh;

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="normalize.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
     <title>7 Days of Code: Day 3</title>
   </head>
@@ -18,15 +19,17 @@
         </div>
       </div>
 
-      <div class="question1-container">
+      <div id="question1-modal" class="modal">
         <h4>Would you like to study front- or back-end?</h4>
+        <button id="front-end-button">Front-end</button>
+        <button id="back-end-button">Back-end</button>
         <p id="question1-answer"></p>
       </div>
 
-      <div class="question2-container">
+      <!-- <div class="question2-container">
         <h4>Since you chose front/back, which framework/language would you like to learn? Pick one</h4>
         <p id="question2-answer"></p>
-      </div>
+      </div> -->
     </div>
     <script src="https://unpkg.com/xregexp/xregexp-all.js"></script>
     <script src="day3.js"></script>
