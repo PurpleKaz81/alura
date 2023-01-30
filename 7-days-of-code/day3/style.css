@@ -79,6 +79,7 @@ body {
   display: flex; /* make the parent container a flex container */
   align-items: center; /* center the child elements vertically */
   justify-content: center; /* center the child elements horizontally */
+  display: none;
 }
 
 .modal h4 {
