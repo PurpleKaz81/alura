@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="normalize.css" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
-    <title>7 Days of Code: Day 3</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="normalize.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
-  <body>
-    <div class="bg-overlay">
-      <div class="container-main-question">
-        <div id="gif-container">
-          <h1>Here's a question:</h1>
-        </div>
+  <title>7 Days of Code: Day 3</title>
+</head>
+
+<body>
+  <div class="bg-overlay">
+    <div class="container-main-question">
+      <div id="gif-container">
+        <h1>Here's a question:</h1>
       </div>
-
-      <div id="question1-modal" class="modal">
-        <div class="question-content">
-          <h4 class="question-headers">Would you like to study front- or back-end?</h4>
-            <div class="buttons">
-              <button id="front-end-button">Front-end</button>
-              <button id="back-end-button">Back-end</button>
-            </div>
-          <p id="question1-answer"></p>
-        </div>
-      </div>
-
-      <!-- <div class="question2-container">
-        <h4>Since you chose front/back, which framework/language would you like to learn? Pick one</h4>
-        <p id="question2-answer"></p>
-      </div> -->
     </div>
-    <script src="https://unpkg.com/xregexp/xregexp-all.js"></script>
-    <script src="day3.js"></script>
-  </body>
+
+    <div id="question1-modal" class="modal">
+      <div class="question-content">
+        <h4 id="question1-header" class="question-headers">Would you like to study front- or back-end?</h4>
+        <div class="buttons">
+          <button id="front-end-button">Front-end</button>
+          <button id="back-end-button">Back-end</button>
+        </div>
+        <p id="question1-answer"></p>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://unpkg.com/xregexp/xregexp-all.js"></script>
+  <script src="day3.js"></script>
+</body>
+
 </html>

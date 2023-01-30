@@ -53,24 +53,46 @@ function handleInput() {
   let question1Modal = document.getElementById("question1-modal")
   question1Modal.style.display = "block"
 
+  const question1Header = document.getElementById("question1-header")
   const frontEndButton = document.getElementById("front-end-button")
   const backEndButton = document.getElementById("back-end-button")
+  const modal = document.getElementById("question1-modal")
   const question1Answer = document.getElementById("question1-answer")
 
   frontEndButton.addEventListener("click", () => {
-    return new Promise(resolve => {
+    question1Answer.textContent = `Great, ${fullName}, you've chosen front-end!`
+    modal.style.display = "block"
+    question1Header.style.display = "none"
+    frontEndButton.style.display = "none"
+    backEndButton.style.display = "none"
+  })
+
+  frontEndButton.addEventListener("keydown", (e) => {
+    if (e.code === 13) {
       question1Answer.textContent = `Great, ${fullName}, you've chosen front-end!`
-      question1Modal.style.display = "none"
-      resolve()
-    })
+      modal.style.display = "block"
+      question1Header.style.display = "none"
+      frontEndButton.style.display = "none"
+      backEndButton.style.display = "none"
+    }
   })
 
   backEndButton.addEventListener("click", () => {
-    return new Promise((resolve) => {
-      question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
-      question1Modal.style.display = "none"
-      resolve()
-    })
+    question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
+    modal.style.display = "block"
+    question1Header.style.display = "none"
+    frontEndButton.style.display = "none"
+    backEndButton.style.display = "none"
+  })
+
+  backEndButton.addEventListener("keydown", (e) => {
+    if (e.code === 13) {
+    question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
+    modal.style.display = "block"
+    question1Header.style.display = "none"
+    frontEndButton.style.display = "none"
+    backEndButton.style.display = "none"
+    }
   })
 }
 

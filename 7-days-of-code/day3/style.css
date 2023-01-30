@@ -82,7 +82,7 @@ body {
   display: none;
 }
 
-.modal h4 {
+.modal h4, p {
   color: rgba(177, 212, 0, 1);
   text-shadow: 1px 1px 2px #000;
   text-align: center;
@@ -105,6 +105,10 @@ body {
 .question-headers {
   align-items: center;
   margin-bottom: 1rem;
+}
+
+#question1-header {
+  display: block;
 }
 
 .buttons {
