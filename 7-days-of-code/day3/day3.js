@@ -11,25 +11,48 @@ function capitalizeName(name) {
 
 function validateName(name) {
   let regexp = XRegExp("^[\\p{L}\\p{M}\\s.'’-]+$")
-  if (XRegExp.test(name, regexp) && name != "" && name != null) {
-    return true
-  }
-  return false
+  return XRegExp.test(name, regexp) && name != "" && name != null
 }
 
 function validateAge(age) {
-  if (age && age.match(/^(1[0-2]\d|[1-9]?\d|0)$/) && age != "" && age != null) {
-    return true
-  }
-  return false
+  return age && age.match(/^(1[0-2]\d|[1-9]?\d|0)$/) && age != "" && age != null
 }
 
-let question1Modal = document.getElementById("question1-modal")
-question1Modal.style.display = "none"
+function handleChoice(fullName) {
+  const question1Answer = document.getElementById("question1-answer")
+  const modal = document.getElementById("question1-modal")
+  const question1Header = document.getElementById("question1-header")
+  const frontEndButton = document.getElementById("front-end-button")
+  const backEndButton = document.getElementById("back-end-button")
 
+  function choose(choice) {
+    question1Answer.textContent = `Great, ${fullName}, you've chosen ${choice}!`
+    modal.style.display = "block"
+    question1Header.style.display = "none"
+    frontEndButton.style.visibility = "hidden"
+    backEndButton.style.visibility = "hidden"
+  }
+
+  frontEndButton.addEventListener("click", () => {
+    choose("front-end")
+  })
+  backEndButton.addEventListener("click", () => {
+    choose("back-end")
+  })
+  frontEndButton.addEventListener("keydown", (e) => {
+    if (e.code === "Enter") {
+      choose("front-end")
+    }
+  })
+  backEndButton.addEventListener("keydown", (e) => {
+    if (e.code === "Enter") {
+      choose("back-end")
+    }
+  })
+}
 
 function handleInput() {
-  let fullName = window.prompt("What's you full name, champ?")
+  let fullName = window.prompt("What's your full name, champ?")
   if (validateName(fullName)) {
     fullName = capitalizeName(fullName)
     let firstName = fullName.split(" ")[0]
@@ -43,9 +66,7 @@ function handleInput() {
   while (!validateAge(age)) {
     age = window.prompt("And how old are you?")
     if (!validateAge(age)) {
-      alert(
-        "No need to lie 😝 Just type in your age, anywhere between 0 and 130 with no decimals"
-      )
+      alert("No need to lie 😝 Just type in your age, anywhere between 0 and 130 with no decimals")
     }
   }
   alert(`So far so good, ${capitalizeName(fullName)}, ${age} years old.`)
@@ -53,47 +74,7 @@ function handleInput() {
   let question1Modal = document.getElementById("question1-modal")
   question1Modal.style.display = "block"
 
-  const question1Header = document.getElementById("question1-header")
-  const frontEndButton = document.getElementById("front-end-button")
-  const backEndButton = document.getElementById("back-end-button")
-  const modal = document.getElementById("question1-modal")
-  const question1Answer = document.getElementById("question1-answer")
-
-  frontEndButton.addEventListener("click", () => {
-    question1Answer.textContent = `Great, ${fullName}, you've chosen front-end!`
-    modal.style.display = "block"
-    question1Header.style.display = "none"
-    frontEndButton.style.display = "none"
-    backEndButton.style.display = "none"
-  })
-
-  frontEndButton.addEventListener("keydown", (e) => {
-    if (e.code === 13) {
-      question1Answer.textContent = `Great, ${fullName}, you've chosen front-end!`
-      modal.style.display = "block"
-      question1Header.style.display = "none"
-      frontEndButton.style.display = "none"
-      backEndButton.style.display = "none"
-    }
-  })
-
-  backEndButton.addEventListener("click", () => {
-    question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
-    modal.style.display = "block"
-    question1Header.style.display = "none"
-    frontEndButton.style.display = "none"
-    backEndButton.style.display = "none"
-  })
-
-  backEndButton.addEventListener("keydown", (e) => {
-    if (e.code === 13) {
-    question1Answer.textContent = `Great, ${fullName}, you've chosen back-end!`
-    modal.style.display = "block"
-    question1Header.style.display = "none"
-    frontEndButton.style.display = "none"
-    backEndButton.style.display = "none"
-    }
-  })
+  handleChoice(fullName)
 }
 
 document.addEventListener("DOMContentLoaded", openingGif)
