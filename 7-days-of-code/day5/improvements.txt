@@ -1,0 +1,12 @@
+let improvements = [
+  "Change the function categorizeGrocery to store groceries in a category object instead of separate arrays",
+  "Modify the validateChoice1 function to check if the input is either '1' or '2' instead of checking if it is equal to 1 or 2",
+  "Use modern syntax such as template literals instead of string concatenation and the `let` keyword instead of the `var` keyword",
+  "Change the addGrocery function to only accept the grocery name as a parameter, rather than getting the input in the function",
+  "Use the built-in JavaScript array method `filter` to validate groceries instead of the `validateGrocery` function",
+  "Use the built-in JavaScript array method `find` to validate categories instead of the `validateCategory` function",
+  "Refactor the displayList function to use `map` and `join` to generate the list items, rather than creating individual elements",
+  "Rename the `validateChoice1` function to `isValidChoice` for more descriptive naming",
+  "Remove the `categorizeGrocery` function and incorporate the category choice into the `addGrocery` function",
+  "Use the modern JavaScript `const` keyword instead of `let` for categories and groceries, since their values are not reassigned"
+]
