@@ -26,18 +26,19 @@ function addGrocery(groceryItem) {
       alert("I understand. Maybe some other time.")
       return addGrocery()
     } else {
-      let grocery = getUserInput("Great! What items will you buy. Type in one at a time.")
-      grocery = capitalizeGrocery(grocery)
-      if (!validateGrocery(grocery)) {
+      let grocery = getUserInput("Great! What items will you buy? Type in one at a time.")
+      while (!validateGrocery(grocery)) {
         alert("Please type in a valid name for a grocery")
-      } else {
-        groceries.push(grocery)
+        grocery = getUserInput("So what items will you buy? Type in one at a time.")
       }
+        grocery = capitalizeGrocery(grocery)
+        groceries.push(grocery)
     }
   }
 }
 
 window.onload = () => {
+  addGrocery()
   while (true) {
     let addAnotherItem = getUserInput("Would you like to add another item to your list? Type '1' for yes and anything else to exit.")
     if (addAnotherItem.toLowerCase() != "1") {
