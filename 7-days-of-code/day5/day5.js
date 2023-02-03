@@ -16,6 +16,16 @@ function validateChoice1(choice1) {
   return !isNaN(Number(choice1)) && choice1 >= 1 && choice1 <= 2
 }
 
+function displayList() {
+  for (let index = 0; index < groceries.length; index++) {
+    groceries[index]
+    let groceryList = document.querySelector("#grocery-list")
+    let newItem = document.createElement("li")
+    newItem.textContent = groceries[index]
+    groceryList.appendChild(newItem)
+  }
+}
+
 function addGrocery(groceryItem) {
   let choice1 = getUserInput("Would you like to buy groceries today? Click '1' for yes and '2' for no.")
   if (!validateChoice1(choice1)) {
@@ -31,8 +41,8 @@ function addGrocery(groceryItem) {
         alert("Please type in a valid name for a grocery")
         grocery = getUserInput("So what items will you buy? Type in one at a time.")
       }
-        grocery = capitalizeGrocery(grocery)
-        groceries.push(grocery)
+      grocery = capitalizeGrocery(grocery)
+      groceries.push(grocery)
     }
   }
 }
@@ -52,6 +62,7 @@ window.onload = () => {
       } else {
       grocery = capitalizeGrocery(grocery)
       groceries.push(grocery)
+      displayList()
       }
     }
   }
