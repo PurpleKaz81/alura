@@ -60,9 +60,9 @@ window.onload = () => {
         alert("Please type in a valid name for a grocery")
         grocery
       } else {
-      grocery = capitalizeGrocery(grocery)
-      groceries.push(grocery)
-      displayList()
+        grocery = capitalizeGrocery(grocery)
+        groceries.push(grocery)
+        displayList()
       }
     }
   }
