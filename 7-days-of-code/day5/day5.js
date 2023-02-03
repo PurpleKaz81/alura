@@ -1,7 +1,5 @@
 let categories = {}
 
-
-
 function getUserInput(promptMessage) {
   return prompt(promptMessage)
 }
@@ -11,7 +9,7 @@ function capitalizeGrocery(grocery) {
 }
 
 function validateGrocery(grocery) {
-  return grocery.match(/^[A-Za-z\s-]+$/) && grocery != null && grocery != ""
+  return grocery.match(/^[^\d]+$/);
 }
 
 function validateCategory(category) {
@@ -19,19 +17,6 @@ function validateCategory(category) {
     .test(category.toLowerCase())
 }
 
-function categorizeGrocery(grocery) {
-  let category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category?`)
-  if (!validateCategory(category)) {
-    alert("Please type in a valid category.")
-    return categorizeGrocery(grocery)
-  }
-
-  if (!categories[category]) {
-    categories[category] = []
-  }
-
-  categories[category].push(grocery)
-}
 
 function capitalizeCategory(category) {
   return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
@@ -39,20 +24,21 @@ function capitalizeCategory(category) {
 
 function validateChoice1(choice1) {
   if (choice1 !== '1' && choice1 !== '2') {
+    alert("Please input either '1' or '2'.")
     return false
   }
   return true
 }
 
-function displayList() {
-  for (let index = 0; index < groceries.length; index++) {
-    groceries[index]
-    let groceryList = document.querySelector("#grocery-list")
-    let newItem = document.createElement("li")
-    newItem.textContent = groceries[index]
-    groceryList.appendChild(newItem)
-  }
-}
+// function displayList() {
+//   for (let index = 0; index < groceries.length; index++) {
+//     groceries[index]
+//     let groceryList = document.querySelector("#grocery-list")
+//     let newItem = document.createElement("li")
+//     newItem.textContent = groceries[index]
+//     groceryList.appendChild(newItem)
+//   }
+// }
 
 function addGrocery(groceryItem) {
   let choice1 = getUserInput("Would you like to buy groceries today? Click '1' for yes and '2' for no.")
@@ -69,12 +55,33 @@ function addGrocery(groceryItem) {
         alert("Please type in a valid name for a grocery")
         grocery = getUserInput("So what items will you buy? Type in one at a time.")
       }
-      grocery = capitalizeGrocery(grocery)
-      groceries.push(grocery)
-      categorizeGrocery()
+
+      function categorizeGrocery(grocery) {
+        function categorizeGrocery(grocery) {
+          let listOfCategories = "adult_items, beverages, books, booze, explosives, meats, munitions, weapons"
+
+          let category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category? The categories are ${listOfCategories}.`)
+
+          if (!validateCategory(category)) {
+            alert("Please type in a valid category")
+            return categorizeGrocery(grocery)
+          }
+
+          category = capitalizeCategory(category)
+          if (!categories[category]) {
+            categories[category] = []
+          }
+          categories[category].push(capitalizeGrocery(grocery))
+          console.log(categories)
+          addGrocery()
+        }
+      }
+      categorizeGrocery(grocery)
     }
   }
 }
+
+addGrocery()
 
 window.onload = () => {
   addGrocery()
@@ -90,8 +97,7 @@ window.onload = () => {
         grocery
       } else {
         grocery = capitalizeGrocery(grocery)
-        groceries.push(grocery)
-        displayList()
+        // displayList()
       }
     }
   }
