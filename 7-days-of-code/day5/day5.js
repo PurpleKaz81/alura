@@ -1,4 +1,13 @@
-let categories = {}
+let categories = {
+  'Adult Items': [],
+  'Beverages': [],
+  'Books': [],
+  'Booze': [],
+  'Explosives': [],
+  'Meats': [],
+  'Munitions': [],
+  'Weapons': []
+}
 
 function getUserInput(promptMessage) {
   return prompt(promptMessage)
@@ -56,24 +65,22 @@ function addGrocery(groceryItem) {
       }
 
       function categorizeGrocery(grocery) {
-        function categorizeGrocery(grocery) {
-          let listOfCategories = "adult_items, beverages, books, booze, explosives, meats, munitions, weapons"
+        let listOfCategories = Object.keys(categories).join(", ")
 
-          let category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category? The categories are ${listOfCategories}.`)
+        let category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category? The categories are ${listOfCategories}.`)
 
-          if (!validateCategory(category)) {
-            alert("Please type in a valid category")
-            return categorizeGrocery(grocery)
-          }
-
-          category = capitalizeCategory(category)
-          if (!categories[category]) {
-            categories[category] = []
-          }
-          categories[category].push(capitalizeGrocery(grocery))
-          console.log(categories)
-          addGrocery()
+        if (!validateCategory(category)) {
+          alert("Please type in a valid category")
+          return categorizeGrocery(grocery)
         }
+
+        category = capitalizeCategory(category)
+        if (!categories[category]) {
+          categories[category] = []
+        }
+        categories[category].push(capitalizeGrocery(grocery))
+        console.log(categories)
+        addGrocery()
       }
       categorizeGrocery(grocery)
     }
