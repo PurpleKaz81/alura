@@ -39,7 +39,7 @@ function addGrocery(groceryItem) {
 
 window.onload = () => {
   while (true) {
-    let addAnotherItem = getUserInput("Would you like to add another item to your list? Type '1' for yes and anything else for no.")
+    let addAnotherItem = getUserInput("Would you like to add another item to your list? Type '1' for yes and anything else to exit.")
     if (addAnotherItem.toLowerCase() != "1") {
       alert("Ok, then. See you soon \u{1F61D}")
       break
