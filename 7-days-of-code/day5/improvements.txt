@@ -10,3 +10,44 @@ let improvements = [
   "Remove the `categorizeGrocery` function and incorporate the category choice into the `addGrocery` function",
   "Use the modern JavaScript `const` keyword instead of `let` for categories and groceries, since their values are not reassigned"
 ]
+
+Instruction for ChatGPT:
+
+Let's put in place your first suggestion, "Change the function categorizeGrocery to store groceries in a category object instead of separate arrays".  You originally suggested I program in the method last seen. I'll reproduce it again:
+
+function categorizeGrocery(grocery, category) {
+  let category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category?`)
+  if (!validateCategory(category)) {
+    alert("Please type in a valid category.")
+    return categorizeGrocery(grocery)
+  }
+
+  switch (category) {
+    case "adult items":
+      adult_items.push(grocery)
+      break
+    case "beverages":
+      beverages.push(grocery)
+      break
+    case "books":
+      books.push(grocery)
+      break
+    case "booze":
+      booze.push(grocery)
+      break
+    case "explosives":
+      explosives.push(grocery)
+      break
+    case "meats":
+      meat.push(grocery)
+      break
+    case "munitions":
+      munitions.push(grocery)
+      break
+    case "weapons":
+      weapons.push(grocery)
+      break
+  }
+}
+
+So please tell me, first of all, what's less interesting about this way of doing things. Subsequently, please describe (without coding) the alternative you have in mind. Finally, code the alternative and explain it to me in fine detail

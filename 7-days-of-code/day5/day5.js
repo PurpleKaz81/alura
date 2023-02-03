@@ -1,5 +1,6 @@
-let categories = []
-let groceries = {}
+let categories = {}
+
+
 
 function getUserInput(promptMessage) {
   return prompt(promptMessage)
@@ -14,43 +15,22 @@ function validateGrocery(grocery) {
 }
 
 function validateCategory(category) {
-  let categories = /^(fruits|vegetables|frozen|booze|drinks|other)$/
-  return category.toLowerCase().match(categories)
+  return /^(adult_items|beverages|books|booze|explosives|meats|munitions|weapons)$/
+    .test(category.toLowerCase())
 }
 
-function categorizeGrocery(grocery, category) {
+function categorizeGrocery(grocery) {
   let category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category?`)
   if (!validateCategory(category)) {
     alert("Please type in a valid category.")
     return categorizeGrocery(grocery)
   }
 
-  switch (category) {
-    case "adult items":
-      adult_items.push(grocery)
-      break
-    case "beverages":
-      beverages.push(grocery)
-      break
-    case "books":
-      books.push(grocery)
-      break
-    case "booze":
-      booze.push(grocery)
-      break
-    case "explosives":
-      explosives.push(grocery)
-      break
-    case "meats":
-      meat.push(grocery)
-      break
-    case "munitions":
-      munitions.push(grocery)
-      break
-    case "weapons":
-      weapons.push(grocery)
-      break
+  if (!categories[category]) {
+    categories[category] = []
   }
+
+  categories[category].push(grocery)
 }
 
 function capitalizeCategory(category) {
@@ -58,7 +38,10 @@ function capitalizeCategory(category) {
 }
 
 function validateChoice1(choice1) {
-  return Number(choice1) === 1 || Number(choice1) === 2
+  if (choice1 !== '1' && choice1 !== '2') {
+    return false
+  }
+  return true
 }
 
 function displayList() {
@@ -104,7 +87,7 @@ window.onload = () => {
       let grocery = getUserInput("Great! Add an item.")
       if (!validateGrocery(grocery)) {
         alert("Please type in a valid name for a grocery")
-        continue
+        grocery
       } else {
         grocery = capitalizeGrocery(grocery)
         groceries.push(grocery)
