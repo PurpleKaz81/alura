@@ -1,4 +1,11 @@
 let groceries = []
+let categories = []
+let fruits = []
+let vegetables = []
+let frozen = []
+let booze = []
+let drinks= []
+let other = []
 
 function getUserInput(promptMessage) {
   return prompt(promptMessage)
@@ -12,8 +19,17 @@ function validateGrocery(grocery) {
   return grocery.match(/^[A-Za-z\s-]+$/) && grocery != null && grocery != ""
 }
 
+function capitalizeCategory(category) {
+  return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
+}
+
+function validateCategory(category) {
+  let categories = /^(fruits|vegetables|frozen|booze|drinks|other)$/
+  return category.toLowerCase().match(categories)
+}
+
 function validateChoice1(choice1) {
-  return !isNaN(Number(choice1)) && choice1 >= 1 && choice1 <= 2
+  return Number(choice1) === 1 || Number(choice1) === 2
 }
 
 function displayList() {
@@ -43,6 +59,7 @@ function addGrocery(groceryItem) {
       }
       grocery = capitalizeGrocery(grocery)
       groceries.push(grocery)
+      categorizeGrocery()
     }
   }
 }
