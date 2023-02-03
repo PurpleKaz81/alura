@@ -9,14 +9,13 @@ function capitalizeGrocery(grocery) {
 }
 
 function validateGrocery(grocery) {
-  return grocery.match(/^[^\d]+$/);
+  return grocery.match(/^[A-Za-z\s\d-]+$/);
 }
 
 function validateCategory(category) {
   return /^(adult_items|beverages|books|booze|explosives|meats|munitions|weapons)$/
     .test(category.toLowerCase())
 }
-
 
 function capitalizeCategory(category) {
   return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
@@ -80,8 +79,6 @@ function addGrocery(groceryItem) {
     }
   }
 }
-
-addGrocery()
 
 window.onload = () => {
   addGrocery()
