@@ -39,8 +39,14 @@ function addGrocery(groceryItem) {
 
 window.onload = () => {
   while (true) {
-    addGrocery()
-    let addAnotherItem = getUserInput("Would you like to add another item to your list? Type 'yes' or 'no' Add as many as you want.")
-    if (addAnotherItem.toLowerCase() != "yes") break
+    let addAnotherItem = getUserInput("Would you like to add another item to your list? Type '1' for yes or '2' for no.")
+    if (addAnotherItem.toLowerCase() != "1") {
+      alert("Ok, then. See you soon \u{1F61D}")
+      break
+    } else {
+      let grocery = getUserInput("Great! Add an item.")
+      grocery = capitalizeGrocery(grocery)
+      groceries.push(grocery)
+    }
   }
 }
