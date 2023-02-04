@@ -34,10 +34,6 @@ function validateCategory(category) {
   return lowerCaseCategories.includes(category.toLowerCase().replace(/\s+/g, '_'))
 }
 
-// function capitalizeCategory(category) {
-//   return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
-// }
-
 function validateChoice1(choice1) {
   if (choice1 !== '1' && choice1 !== '2') {
     alert("Please input either '1' or '2'.")
