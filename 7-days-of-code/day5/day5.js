@@ -18,12 +18,20 @@ function capitalizeGrocery(grocery) {
 }
 
 function validateGrocery(grocery) {
-  return grocery.match(/^[A-Za-z\s\d-]+$/);
+  var pattern = /^[A-Za-z\s\d-&]+$/
+  if (grocery === null) {
+    return false
+  }
+  let matchResult = grocery.match(pattern)
+  if (matchResult === null) {
+    return false
+  }
+  return matchResult[0] === grocery
 }
 
 function validateCategory(category) {
-  return /^(adult_items|beverages|books|booze|explosives|meats|munitions|weapons)$/
-    .test(category.toLowerCase())
+  let regex = new RegExp(`^(${Object.keys(categories).map(key => key.toLowerCase().replace(/\s+/g, '_')).join("|")})$`)
+  return regex.test(category.toLowerCase().replace(/\s+/g, '_'))
 }
 
 function capitalizeCategory(category) {
@@ -38,18 +46,26 @@ function validateChoice1(choice1) {
   return true
 }
 
-// function displayList() {
-//   for (let index = 0; index < groceries.length; index++) {
-//     groceries[index]
-//     let groceryList = document.querySelector("#grocery-list")
-//     let newItem = document.createElement("li")
-//     newItem.textContent = groceries[index]
-//     groceryList.appendChild(newItem)
-//   }
-// }
+function categorizeGrocery(grocery) {
+  let listOfCategories = Object.keys(categories).join(", ")
+
+  let category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category? The categories are ${listOfCategories}.`)
+
+  if (!validateCategory(category)) {
+    alert("Please type in a valid category")
+    return categorizeGrocery(grocery)
+  }
+
+  category = capitalizeCategory(category)
+  if (!categories[category]) {
+    categories[category] = []
+  }
+  categories[category].push(capitalizeGrocery(grocery))
+  console.log(categories)
+}
 
 function addGrocery(groceryItem) {
-  let choice1 = getUserInput("Would you like to buy groceries today? Click '1' for yes and '2' for no.")
+  let choice1 = getUserInput("Would you like to shop today? Click '1' for yes and '2' for no.")
   if (!validateChoice1(choice1)) {
     alert("Please input either '1' or '2'.")
     return addGrocery()
@@ -60,27 +76,8 @@ function addGrocery(groceryItem) {
     } else {
       let grocery = getUserInput("Great! What items will you buy? Type in one at a time.")
       while (!validateGrocery(grocery)) {
-        alert("Please type in a valid name for a grocery")
+        alert("Please type in a valid name for an item")
         grocery = getUserInput("So what items will you buy? Type in one at a time.")
-      }
-
-      function categorizeGrocery(grocery) {
-        let listOfCategories = Object.keys(categories).join(", ")
-
-        let category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category? The categories are ${listOfCategories}.`)
-
-        if (!validateCategory(category)) {
-          alert("Please type in a valid category")
-          return categorizeGrocery(grocery)
-        }
-
-        category = capitalizeCategory(category)
-        if (!categories[category]) {
-          categories[category] = []
-        }
-        categories[category].push(capitalizeGrocery(grocery))
-        console.log(categories)
-        addGrocery()
       }
       categorizeGrocery(grocery)
     }
@@ -97,11 +94,11 @@ window.onload = () => {
     } else {
       let grocery = getUserInput("Great! Add an item.")
       if (!validateGrocery(grocery)) {
-        alert("Please type in a valid name for a grocery")
+        alert("Please type in a valid name for an item")
         grocery
       } else {
         grocery = capitalizeGrocery(grocery)
-        // displayList()
+        categorizeGrocery(grocery)
       }
     }
   }
