@@ -61,7 +61,6 @@ function categorizeGrocery(grocery) {
 
   categories[foundCategory].push(capitalizeGrocery(grocery))
 
-  console.log(categories)
 }
 
 function addGrocery(groceryItem) {
@@ -102,4 +101,5 @@ window.onload = () => {
       }
     }
   }
+  console.log(categories)
 }
