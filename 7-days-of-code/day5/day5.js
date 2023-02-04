@@ -34,9 +34,9 @@ function validateCategory(category) {
   return lowerCaseCategories.includes(category.toLowerCase().replace(/\s+/g, '_'))
 }
 
-function capitalizeCategory(category) {
-  return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
-}
+// function capitalizeCategory(category) {
+//   return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
+// }
 
 function validateChoice1(choice1) {
   if (choice1 !== '1' && choice1 !== '2') {
@@ -56,14 +56,18 @@ function categorizeGrocery(grocery) {
     return categorizeGrocery(grocery)
   }
 
-  category = capitalizeCategory(category)
-  if (!categories[category]) {
+  let foundCategory = Object.keys(categories).find(key => key.toLowerCase() === category.toLowerCase())
+
+  if (!foundCategory) {
     categories[category] = []
+    foundCategory = category
   }
-  categories[Object.keys(categories).find(key => key.toLowerCase() === category.toLowerCase())].push(capitalizeGrocery(grocery))
+
+  categories[foundCategory].push(capitalizeGrocery(grocery))
 
   console.log(categories)
 }
+
 
 function addGrocery(groceryItem) {
   let choice1 = getUserInput("Would you like to shop today? Click '1' for yes and '2' for no.")
