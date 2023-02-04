@@ -64,7 +64,6 @@ function categorizeGrocery(grocery) {
   console.log(categories)
 }
 
-
 function addGrocery(groceryItem) {
   let choice1 = getUserInput("Would you like to shop today? Click '1' for yes and '2' for no.")
   if (!validateChoice1(choice1)) {
