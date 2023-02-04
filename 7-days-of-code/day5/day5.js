@@ -30,8 +30,8 @@ function validateGrocery(grocery) {
 }
 
 function validateCategory(category) {
-  let regex = new RegExp(`^(${Object.keys(categories).map(key => key.toLowerCase().replace(/\s+/g, '_')).join("|")})$`)
-  return regex.test(category.toLowerCase().replace(/\s+/g, '_'))
+  let lowerCaseCategories = Object.keys(categories).map(key => key.toLowerCase().replace(/\s+/g, '_'))
+  return lowerCaseCategories.includes(category.toLowerCase().replace(/\s+/g, '_'))
 }
 
 function capitalizeCategory(category) {
@@ -60,7 +60,8 @@ function categorizeGrocery(grocery) {
   if (!categories[category]) {
     categories[category] = []
   }
-  categories[category].push(capitalizeGrocery(grocery))
+  categories[Object.keys(categories).find(key => key.toLowerCase() === category.toLowerCase())].push(capitalizeGrocery(grocery))
+
   console.log(categories)
 }
 
