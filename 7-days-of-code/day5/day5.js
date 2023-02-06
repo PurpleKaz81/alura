@@ -49,11 +49,12 @@ function validateChoice1(choice1) {
 function categorizeGrocery(grocery) {
   let listOfCategories = Object.keys(categories).join(", ")
 
-  let category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category? The categories are ${listOfCategories}.`)
-
-  if (!validateCategory(category)) {
-    alert("Please type in a valid category")
-    return categorizeGrocery(grocery)
+  let category = ""
+  while (!validateCategory(category)) {
+    category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category? The categories are ${listOfCategories}.`)
+    if (!validateCategory(category)) {
+      alert("Please type in a valid category")
+    }
   }
 
   let foundCategory = Object.keys(categories).find(key => key.toLowerCase() === category.toLowerCase())
