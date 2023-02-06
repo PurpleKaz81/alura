@@ -18,15 +18,7 @@ function capitalizeGrocery(grocery) {
 }
 
 function validateGrocery(grocery) {
-  var pattern = /^[A-Za-z\s\d-&]+$/
-  if (grocery === null) {
-    return false
-  }
-  let matchResult = grocery.match(pattern)
-  if (matchResult === null) {
-    return false
-  }
-  return matchResult[0] === grocery
+  return /^(?!.*[^A-Za-z\s\d&-]).+$/.test(grocery);
 }
 
 function validateCategory(category) {
@@ -35,11 +27,23 @@ function validateCategory(category) {
 }
 
 function validateChoice1(choice1) {
-  if (choice1 !== '1' && choice1 !== '2') {
+  if (!(choice1 === '1' || choice1 === '2')) {
     alert("Please input either '1' or '2'.")
     return false
   }
   return true
+}
+
+function validateChoice1(choice1) {
+  switch (choice1) {
+    case "1":
+    case "2":
+      return true
+      break
+    default:
+      alert("Please input either '1' or '2'.")
+      return false
+  }
 }
 
 function categorizeGrocery(grocery) {
@@ -85,17 +89,17 @@ function addGrocery(groceryItem) {
 }
 
 function displayList() {
-  let ul = document.querySelector("#grocery-list")
-  ul.style.listStyleType = "none"
-  ul.innerHTML = ""
+  const ul = document.querySelector("#grocery-list");
+  ul.style.listStyleType = "none";
+  ul.innerHTML = "";
 
   Object.entries(categories)
-    .filter(([category, items]) => items.length > 0)
+    .filter(([, items]) => items.length > 0)
     .forEach(([category, items]) => {
-      let li = document.createElement("li")
-      li.textContent = `${category}: ${items.join(", ")}`
-      ul.appendChild(li)
-    })
+      const li = document.createElement("li");
+      li.textContent = `${category}: ${items.join(", ")}`;
+      ul.appendChild(li);
+    });
 }
 
 window.onload = () => {
