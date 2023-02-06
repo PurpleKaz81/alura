@@ -61,6 +61,7 @@ function categorizeGrocery(grocery) {
 
   categories[foundCategory].push(capitalizeGrocery(grocery))
 
+  displayList()
 }
 
 function addGrocery(groceryItem) {
@@ -81,6 +82,20 @@ function addGrocery(groceryItem) {
       categorizeGrocery(grocery)
     }
   }
+}
+
+function displayList() {
+  let ul = document.querySelector("#grocery-list")
+  ul.style.listStyleType = "none"
+  ul.innerHTML = ""
+
+  Object.entries(categories)
+    .filter(([category, items]) => items.length > 0)
+    .forEach(([category, items]) => {
+      let li = document.createElement("li")
+      li.textContent = `${category}: ${items.join(", ")}`
+      ul.appendChild(li)
+    })
 }
 
 window.onload = () => {
