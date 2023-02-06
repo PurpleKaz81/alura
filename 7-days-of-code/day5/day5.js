@@ -27,14 +27,6 @@ function validateCategory(category) {
 }
 
 function validateChoice1(choice1) {
-  if (!(choice1 === '1' || choice1 === '2')) {
-    alert("Please input either '1' or '2'.")
-    return false
-  }
-  return true
-}
-
-function validateChoice1(choice1) {
   switch (choice1) {
     case "1":
     case "2":
@@ -51,7 +43,7 @@ function categorizeGrocery(grocery) {
 
   let category = ""
   while (!validateCategory(category)) {
-    category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category? The categories are ${listOfCategories}.`)
+    category = getUserInput(`${capitalizeGrocery(grocery)} falls under what category? The categories are:\n${listOfCategories}.`)
     if (!validateCategory(category)) {
       alert("Please type in a valid category")
     }
@@ -89,7 +81,7 @@ function addGrocery(groceryItem) {
   }
 }
 
-function displayList() {
+function displayCategories() {
   const ul = document.querySelector("#grocery-list");
   ul.style.listStyleType = "none";
   ul.innerHTML = "";
@@ -101,6 +93,10 @@ function displayList() {
       li.textContent = `${category}: ${items.join(", ")}`;
       ul.appendChild(li);
     });
+}
+
+function displayList() {
+  displayCategories()
 }
 
 window.onload = () => {
