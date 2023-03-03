@@ -148,7 +148,9 @@ main {
     color: var(--main-branco)
 }
 
-
+.override {
+  text-transform: none;
+}
 
 /****************************** Estatísticas *****/
 .estatisticas {
@@ -210,7 +212,7 @@ main {
 }
 
 @media screen and (max-width: 1600px) {
-    body { 
+    body {
         font-size: 14px;
     }
     main {
@@ -221,7 +223,7 @@ main {
 }
 
 @media screen and (max-width: 1200px) {
-    body { 
+    body {
         font-size: 13px;
     }
 

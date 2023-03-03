@@ -14,10 +14,17 @@ const sayHi2 = () => {
   alert(message2)
 }
 
+const changeButtonValue = () => {
+  const smirk = "\uD83D\uDE0F"
+  robotron.classList.add("override")
+  robotron.value = `You touched me... ${smirk}`.toLowerCase().replace(/^\w/, s => s.toUpperCase())
+}
+
 const handleEvent = (event) => {
   switch (event.type) {
     case "click":
       event.preventDefault()
+      changeButtonValue()
       sayHi2()
       break
     case "keydown":
