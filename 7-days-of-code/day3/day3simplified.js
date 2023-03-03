@@ -37,7 +37,7 @@ function handleInput() {
   alert(`So far so good, ${capitalizeName(fullName)}, ${age} years old.`)
 
   let language
-  while (true) {
+  while (!language) {
     const choice1 = window.prompt(`Would you like to focus on "front-end" or "back-end", ${firstName}? Click "1" for front-end and "2" for back-end.`)
     if (choice1 === "1") {
       language = prompt("Great! Would you like to focus on React or Vue")
@@ -45,7 +45,7 @@ function handleInput() {
     } else if (choice1 === "2") {
       language = prompt("Great! Would you like to focus on Java or C++?")
       break
-    } else {
+    } else if (choice1 === null || choice1 === "") {
       alert("Please input a valid value.")
     }
   }
@@ -59,7 +59,7 @@ function handleInput() {
     } else if (choice2 === "2") {
       career = alert("Andrew Tate would be proud, m'boy!")
       break
-    } else {
+    } else if (choice2 === null || choice2 === "") {
       alert("Please input a valid value.")
     }
   }
