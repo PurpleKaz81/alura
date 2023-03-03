@@ -1,23 +1,29 @@
 const { ENTER, ESC } = { ENTER: "Enter", ESC: "Escape" }
 const eventTypes = ["click", "keydown"]
-const robotron = document.querySelector("#producao")
+
+const [robotron, somarBraco, subtrairBraco, braco] = [
+  "#producao",
+  "#somar-braco",
+  "#subtrair-braco",
+  "#braco"
+].map((id) => document.querySelector(id))
 
 const sayHi = () => {
-  const message = "Hi, bitch! Tell yo mama I'm home."
-  console.log(message)
+  const message = "Tell yo mama I'm home."
   alert(message)
 }
 
 const sayHi2 = () => {
   const message2 = "Whaaaaaat?!"
-  console.log(message2)
   alert(message2)
 }
 
 const changeButtonValue = () => {
   const smirk = "\uD83D\uDE0F"
   robotron.classList.add("override")
-  robotron.value = `You touched me... ${smirk}`.toLowerCase().replace(/^\w/, s => s.toUpperCase())
+  robotron.value = `You touched me... ${smirk}`
+    .toLowerCase()
+    .replace(/^\w/, (s) => s.toUpperCase())
 }
 
 const handleEvent = (event) => {
@@ -36,5 +42,15 @@ const handleEvent = (event) => {
 }
 
 eventTypes.forEach((type) => robotron.addEventListener(type, handleEvent))
+
+somarBraco.addEventListener("click", (event) => {
+  event.preventDefault()
+  braco.value = parseInt(braco.value) + 1
+})
+
+subtrairBraco.addEventListener("click", (event) => {
+  event.preventDefault()
+  braco.value = parseInt(braco.value) - 1
+})
 
 document.addEventListener("DOMContentLoaded", sayHi)
