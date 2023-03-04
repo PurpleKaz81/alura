@@ -3,11 +3,44 @@ const eventTypes = ["click", "keydown"]
 const producao = document.querySelector("#producao")
 
 const control = document.querySelectorAll("[data-control]")
+const parts = {
+  bracos: {
+    forca: 29,
+    poder: 35,
+    energia: -21,
+    velocidade: -5
+  },
 
-const sayHi = () => {
-  const message = "Tell yo mama I'm home."
-  alert(message)
+  blindagem: {
+    forca: 41,
+    poder: 20,
+    energia: 0,
+    velocidade: -20
+  },
+  nucleos: {
+    forca: 0,
+    poder: 7,
+    energia: 48,
+    velocidade: -24
+  },
+  pernas: {
+    forca: 27,
+    poder: 21,
+    energia: -32,
+    velocidade: 42
+  },
+  foguetes: {
+    forca: 0,
+    poder: 28,
+    energia: 0,
+    velocidade: -2
+  }
 }
+
+// const sayHi = () => {
+//   const message = "Tell yo mama I'm home."
+//   alert(message)
+// }
 
 const sayHi2 = () => {
   const message2 = "Whaaaaaat?!"
@@ -56,4 +89,4 @@ control.forEach((element) => {
   })
 })
 
-sayHi()
+// sayHi()

@@ -12,6 +12,6 @@
     },
     "rules": {
       "quotes": ["error", "double"],
-      "semi": ["off"]
+      "semi": ["error"]
     }
 }
