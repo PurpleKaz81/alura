@@ -6,6 +6,8 @@ const subtrair = document.querySelector("#subtrair-braco")
 const somar = document.querySelector("#somar-braco")
 const braco = document.querySelector("#braco")
 
+const control = document.querySelectorAll(".controle-ajuste")
+
 const sayHi = () => {
   const message = "Tell yo mama I'm home."
   alert(message)
@@ -47,18 +49,23 @@ const manipulateCount = (operation) => {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  eventTypes.forEach((type) => producao.addEventListener(type, handleAlertEvent))
+eventTypes.forEach((type) => producao.addEventListener(type, handleAlertEvent))
 
-  somar.addEventListener("click", (event) => {
-    event.preventDefault()
-    manipulateCount(somar)
-  })
-
-  subtrair.addEventListener("click", (event) => {
-    event.preventDefault()
-    manipulateCount(subtrair)
-  })
-
-  sayHi()
+somar.addEventListener("click", (event) => {
+  event.preventDefault()
+  manipulateCount(somar)
 })
+
+subtrair.addEventListener("click", (event) => {
+  event.preventDefault()
+  manipulateCount(subtrair)
+})
+
+control.forEach((element) => {
+  element.addEventListener("click", (event) => {
+    event.preventDefault()
+    console.log(event.target)
+  })
+})
+
+sayHi()
