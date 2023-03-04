@@ -2,7 +2,7 @@ const { ENTER, ESC } = { ENTER: "Enter", ESC: "Escape" }
 const eventTypes = ["click", "keydown"]
 const producao = document.querySelector("#producao")
 
-const control = document.querySelectorAll(".controle-ajuste")
+const control = document.querySelectorAll("[data-control]")
 
 const sayHi = () => {
   const message = "Tell yo mama I'm home."
@@ -40,7 +40,7 @@ const handleAlertEvent = (event) => {
 eventTypes.forEach((type) => producao?.addEventListener(type, handleAlertEvent))
 
 const manipulateCount = (operation, control) => {
-  const part = control.querySelector(".controle-contador")
+  const part = control.querySelector("[data-counter]")
 
   if (operation === "-") {
     part.value = parseInt(part.value) - 1
@@ -52,7 +52,7 @@ const manipulateCount = (operation, control) => {
 control.forEach((element) => {
   element.addEventListener("click", (event) => {
     event.preventDefault()
-    manipulateCount(event.target.textContent, event.target.parentNode)
+    manipulateCount(event.target.dataset.control, event.target.parentNode)
   })
 })
 
