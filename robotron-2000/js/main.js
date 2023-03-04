@@ -2,10 +2,6 @@ const { ENTER, ESC } = { ENTER: "Enter", ESC: "Escape" }
 const eventTypes = ["click", "keydown"]
 const producao = document.querySelector("#producao")
 
-const subtrair = document.querySelector("#subtrair-braco")
-const somar = document.querySelector("#somar-braco")
-const braco = document.querySelector("#braco")
-
 const control = document.querySelectorAll(".controle-ajuste")
 
 const sayHi = () => {
@@ -41,30 +37,22 @@ const handleAlertEvent = (event) => {
   }
 }
 
-const manipulateCount = (operation) => {
-  if (operation === subtrair) {
-    braco.value = parseInt(braco.value) - 1
+eventTypes.forEach((type) => producao?.addEventListener(type, handleAlertEvent))
+
+const manipulateCount = (operation, control) => {
+  const part = control.querySelector(".controle-contador")
+
+  if (operation === "-") {
+    part.value = parseInt(part.value) - 1
   } else {
-    braco.value = parseInt(braco.value) + 1
+    part.value = parseInt(part.value) + 1
   }
 }
-
-eventTypes.forEach((type) => producao.addEventListener(type, handleAlertEvent))
-
-somar.addEventListener("click", (event) => {
-  event.preventDefault()
-  manipulateCount(somar)
-})
-
-subtrair.addEventListener("click", (event) => {
-  event.preventDefault()
-  manipulateCount(subtrair)
-})
 
 control.forEach((element) => {
   element.addEventListener("click", (event) => {
     event.preventDefault()
-    console.log(event.target)
+    manipulateCount(event.target.textContent, event.target.parentNode)
   })
 })
 
