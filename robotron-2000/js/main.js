@@ -42,10 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
   countButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       event.preventDefault()
-      const braco = document.querySelector("#braco")
-      const increment = button.id === "somar" ? 1 : 1
-      braco.value = parseInt(braco.value) + increment
+      console.log(button.id.split("-"))
+      const [action, target] = button.id.split("-")
+      const input = document.querySelector(`#${target}`)
+      const increment = action === "somar" ? 1 : -1
+      input.value = parseInt(input.value) + increment
     })
   })
+
   sayHi()
 })
