@@ -114,17 +114,21 @@ main {
 }
 
 .controle-ajuste {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 44px;
-    border-radius: 50%;
-    color: var(--main-cinza);
-    font-size: 4em;
-    background: var(--main-preto);
-    text-align: center;
-    border: 3px solid var(--main-cinza);
-    cursor: pointer;
+  display: flex;
+  height: 40px;
+  line-height: 35px;
+  border-radius: 50%;
+  color: var(--main-cinza);
+  font-size: 3em;
+  background: var(--main-preto);
+  text-align: center; /* add this */
+  border: 3px solid var(--main-cinza);
+  cursor: pointer;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: baseline;
 }
 
 .linha {
