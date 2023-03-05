@@ -38,10 +38,10 @@ const parts = {
   }
 }
 
-// const sayHi = () => {
-//   const message = "Tell yo mama I'm home."
-//   alert(message)
-// }
+const sayHi = () => {
+  const message = "Tell yo mama I'm home."
+  alert(message)
+}
 
 const sayHi2 = () => {
   const message2 = "Whaaaaaat?!"
@@ -76,20 +76,13 @@ eventTypes.forEach((type) => producao?.addEventListener(type, handleAlertEvent))
 const manipulateCount = (operation, control) => {
   const part = control.querySelector("[data-counter]")
 
-  if (operation === "-") {
-    part.value = parseInt(part.value) - 1
-  } else {
-    part.value = parseInt(part.value) + 1
-  }
+  part.value = parseInt(part.value) + (operation === "-" ? -1 : 1)
 }
 
 const updateStatistics = (part, operation) => {
   statistics.forEach((element) => {
-    if (operation === "-") {
-      element.textContent = parseInt(element.textContent) - parts[part][element.dataset.statistic]
-    } else {
-      element.textContent = parseInt(element.textContent) + parts[part][element.dataset.statistic]
-    }
+    const value = parts[part][element.dataset.statistic]
+    element.textContent = parseInt(element.textContent) + (operation === "-" ? -value : value)
   })
 }
 
@@ -101,4 +94,4 @@ control.forEach((element) => {
   })
 })
 
-// sayHi()
+sayHi()
