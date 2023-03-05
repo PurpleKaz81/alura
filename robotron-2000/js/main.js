@@ -3,6 +3,7 @@ const eventTypes = ["click", "keydown"]
 const producao = document.querySelector("#producao")
 
 const control = document.querySelectorAll("[data-control]")
+const statistics = document.querySelectorAll("[data-statistic]")
 const parts = {
   bracos: {
     forca: 29,
@@ -82,10 +83,21 @@ const manipulateCount = (operation, control) => {
   }
 }
 
+const updateStatistics = (part, operation) => {
+  statistics.forEach((element) => {
+    if (operation === "-") {
+      element.textContent = parseInt(element.textContent) - parts[part][element.dataset.statistic]
+    } else {
+      element.textContent = parseInt(element.textContent) + parts[part][element.dataset.statistic]
+    }
+  })
+}
+
 control.forEach((element) => {
   element.addEventListener("click", (event) => {
     event.preventDefault()
     manipulateCount(event.target.dataset.control, event.target.parentNode)
+    updateStatistics(event.target.dataset.part, event.target.dataset.control)
   })
 })
 
