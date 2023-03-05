@@ -2,6 +2,9 @@ const { ENTER, ESC } = { ENTER: "Enter", ESC: "Escape" }
 const eventTypes = ["click", "keydown"]
 const producao = document.querySelector("#producao")
 
+const robo = document.querySelector(".robo")
+const colors = ["black", "blue", "gold", "pink", "red", "white"]
+
 const control = document.querySelectorAll("[data-control]")
 const statistics = document.querySelectorAll("[data-statistic]")
 const parts = {
@@ -38,10 +41,12 @@ const parts = {
   }
 }
 
-const sayHi = () => {
-  const message = "Tell yo mama I'm home."
-  alert(message)
-}
+// Opening functions
+
+// const sayHi = () => {
+//   const message = "Tell yo mama I'm home."
+//   alert(message)
+// }
 
 const sayHi2 = () => {
   const message2 = "Whaaaaaat?!"
@@ -73,6 +78,18 @@ const handleAlertEvent = (event) => {
 
 eventTypes.forEach((type) => producao?.addEventListener(type, handleAlertEvent))
 
+// Robo color selection
+
+let currentColorIndex = 0
+
+robo.addEventListener("click", () => {
+  currentColorIndex = (currentColorIndex + 1) % colors.length
+  const newImageUrl = `img/robotron-${colors[currentColorIndex]}.png`
+  robo.setAttribute("src", newImageUrl)
+})
+
+// Stats and numbers manipulation
+
 const manipulateCount = (operation, control) => {
   const part = control.querySelector("[data-counter]")
 
@@ -94,4 +111,4 @@ control.forEach((element) => {
   })
 })
 
-sayHi()
+// sayHi()

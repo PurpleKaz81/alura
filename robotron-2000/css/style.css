@@ -37,11 +37,19 @@ main {
     position: relative;
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
 .robo {
     height: 110%;
     z-index: 1;
     position: absolute;
-    left: -50%;
+    left: -40%;
     top: -5%;
 }
 
