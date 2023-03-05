@@ -82,7 +82,7 @@ eventTypes.forEach((type) => producao?.addEventListener(type, handleAlertEvent))
 
 let currentColorIndex = 0
 
-robo.addEventListener("click", () => {
+robo?.addEventListener("click", () => {
   currentColorIndex = (currentColorIndex + 1) % colors.length
   const newImageUrl = `img/robotron-${colors[currentColorIndex]}.png`
   robo.setAttribute("src", newImageUrl)
