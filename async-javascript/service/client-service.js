@@ -13,7 +13,7 @@ const createNewLine = (nome, email) => {
 
   newClientLine.innerHTML = content
   return newClientLine
-}
+} 
 
 const table = document.querySelector("[data-tabela]")
 
