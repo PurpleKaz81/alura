@@ -18,25 +18,14 @@ const createNewLine = (nome, email) => {
 const table = document.querySelector("[data-tabela]")
 
 const clientList = () => {
-  const promise = new Promise ((resolve, reject) => {
-    const http = new XMLHttpRequest()
-    http.open("GET", "http://localhost:3000/profile")
-
-    http.onload = () => {
-      if (http.status >= 400) {
-        reject(JSON.parse(http.response))
-      } else {
-        resolve(JSON.parse(http.response))
-      }
-    }
-    http.send()
+  return fetch("http://localhost:3000/profile")
+  .then (res => {
+    return res.json()
   })
-  return promise
 }
 
-clientList()
-.then(data => {
+clientList().then((data) => {
   data.forEach((element) => {
-  table.appendChild(createNewLine(element.nome, element.email))
+    table.appendChild(createNewLine(element.nome, element.email))
   })
 })
