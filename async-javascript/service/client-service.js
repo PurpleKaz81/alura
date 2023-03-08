@@ -13,7 +13,7 @@ const createNewLine = (nome, email) => {
 
   newClientLine.innerHTML = content
   return newClientLine
-} 
+}
 
 const table = document.querySelector("[data-tabela]")
 
@@ -26,6 +26,30 @@ http.send()
 http.onload = () => {
   const data = JSON.parse(http.response)
   data.forEach((element) => {
-    table.appendChild(createNewLine(element.nome, element.email))
+  table.appendChild(createNewLine(element.nome, element.email))
   })
+
+  const http2 = new XMLHttpRequest()
+  http2.open("GET", "http://localhost:3000/profile/semanaPassada")
+
+  http2.onload = () => {
+    const data2 = JSON.parse(http2.response)
+    data2.forEach((element) => {
+      table.appendChild(createNewLine(element.nome, element.email))
+    })
+
+    const http3 = new XMLHttpRequest()
+    http3.open("GET", "http://localhost:3000/profile/semanaRetrasada")
+
+    http3.onload() = () => {
+      const data3 = JSON.parse(http3.response)
+      data3.forEach((element) => {
+        table.appendChild(createNewLine(element.nome, element.email))
+      })
+    }
+
+    http3.send()
+  }
+
+  http2.send()
 }
