@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "browser-sync": "^2.28.3",
     "json-server": "^0.16.2",
     "openai": "^3.2.1"
   }
