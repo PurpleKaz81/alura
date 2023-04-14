@@ -5,4 +5,4 @@ All of my exercises for Alura courses are collected in this repo. It currently f
 
 The files may contain many workouts because I organized it to follow the exercises. I'll post everything from the course to my portfolio once I've finished it.
 
-- Obs. 1: the sounds and sountrack for the cars-people game are my own or were pulled from freesound.org.
+- Obs. 1: the sounds and soundtrack for the cars-people game are my own or were pulled from freesound.org.
