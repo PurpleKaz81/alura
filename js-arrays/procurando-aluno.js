@@ -25,3 +25,20 @@ const showNameAndGrade = (student) => {
 }
 
 showNameAndGrade(randomlySelectedStudent)
+
+const pessoa = {
+  nome: "Rafael",
+  sobrenome: "Kasinski",
+  telefone: 11947887667,
+  signo: "gêmeos",
+  idade: 41
+}
+
+const { nome, idade } = pessoa
+
+const printData = ({ nome, idade, ...rest }) => {
+  console.log(`${nome}: ${idade}`)
+  console.log(rest.signo)
+}
+
+printData(pessoa)
