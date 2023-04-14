@@ -12,9 +12,11 @@ const randomlySelectedStudent = randomizeName()
 
 const showNameAndGrade = (student) => {
   if (studentAndAverageList[0].includes(student)) {
-    const index = studentAndAverageList[0].indexOf(student)
+    const [students, averages] = studentAndAverageList
 
-    const studentAverage = studentAndAverageList[1][index]
+    const index = students.indexOf(student)
+
+    const studentAverage = averages[index]
 
     console.log(`The student, ${student}, has an average of ${studentAverage}.`)
   } else {
