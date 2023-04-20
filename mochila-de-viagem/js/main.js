@@ -1,5 +1,17 @@
 const form = document.querySelector("#novoItem")
 const list = document.querySelector("#lista")
+const items = []
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault()
+  const name = event.target.elements['nome']
+  const quantity = event.target.elements['quantidade']
+
+  createElement(name.value, quantity.value)
+
+  name.value = ""
+  quantity.value = ""
+})
 
 const createElement = (name, quantity) => {
   // replicate <li class="item"><strong>7</strong>Camisas</li>
@@ -13,12 +25,13 @@ const createElement = (name, quantity) => {
   newItem.innerHTML += name
 
   list.appendChild(newItem)
+
+  const presentItem = {
+    "name": name,
+    "quantity": quantity
+  }
+
+  items.push(presentItem)
+
+  localStorage.setItem("item", JSON.stringify(items))
 }
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault()
-  const name = event.target.elements['nome'].value
-  const quantity = event.target.elements['quantidade'].value
-
-  createElement(name, quantity)
-})
