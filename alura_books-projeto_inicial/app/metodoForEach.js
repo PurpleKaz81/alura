@@ -1,6 +1,7 @@
 const elementoParaInserirLivros = document.querySelector("#livros")
 
 const exibirLivrosNaTela = (listaDeLivros) => {
+  elementoParaInserirLivros.innerHTML = ""
   listaDeLivros.forEach((livro) => {
     elementoParaInserirLivros.innerHTML += `
     <div class="livro">
