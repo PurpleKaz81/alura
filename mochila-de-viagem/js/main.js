@@ -1,6 +1,7 @@
 const form = document.querySelector("#novoItem")
 const list = document.querySelector("#lista")
-const items = JSON.parse(localStorage.getItem("items")) || []
+const localStorageItems = JSON.parse(localStorage.getItem("items"))
+const items = localStorageItems || []
 
 const deleteButton = (id) => {
   const elementButton = document.createElement("button")
@@ -16,7 +17,10 @@ const deleteButton = (id) => {
 const deleteElement = (item, id) => {
   item.remove()
 
-  items.splice(items.findIndex(element => element.id === id), 1)
+  items.splice(
+    items.findIndex((element) => element.id === id),
+    1
+  )
 
   localStorage.setItem("items", JSON.stringify(items))
 }
@@ -38,9 +42,7 @@ const createElement = (item) => {
   list.appendChild(newItem)
 }
 
-items.forEach((item) => {
-  createElement(item)
-})
+items.forEach(createElement)
 
 const updateElement = (item) => {
   document.querySelector("[data-id='" + item.id + "']").innerHTML =
@@ -49,22 +51,19 @@ const updateElement = (item) => {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault()
-  const name = event.target.elements["nome"]
-  const quantity = event.target.elements["quantidade"]
+  const { nome: name, quantidade: quantity } = event.target.elements
 
-  const exists = items.find((element) => element.name === name.value)
+  const itemExists = items.find((element) => element.name === name.value)
 
-  const presentItem = {
-    name: name.value,
-    quantity: quantity.value,
-  }
+  const presentItem = { name: name.value, quantity: quantity.value }
 
-  if (exists) {
-    presentItem.id = exists.id
+  if (itemExists) {
+    presentItem.id = itemExists.id
     updateElement(presentItem)
-    items[items.findIndex(element => element.id === exists.id)] = presentItem
+    items[items.findIndex((element) => element.id === itemExists.id)] =
+      presentItem
   } else {
-    presentItem.id = items[items.length - 1] ? (items[items.length - 1]).id + 1 : 0
+    presentItem.id = items.length ? items[items.length - 1].id + 1 : 0
     createElement(presentItem)
     items.push(presentItem)
   }
