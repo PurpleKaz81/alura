@@ -2,6 +2,25 @@ const form = document.querySelector("#novoItem")
 const list = document.querySelector("#lista")
 const items = JSON.parse(localStorage.getItem("items")) || []
 
+const deleteButton = (id) => {
+  const elementButton = document.createElement("button")
+  elementButton.innerText = "X"
+
+  elementButton.addEventListener("click", function () {
+    deleteElement(this.parentNode, id)
+  })
+
+  return elementButton
+}
+
+const deleteElement = (item, id) => {
+  item.remove()
+
+  items.splice(items.findIndex(element => element.id === id), 1)
+
+  localStorage.setItem("items", JSON.stringify(items))
+}
+
 const createElement = (item) => {
   // replicate <li class="item"><strong>7</strong>Camisas</li>
   const newItem = document.createElement("li")
@@ -14,40 +33,41 @@ const createElement = (item) => {
   newItem.appendChild(itemQuantity)
   newItem.innerHTML += item.name
 
+  newItem.appendChild(deleteButton(item.id))
+
   list.appendChild(newItem)
 }
-
-const updateElement = (item) => {
-  document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantity
-}
-
 
 items.forEach((item) => {
   createElement(item)
 })
 
+const updateElement = (item) => {
+  document.querySelector("[data-id='" + item.id + "']").innerHTML =
+    item.quantity
+}
+
 form.addEventListener("submit", (event) => {
   event.preventDefault()
-  const name = event.target.elements['nome']
-  const quantity = event.target.elements['quantidade']
+  const name = event.target.elements["nome"]
+  const quantity = event.target.elements["quantidade"]
 
-  const exists = items.find( element => element.name === name.value)
+  const exists = items.find((element) => element.name === name.value)
 
   const presentItem = {
-    "name": name.value,
-    "quantity": quantity.value
+    name: name.value,
+    quantity: quantity.value,
   }
 
   if (exists) {
     presentItem.id = exists.id
     updateElement(presentItem)
-    items[exists.id] = presentItem
+    items[items.findIndex(element => element.id === exists.id)] = presentItem
   } else {
-    presentItem.id = items.length
+    presentItem.id = items[items.length - 1] ? (items[items.length - 1]).id + 1 : 0
     createElement(presentItem)
     items.push(presentItem)
   }
-
 
   localStorage.setItem("items", JSON.stringify(items))
 
