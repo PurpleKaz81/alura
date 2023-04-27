@@ -11,7 +11,7 @@ class Model {
       if (height === julianaHeight) {
         return ""
       }
-      return parseFloat(height) < heightLimit ? "Friend-zoned" : "Doable"
+      return height < heightLimit ? "Friend-zoned" : "Doable"
     }
 
     this.logInfo = (julianaHeight, heightLimit) => {
