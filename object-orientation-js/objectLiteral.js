@@ -18,6 +18,32 @@ const exibirNome = exibir.bind(user)
 exibirNome()
 exibir()
 
+const admin = {
+  nome: "Rafael",
+  email: "rafa@kasa.com",
+  role: "admin",
+  criarCurso() {
+    console.log("Criando curso...")
+  }
+}
+
+const exibir2 = function () {
+  console.log(this.nome)
+}
+
+const exibirNome2 = exibir2.bind(admin)
+
+exibirNome2()
+
+Object.setPrototypeOf(admin, user)
+admin.criarCurso()
+admin.exibirInfos()
+
+console.log(admin.__proto__.__proto__.__proto__)
+console.log(Object.prototype)
+console.log(Array.prototype)
+console.log(String.prototype)
+
 // line separating code in console, "------"
 console.log("-".repeat(30))
 console.log("Using the call() method")
@@ -90,3 +116,17 @@ const user4 = {
 }
 
 user4.executaFuncao(exibeMensagem2)
+
+// repeat line 22
+console.log("-".repeat(30))
+console.log("Trying out protoype")
+
+function User() {}
+User.prototype.profile = "student"
+let student = new User()
+
+console.log(student.profile)
+
+student.__proto__
+student.prototype
+User.prototype
