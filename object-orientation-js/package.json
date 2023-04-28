@@ -1,0 +1,8 @@
+{
+  "name": "object-orientation-js",
+  "version": "1.0.0",
+  "description": "Object Oriented JavaScript",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT"
+}
