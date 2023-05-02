@@ -5,6 +5,10 @@ export default class Docente extends User {
     super(nome, email, nascimento, role, ativo)
   }
 
+  exibirInfos() {
+    return `${this.nome} - ${this.role} - ${this.ativo}`
+  }
+
   isDocente() {
     return this.role === "docente"
   }
