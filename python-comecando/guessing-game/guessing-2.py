@@ -9,25 +9,28 @@ while tries_left > 0:
     guess = input("Type in your guess: ")
     try:
         guess = int(guess)
-        print("You typed:", guess)
-
-        correct_number = random.randint(1, 10)
-        if (guess == correct_number):
-            print("Nailed it!")
-            break
-        elif (guess > correct_number):
-            print("Hmmm, a little smaller...")
-            tries_left -= 1
-            tries_taken += 1
+        if guess < 1 or guess > 10:
+            print("Only whole numbers between 1 and 10, champ.")
         else:
-            print("A little higher, love...")
-            tries_left -= 1
-            tries_taken += 1
-            print(
-                "You have",
-                tries_left,
-                "tries left.",
-            )
+            print("You typed:", guess)
+
+            correct_number = random.randint(1, 10)
+            if guess == correct_number:
+                print("Nailed it!")
+                break
+            elif guess > correct_number:
+                print("Hmmm, a little smaller...")
+                tries_left -= 1
+                tries_taken += 1
+            else:
+                print("A little higher, love...")
+                tries_left -= 1
+                tries_taken += 1
+                print(
+                    "You have",
+                    tries_left,
+                    "tries left.",
+                )
     except ValueError:
         try:
             float(guess)
