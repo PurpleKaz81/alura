@@ -87,7 +87,7 @@ while True:
             already_played = True
             break
         else:
-            print("Do us a solid an type in [y] or [n].\n")
+            print("Do us a solid and type in [y] or [n].\n")
 
     print("***" * 10, "\n")
 
