@@ -29,6 +29,7 @@ while True:
     print("***" * 10, "\n")
     print("Guess the number between 1 and 10", "\n")
 
+    total_tries = 3
     tries_left = 3
     tries_taken = 0
     guessed_numbers = []
@@ -49,19 +50,19 @@ while True:
                 print("\nYou typed:", guess, "\n")
 
                 if correct:
-                    print("\U0001F3AF " * 3, "Nailed it!", "\U0001F3AF " * 3, "\n")
+                    print("\U0001F3AF " * 3, "Nailed it!", "\U0001F3AF " * 3)
                     break
                 else:
                     if greater_than:
                         print("\u2B07\ufe0f  " * 3, "Hmmm, a lower lower...", "\u2B07\ufe0f  " * 3, "\n")
                         tries_left -= 1
                         tries_taken += 1
-                        print("You have", tries_left, "tries left.", "\n")
+                        print(f"Try {tries_taken} of {total_tries}. You have {tries_left} tries left.")
                     elif smaller_than:
                         print("\u2B06\ufe0f  " * 3, "A little higher, love...", "\u2B06\ufe0f  " * 3, "\n")
                         tries_left -= 1
                         tries_taken += 1
-                        print("You have", tries_left, "tries left.", "\n")
+                        print(f"Try {tries_taken} of {total_tries}. You have {tries_left} tries left.")
 
                         guessed_numbers.append(guess)
         except ValueError:
@@ -72,7 +73,7 @@ while True:
             except ValueError:
                 print("\nType in a number, buddy.", "\n")
 
-    print("Game O-VER!", "\n")
+    print("\nGame O-VER!", "\n")
     if tries_left == 0:
         print("You lose. There is meaning in nothing \U0001F603", "\n")
     else:
