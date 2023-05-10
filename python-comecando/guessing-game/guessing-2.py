@@ -56,6 +56,7 @@ while True:
                         print("\u2B07\ufe0f  " * 3, "Hmmm, a lower lower...", "\u2B07\ufe0f  " * 3, "\n")
                         tries_left -= 1
                         tries_taken += 1
+                        print("You have", tries_left, "tries left.", "\n")
                     elif smaller_than:
                         print("\u2B06\ufe0f  " * 3, "A little higher, love...", "\u2B06\ufe0f  " * 3, "\n")
                         tries_left -= 1
