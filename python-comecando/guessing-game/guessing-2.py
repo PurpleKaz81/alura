@@ -1,3 +1,5 @@
+#!/usr/bin/env python3.9
+
 import random
 
 print("***" * 10, "\n")
