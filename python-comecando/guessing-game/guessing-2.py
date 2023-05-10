@@ -21,14 +21,14 @@ while tries_left > 0:
 
             correct_number = random.randint(1, 10)
             if guess == correct_number:
-                print("Nailed it!")
+                print("\U0001F3AF " * 3, "Nailed it!", "\U0001F3AF " * 3)
                 break
             elif guess > correct_number:
-                print("Hmmm, a little smaller...")
+                print("\u2B07\ufe0f  " * 3, "Hmmm, a little smaller...", "\u2B07\ufe0f  " * 3)
                 tries_left -= 1
                 tries_taken += 1
             else:
-                print("A little higher, love...")
+                print("\u2B06\ufe0f  " * 3, "A little higher, love...", "\u2B06\ufe0f  " * 3)
                 tries_left -= 1
                 tries_taken += 1
                 print(
