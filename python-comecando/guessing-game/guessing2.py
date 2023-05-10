@@ -42,6 +42,9 @@ while True:
             correct = guess == correct_number
             greater_than = guess > correct_number
             smaller_than = guess < correct_number
+            tries_statement = print(
+                f"Try {tries_taken} of {total_tries}. You have {tries_left} tries left."
+            )
             if guess < 1 or guess > 10:
                 print("\nOnly whole numbers between 1 and 10, champ.", "\n")
             elif guess in guessed_numbers:
@@ -54,15 +57,25 @@ while True:
                     break
                 else:
                     if greater_than:
-                        print("\u2B07\ufe0f  " * 3, "Hmmm, a lower lower...", "\u2B07\ufe0f  " * 3, "\n")
+                        print(
+                            "\u2B07\ufe0f  " * 3,
+                            "Hmmm, a lower lower...",
+                            "\u2B07\ufe0f  " * 3,
+                            "\n",
+                        )
                         tries_left -= 1
                         tries_taken += 1
-                        print(f"Try {tries_taken} of {total_tries}. You have {tries_left} tries left.")
+                        tries_statement
                     elif smaller_than:
-                        print("\u2B06\ufe0f  " * 3, "A little higher, love...", "\u2B06\ufe0f  " * 3, "\n")
+                        print(
+                            "\u2B06\ufe0f  " * 3,
+                            "A little higher, love...",
+                            "\u2B06\ufe0f  " * 3,
+                            "\n",
+                        )
                         tries_left -= 1
                         tries_taken += 1
-                        print(f"Try {tries_taken} of {total_tries}. You have {tries_left} tries left.")
+                        tries_statement
 
                         guessed_numbers.append(guess)
         except ValueError:
@@ -81,7 +94,9 @@ while True:
         print("Congrats! You won in", tries_taken, "tries.", "\n")
 
     while True:
-        answer = input("Wanna play again, pumpkin? Type [y] for yes and [n] for no.\n\n")
+        answer = input(
+            "Wanna play again, pumpkin? Type [y] for yes and [n] for no.\n\n"
+        )
         if answer == "n":
             print("\nGoodbye, then...", "\U0001F984", "\n")
             break
