@@ -36,6 +36,8 @@ while True:
         guess = input("\nType in your guess: \n\n")
         try:
             guess = int(guess)
+            acertado = guess == correct_number
+            maior = guess > correct_number
             if guess < 1 or guess > 10:
                 print("\nOnly whole numbers between 1 and 10, champ.", "\n")
             elif guess in guessed_numbers:
@@ -43,11 +45,11 @@ while True:
             else:
                 print("\nYou typed:", guess, "\n")
 
-                if guess == correct_number:
+                if acertado:
                     print("\U0001F3AF " * 3, "Nailed it!", "\U0001F3AF " * 3, "\n")
                     break
-                elif guess > correct_number:
-                    print("\u2B07\ufe0f  " * 3, "Hmmm, a little smaller...", "\u2B07\ufe0f  " * 3, "\n")
+                elif maior:
+                    print("\u2B07\ufe0f  " * 3, "Hmmm, a lower lower...", "\u2B07\ufe0f  " * 3, "\n")
                     tries_left -= 1
                     tries_taken += 1
                 else:
