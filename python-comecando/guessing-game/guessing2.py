@@ -11,7 +11,7 @@ while True:
     if not already_played:
         print("Welcome to Guess The Number! Wanna play?", "\n")
 
-        while True:
+        for _ in range(3):
             answer = input("Type [y] for yes and [n] for no.\n\n")
             print()
 
@@ -100,7 +100,7 @@ while True:
         tries_taken += 1
         print("Congrats! You won in", tries_taken, "tries.", "\n")
 
-    while True:
+    for _ in range(3):
         answer = input(
             "Wanna play again, pumpkin? Type [y] for yes and [n] for no.\n\n"
         )
