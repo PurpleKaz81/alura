@@ -31,14 +31,14 @@ while True:
 
     max_tries = 3
     tries_left = 3
-    tries_taken = 0
+    tries_taken = 1
 
     guessed_numbers = []
     correct_number = random.randint(1, 10)
 
-    for tries_taken in range(1, max_tries):
+    for tries_taken in range(max_tries):
         tries_statement = print(
-            f"Try {tries_taken} of {max_tries}. You have {tries_left} tries left."
+            f"Try {tries_taken + 1} of {max_tries}. You have {tries_left} tries left."
         )
         guess = input("\nType in your guess: \n\n")
         try:
@@ -68,7 +68,8 @@ while True:
                         )
                         tries_left -= 1
                         tries_taken += 1
-                        tries_statement
+                        if tries_left > 0:
+                            tries_statement
                     elif smaller_than:
                         print(
                             "\u2B06\ufe0f  " * 3,
@@ -78,7 +79,8 @@ while True:
                         )
                         tries_left -= 1
                         tries_taken += 1
-                        tries_statement
+                        if tries_left > 0:
+                            tries_statement
 
                         guessed_numbers.append(guess)
         except ValueError:
