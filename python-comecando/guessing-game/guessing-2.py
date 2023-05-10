@@ -12,11 +12,15 @@ while tries_left > 0:
         print("You typed:", guess)
 
         correct_number = random.randint(1, 10)
-        if guess == correct_number:
+        if (guess == correct_number):
             print("Nailed it!")
             break
+        elif (guess > correct_number):
+            print("Hmmm, a little smaller...")
+            tries_left -= 1
+            tries_taken += 1
         else:
-            print("Wrong!")
+            print("A little higher, love...")
             tries_left -= 1
             tries_taken += 1
             print(
