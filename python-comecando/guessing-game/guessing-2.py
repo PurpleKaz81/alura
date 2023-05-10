@@ -7,12 +7,15 @@ print("Guess the number between 1 and 10")
 
 tries_left = 3
 tries_taken = 0
+guessed_numbers = []
 while tries_left > 0:
     guess = input("Type in your guess: ")
     try:
         guess = int(guess)
         if guess < 1 or guess > 10:
             print("Only whole numbers between 1 and 10, champ.")
+        elif guess in guessed_numbers:
+            print("You already guessed that number. Try again.")
         else:
             print("You typed:", guess)
 
@@ -33,6 +36,8 @@ while tries_left > 0:
                     tries_left,
                     "tries left.",
                 )
+
+            guessed_numbers.append(guess)
     except ValueError:
         try:
             float(guess)
