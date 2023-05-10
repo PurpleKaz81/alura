@@ -31,7 +31,7 @@ while True:
 
     max_tries = 3
     tries_left = 3
-    tries_taken = 1
+    tries_taken = 0
 
     guessed_numbers = []
     correct_number = random.randint(1, 10)
@@ -60,29 +60,31 @@ while True:
                     break
                 else:
                     if greater_than:
-                        print(
-                            "\u2B07\ufe0f  " * 3,
-                            "Hmmm, a lower lower...",
-                            "\u2B07\ufe0f  " * 3,
-                            "\n",
-                        )
                         tries_left -= 1
                         tries_taken += 1
                         if tries_left > 0:
-                            tries_statement
+                            print(
+                                "\u2B07\ufe0f  " * 3,
+                                "Hmmm, a lower lower...",
+                                "\u2B07\ufe0f  " * 3,
+                                "\n",
+                            )
                     elif smaller_than:
-                        print(
-                            "\u2B06\ufe0f  " * 3,
-                            "A little higher, love...",
-                            "\u2B06\ufe0f  " * 3,
-                            "\n",
-                        )
                         tries_left -= 1
                         tries_taken += 1
                         if tries_left > 0:
-                            tries_statement
+                            print(
+                                "\u2B06\ufe0f  " * 3,
+                                "A little higher, love...",
+                                "\u2B06\ufe0f  " * 3,
+                                "\n",
+                            )
 
-                        guessed_numbers.append(guess)
+                guessed_numbers.append(guess)
+
+            if tries_left == 0 and not correct:
+                break
+
         except ValueError:
             try:
                 float(guess)
