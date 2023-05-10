@@ -2,21 +2,27 @@
 
 import random
 
-while True:
-    print("***" * 10, "\n")
-    print("Welcome to Guess The Number! Wanna play?", "\n")
+already_played = False
 
-    while True:
-        answer = input("Type [y] for yes and [n] for no.\n\n")
-        print()
+while True:
+    if not already_played:
+        print("***" * 10, "\n")
+        print("Welcome to Guess The Number! Wanna play?", "\n")
+
+        while True:
+            answer = input("Type [y] for yes and [n] for no.\n\n")
+            print()
+
+            if answer == "n":
+                print("Goodbye, then...", "\U0001F984", "\n")
+                break
+            elif answer == "y":
+                break
+            else:
+                print("Invalid input.", "\n")
 
         if answer == "n":
-            print("Goodbye, then...", "\U0001F984", "\n")
             break
-        elif answer == "y":
-            break
-        else:
-            print("Invalid input.", "\n")
 
     print("***" * 10, "\n")
     print("Guess the number between 1 and 10", "\n")
@@ -54,10 +60,10 @@ while True:
         except ValueError:
             try:
                 float(guess)
-                print("Type in a whole number, please.", "\n")
+                print("\nType in a whole number, please.", "\n")
 
             except ValueError:
-                print("Type in a number, buddy.", "\n")
+                print("\nType in a number, buddy.", "\n")
 
     print("Game O-VER!", "\n")
     if tries_left == 0:
@@ -69,11 +75,15 @@ while True:
     while True:
         answer = input("Wanna play again, pumpkin? Type [y] for yes and [n] for no.\n\n")
         if answer == "n":
-            print("Goodbye, then...", "\U0001F984", "\n")
+            print("\nGoodbye, then...", "\U0001F984", "\n")
             break
         elif answer == "y":
+            already_played = True
             break
         else:
             print("Do us a solid an type in [y] or [n].\n")
 
-    print("\n", "***" * 10, "\n")
+    print("***" * 10, "\n")
+
+    if answer == "n":
+        break
