@@ -11,7 +11,7 @@ while True:
     if not already_played:
         print("Welcome to Guess The Number! Wanna play?", "\n")
 
-        while True:
+        for _ in range(3):
             answer = input("Type [y] for yes and [n] for no.\n\n")
             print()
 
@@ -29,23 +29,26 @@ while True:
     print("***" * 10, "\n")
     print("Guess the number between 1 and 10", "\n")
 
-    total_tries = 3
+    max_tries = 3
     tries_left = 3
     tries_taken = 0
+
     guessed_numbers = []
     correct_number = random.randint(1, 10)
 
-    while tries_left > 0:
+    for tries_taken in range(1, max_tries):
+        tries_statement = print(
+            f"Try {tries_taken} of {max_tries}. You have {tries_left} tries left."
+        )
         guess = input("\nType in your guess: \n\n")
         try:
             guess = int(guess)
+            integer_set = set(range(1, 11))
             correct = guess == correct_number
             greater_than = guess > correct_number
             smaller_than = guess < correct_number
-            tries_statement = print(
-                f"Try {tries_taken} of {total_tries}. You have {tries_left} tries left."
-            )
-            if guess < 1 or guess > 10:
+
+            if guess not in integer_set:
                 print("\nOnly whole numbers between 1 and 10, champ.", "\n")
             elif guess in guessed_numbers:
                 print("\nYou already guessed that number. Try again.", "\n")
@@ -87,13 +90,14 @@ while True:
                 print("\nType in a number, buddy.", "\n")
 
     print("\nGame O-VER!", "\n")
+
     if tries_left == 0:
         print("You lose. There is meaning in nothing \U0001F603", "\n")
     else:
         tries_taken += 1
-        print("Congrats! You won in", tries_taken, "tries.", "\n")
+        print(f"Congrats! You won in {tries_taken} tries.", "\n")
 
-    while True:
+    for _ in range(3):
         answer = input(
             "Wanna play again, pumpkin? Type [y] for yes and [n] for no.\n\n"
         )
@@ -104,7 +108,7 @@ while True:
             already_played = True
             break
         else:
-            print("Do us a solid and type in [y] or [n].\n")
+            print("\nDo us a solid and type in [y] or [n].\n")
 
     print("***" * 10, "\n")
 
