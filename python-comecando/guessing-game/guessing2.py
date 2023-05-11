@@ -26,15 +26,45 @@ while True:
         if answer == "n":
             break
 
+    while True:
+        print("\nWhich level would you like to play?", "\n")
+
+        game_continue = True
+        level = input("Type [1] for easy, [2] for medium, [3] for hard, or [q] to quit.\n\n")
+
+        if level == "q":
+            game_continue = False
+            print("Goodbye, then...", "\U0001F984", "\n")
+            break
+
+        try:
+            level = int(level)
+            if (level == 1):
+                total_tries = 6
+                break
+            elif (level == 2):
+                total_tries = 4
+                break
+            elif (level == 3):
+                total_tries = 3
+                break
+            else:
+                print("\nOnly 1, 2, or 3, babe.", "\n")
+        except ValueError:
+            print("\nOnly 1, 2, or 3, babe.", "\n")
+
+    if not game_continue:
+        break
+
     print("***" * 10, "\n")
     print("Guess the number between 1 and 10", "\n")
 
-    total_tries = 3
-    tries_left = 3
+    tries_left = total_tries
     tries_taken = 0
     integer_set = set(range(1, 11))
     guessed_numbers = []
     correct_number = random.randint(1, 10)
+    print(correct_number, "\n")
 
     while tries_left > 0:
         guess = input("\nType in your guess: \n\n")
