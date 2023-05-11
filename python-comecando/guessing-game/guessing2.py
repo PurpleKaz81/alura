@@ -88,7 +88,13 @@ while True:
                 print("\nYou already guessed that number. Try again.", "\n")
             elif correct:
                 print()
-                print("\U0001F3AF " * 3, "Nailed it!", "\U0001F3AF " * 3, f"You get {points} points!", "\n")
+                print(
+                    "\U0001F3AF " * 3,
+                    "Nailed it!",
+                    "\U0001F3AF " * 3,
+                    f"You get {points} points!",
+                    "\n",
+                )
                 break
             else:
                 if greater_than:
