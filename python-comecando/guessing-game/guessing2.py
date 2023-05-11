@@ -70,7 +70,8 @@ while True:
     guessed_numbers = []
     correct_number = random.randint(1, 10)
     print(correct_number)
-    points = 0
+
+    points = 10
 
     while tries_left > 0:
         guess = input("\nType in your guess: \n\n")
@@ -87,7 +88,7 @@ while True:
                 print("\nYou already guessed that number. Try again.", "\n")
             elif correct:
                 print()
-                print("\U0001F3AF " * 3, "Nailed it!", "\U0001F3AF " * 3, "\n")
+                print("\U0001F3AF " * 3, "Nailed it!", "\U0001F3AF " * 3, f"You get {points} points!", "\n")
                 break
             else:
                 if greater_than:
@@ -116,6 +117,8 @@ while True:
                     tries_taken += 1
                     if tries_left > 0:
                         print(tries_statement)
+                lost_points = abs(correct_number - guess)
+                points -= lost_points
 
             guessed_numbers.append(guess)
 
