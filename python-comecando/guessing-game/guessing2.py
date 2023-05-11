@@ -30,7 +30,9 @@ while True:
         print("\nWhich level would you like to play?", "\n")
 
         game_continue = True
-        level = input("Type [1] for easy, [2] for medium, [3] for hard, or [q] to quit.\n\n")
+        level = input(
+            "Type [1] for easy, [2] for medium, [3] for hard, or [q] to quit.\n\n"
+        )
 
         if level == "q":
             game_continue = False
@@ -39,13 +41,13 @@ while True:
 
         try:
             level = int(level)
-            if (level == 1):
+            if level == 1:
                 total_tries = 6
                 break
-            elif (level == 2):
+            elif level == 2:
                 total_tries = 4
                 break
-            elif (level == 3):
+            elif level == 3:
                 total_tries = 3
                 break
             else:
@@ -65,6 +67,7 @@ while True:
     guessed_numbers = []
     correct_number = random.randint(1, 10)
     print(correct_number, "\n")
+    
 
     while tries_left > 0:
         guess = input("\nType in your guess: \n\n")
