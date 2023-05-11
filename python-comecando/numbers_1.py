@@ -42,4 +42,4 @@ elif player_1_sum < player_2_sum:
     print("Player 2 wins!")
 else:
     print("It's a tie!")
-    
+
