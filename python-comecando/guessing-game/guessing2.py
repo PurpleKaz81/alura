@@ -31,7 +31,7 @@ while True:
 
         game_continue = True
         level = input(
-            "Type [1] for easy, [2] for medium, [3] for hard, or [q] to quit.\n\n"
+            "Type [1] for easy, [2] for medium, [3] for hard, [4] for veteran, or [q] to quit.\n\n"
         )
 
         if level == "q":
@@ -50,6 +50,9 @@ while True:
             elif level == 3:
                 total_tries = 3
                 break
+            elif level == 4:
+                total_tries = 1
+                break
             else:
                 print("\nOnly 1, 2, or 3, babe.", "\n")
         except ValueError:
@@ -66,8 +69,8 @@ while True:
     integer_set = set(range(1, 11))
     guessed_numbers = []
     correct_number = random.randint(1, 10)
-    print(correct_number, "\n")
-    
+    print(correct_number)
+    points = 0
 
     while tries_left > 0:
         guess = input("\nType in your guess: \n\n")
