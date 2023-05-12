@@ -28,6 +28,13 @@ while True:
             break
 
     while True:
+        levels = {
+            1: 6,
+            2: 4,
+            3: 3,
+            4: 1,
+        }
+
         print("\nWhich level would you like to play?", "\n")
 
         game_continue = True
@@ -42,20 +49,9 @@ while True:
 
         try:
             level = int(level)
-            if level == 1:
-                total_tries = 6
+            if level in levels:
+                total_tries = levels[level]
                 break
-            elif level == 2:
-                total_tries = 4
-                break
-            elif level == 3:
-                total_tries = 3
-                break
-            elif level == 4:
-                total_tries = 1
-                break
-            else:
-                print("\nOnly 1, 2, or 3, babe.", "\n")
         except ValueError:
             print("\nOnly 1, 2, 3, or q, babe.")
 
