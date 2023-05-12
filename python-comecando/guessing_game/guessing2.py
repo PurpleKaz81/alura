@@ -180,3 +180,7 @@ def play():
 
         if answer == "n":
             break
+
+if __name__ == "__main__":
+    print("***" * 10, "Guess the Number is being run directly!", "***" * 10, "\n")
+    play()

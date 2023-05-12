@@ -25,3 +25,7 @@ def play():
                 break
 
     print("***" * 10, "Game Over!", "\n")
+
+if __name__ == "__main__":
+    print("***" * 10, "Hangman is being run directly!", "***" * 10, "\n")
+    play()
