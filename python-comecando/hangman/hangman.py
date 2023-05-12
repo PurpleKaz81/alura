@@ -1,12 +1,18 @@
 #!/usr/bin/env python3.9
 
+
 def play():
     already_played = False
 
     while True:
         if not already_played:
             print()
-            print("***" * 3, "Welcome to Hangman! Guess the letters, guess the word!", "***" * 3, "\n")
+            print(
+                "***" * 3,
+                "Welcome to Hangman! Guess the letters, guess the word!",
+                "***" * 3,
+                "\n",
+            )
 
             for _ in range(3):
                 answer = input("Type [y] for yes and [n] for no.\n\n")
@@ -25,6 +31,7 @@ def play():
                 break
 
     print("***" * 10, "Game Over!", "\n")
+
 
 if __name__ == "__main__":
     print("***" * 10, "Hangman is being run directly!", "***" * 10, "\n")

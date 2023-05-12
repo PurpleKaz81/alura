@@ -3,6 +3,7 @@
 import hangman.hangman as hangman
 import guessing_game.guessing2 as guessing2
 
+
 def pick_game():
     already_played = False
 
@@ -36,9 +37,12 @@ def pick_game():
                 print("***" * 10, "\n")
                 break
             else:
-                print("Oops! That's not a valid choice. Please choose 1, 2, or 3.", "\n")
+                print(
+                    "Oops! That's not a valid choice. Please choose 1, 2, or 3.", "\n"
+                )
         except ValueError:
             print("Oops! That's not a valid choice. Please choose 1, 2, or 3.", "\n")
+
 
 if __name__ == "__main__":
     print("***" * 10, "This is the main menu!", "***" * 10, "\n")

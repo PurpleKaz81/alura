@@ -2,6 +2,7 @@
 
 import random
 
+
 def play():
     already_played = False
 
@@ -62,7 +63,8 @@ def play():
         print()
         print("***" * 10, "\n")
         print(
-            "Good luck! And don't fall below -5 points or you lose forever \U0001F630", "\n"
+            "Good luck! And don't fall below -5 points or you lose forever \U0001F630",
+            "\n",
         )
         print("Guess the number between 1 and 10", "\n")
 
@@ -180,6 +182,7 @@ def play():
 
         if answer == "n":
             break
+
 
 if __name__ == "__main__":
     print("***" * 10, "Guess the Number is being run directly!", "***" * 10, "\n")
