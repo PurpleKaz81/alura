@@ -1,7 +1,8 @@
 #!/usr/bin/env python3.9
 
 import hangman.hangman as hangman
-import guessing_game.guessing2 as guessing2
+import guessing_game.guessing2 as guess_number
+
 
 def print_menu():
     print("*************************************************************")
@@ -16,8 +17,11 @@ def print_menu():
         sep="\n",
         end="\n\n",
     )
+
+
 def invalid_choice():
     print("\nOops! That's not a valid choice. Please choose 1, 2, or 3.", "\n")
+
 
 def question_option(already_played):
     while True:
@@ -31,13 +35,15 @@ def question_option(already_played):
         except ValueError:
             invalid_choice()
 
+
 def goodbye():
     print("\nGoodbye, then...", "\U0001F984", "\n")
     print("***" * 10, "\n")
 
+
 def pick_game():
     already_played = False
-    games = {1: hangman.play, 2: guessing2.play}
+    games = {1: hangman.play, 2: guess_number.play}
 
     while True:
         try:
@@ -54,6 +60,7 @@ def pick_game():
                 invalid_choice()
         except ValueError:
             invalid_choice()
+
 
 if __name__ == "__main__":
     print()
