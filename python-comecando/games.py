@@ -5,21 +5,26 @@ import guessing_game.guessing2 as guessing2
 
 while True:
     try:
-        print("***" * 10)
-        print("*****", "Choose Your Game!", "*****")
-        print("***" * 10, "\n")
+        print("*************************************************************")
+        print("********************** Choose Your Game! ********************")
+        print("*************************************************************", "\n")
 
-        print("[1]: Hangman", "[2]: Guess The Number", "[3]: Quit.", sep="\n", end="\n")
-        game = input("\nWhich game would you like to play?\n\n")
-        game = int(game)
-        if game == 1:
+        print("Please type the number corresponding to the game you'd like to play:")
+        print("[1] Hangman")
+        print("[2] Guess the Number")
+        print("[3] Quit.", "\n")
+
+        game_choice = int(input("What game would you like to play?\n\n"))
+
+        if game_choice == 1:
             hangman.play()
-        if game == 2:
+        elif game_choice == 2:
             guessing2.play()
-        elif game == 3:
+        elif game_choice == 3:
             print("\nGoodbye, then...", "\U0001F984", "\n")
+            print("***" * 10, "\n")
             break
         else:
-            print("Please type either 1, 2, or 3.")
+            print("Oops! That's not a valid choice. Please choose 1, 2, or 3.", "\n")
     except ValueError:
-        print("Please type either 1, 2, or 3.\n")
+        print("Oops! That's not a valid choice. Please choose 1, 2, or 3.", "\n")
