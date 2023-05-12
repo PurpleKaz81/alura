@@ -22,7 +22,7 @@ while True:
             elif answer == "y":
                 break
             else:
-                print("Invalid input.", "\n")
+                print("Just y or n, buddy.", "\n")
 
         if answer == "n":
             break
@@ -57,13 +57,12 @@ while True:
             else:
                 print("\nOnly 1, 2, or 3, babe.", "\n")
         except ValueError:
-            print("\nOnly 1, 2, or 3, babe.", "\n")
-
-    print("***" * 10, "\n")
+            print("\nOnly 1, 2, 3, or q, babe.")
 
     if not game_continue:
         break
 
+    print()
     print("***" * 10, "\n")
     print(
         "Good luck! And don't fall below -5 points or you lose forever \U0001F630", "\n"
