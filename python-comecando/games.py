@@ -3,7 +3,6 @@
 import hangman.hangman as hangman
 import guessing_game.guessing2 as guessing2
 
-
 def print_menu():
     print("*************************************************************")
     print("********************** Choose Your Game! ********************")
@@ -17,25 +16,24 @@ def print_menu():
         sep="\n",
         end="\n\n",
     )
-
+def invalid_choice():
+    print("\nOops! That's not a valid choice. Please choose 1, 2, or 3.", "\n")
 
 def question_option(already_played):
-    if already_played:
-        game_choice = int(input("What game would you like to play?\n\n"))
-    else:
-        game_choice = int(input("Which one will it be?\n\n"))
-        already_played = True
-    return game_choice, already_played
-
-
-def invalid_choice():
-    print("Oops! That's not a valid choice. Please choose 1, 2, or 3.", "\n")
-
+    while True:
+        try:
+            if already_played:
+                game_choice = int(input("What game would you like to play?\n\n"))
+            else:
+                game_choice = int(input("Which one will it be?\n\n"))
+                already_played = True
+            return game_choice, already_played
+        except ValueError:
+            invalid_choice()
 
 def goodbye():
     print("\nGoodbye, then...", "\U0001F984", "\n")
     print("***" * 10, "\n")
-
 
 def pick_game():
     already_played = False
@@ -55,8 +53,7 @@ def pick_game():
             else:
                 invalid_choice()
         except ValueError:
-            invalid_choice
-
+            invalid_choice()
 
 if __name__ == "__main__":
     print()
