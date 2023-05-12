@@ -2,6 +2,40 @@
 
 import random
 
+def goodbye():
+    print("\nGoodbye, then...", "\U0001F984", "\n")
+    print("***" * 10, "\n")
+
+def want_to_play():
+    for _ in range(3):
+        answer = input("Type [y] for yes and [n] for no.\n\n")
+        print()
+
+        if answer == "n":
+            goodbye()
+            return False
+        elif answer == "y":
+            return True
+        else:
+            print("Just y or n, buddy.", "\n")
+        return False
+
+def want_to_play_again():
+    for _ in range(3):
+        answer = input("Wanna play again, pumpkin? Type [y] for yes and [n] for no.\n\n")
+        print()
+
+        if answer == "n":
+            print("\nGoodbye, then...", "\U0001F984", "\n")
+            return False
+        elif answer == "y":
+            already_played = True
+            return True
+        else:
+            print("Do us a solid and type in [y] or [n].\n")
+        return False
+
+    print("***" * 10, "\n")
 
 def play():
     already_played = False
@@ -9,25 +43,13 @@ def play():
     print()
     print("***" * 10, "\n")
 
+
     while True:
         if not already_played:
             print("Welcome to Guess The Number! Wanna play?", "\n")
 
-            for _ in range(3):
-                answer = input("Type [y] for yes and [n] for no.\n\n")
-                print()
-
-                if answer == "n":
-                    print("Goodbye, then...", "\U0001F984", "\n")
-                    print("***" * 10, "\n")
-                    break
-                elif answer == "y":
-                    break
-                else:
-                    print("Just y or n, buddy.", "\n")
-
-            if answer == "n":
-                break
+        if not want_to_play():
+            break
 
         while True:
             levels = {
@@ -165,23 +187,7 @@ def play():
             tries_taken += 1
             print(f"\nCongrats! You won in {tries_taken} tries.", "\n")
 
-        for _ in range(3):
-            answer = input(
-                "Wanna play again, pumpkin? Type [y] for yes and [n] for no.\n\n"
-            )
-            if answer == "n":
-                print("\nGoodbye, then...", "\U0001F984", "\n")
-                break
-            elif answer == "y":
-                already_played = True
-                break
-            else:
-                print("Do us a solid and type in [y] or [n].\n")
-
-        print("***" * 10, "\n")
-
-        if answer == "n":
-            break
+        want_to_play_again()
 
 
 if __name__ == "__main__":
