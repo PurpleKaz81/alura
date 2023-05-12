@@ -17,6 +17,7 @@ while True:
 
             if answer == "n":
                 print("Goodbye, then...", "\U0001F984", "\n")
+                print("***" * 10, "\n")
                 break
             elif answer == "y":
                 break
@@ -25,9 +26,6 @@ while True:
 
         if answer == "n":
             break
-
-    print("***" * 10, "\n")
-
 
     while True:
         print("\nWhich level would you like to play?", "\n")
