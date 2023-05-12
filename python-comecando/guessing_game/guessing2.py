@@ -37,6 +37,32 @@ def want_to_play_again():
 
     print("***" * 10, "\n")
 
+def choose_level():
+    # level and its total tries
+    levels = {
+        1: 6,
+        2: 4,
+        3: 3,
+        4: 1,
+    }
+    while True:
+        print("\nWhich level would you like to play?", "\n")
+
+        level = input(
+            "Type [1] for easy, [2] for medium, [3] for hard, [4] for veteran, or [q] to quit.\n\n"
+        )
+
+        if level == "q":
+            return False, None # game_continue, total_tries
+
+        try:
+            level = int(level)
+            if level in levels:
+                total_tries = levels[level]
+                return True, total_tries # game_continue, total_tries
+        except ValueError:
+            print("\nOnly 1, 2, 3, or q, babe.")
+
 def play():
     already_played = False
 
@@ -51,36 +77,7 @@ def play():
         if not want_to_play():
             break
 
-        while True:
-            levels = {
-                1: 6,
-                2: 4,
-                3: 3,
-                4: 1,
-            }
-
-            print("\nWhich level would you like to play?", "\n")
-
-            game_continue = True
-            level = input(
-                "Type [1] for easy, [2] for medium, [3] for hard, [4] for veteran, or [q] to quit.\n\n"
-            )
-
-            if level == "q":
-                game_continue = False
-                print("\nGoodbye, then...", "\U0001F984", "\n")
-                break
-
-            try:
-                level = int(level)
-                if level in levels:
-                    total_tries = levels[level]
-                    break
-            except ValueError:
-                print("\nOnly 1, 2, 3, or q, babe.")
-
-        if not game_continue:
-            break
+        game_continue, total_tries = choose_level()
 
         print()
         print("***" * 10, "\n")

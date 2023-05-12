@@ -30,7 +30,11 @@ def question_option(already_played):
                 game_choice = int(input("What game would you like to play?\n\n"))
             else:
                 game_choice = int(input("Which one will it be?\n\n"))
+            if game_choice in {1, 2, 3}:
                 already_played = True
+            else:
+                invalid_choice()
+                continue
             return game_choice, already_played
         except ValueError:
             invalid_choice()
@@ -46,19 +50,16 @@ def pick_game():
     games = {1: hangman.play, 2: guess_number.play}
 
     while True:
-        try:
-            print_menu()
+        print_menu()
 
-            game_choice, already_played = question_option(already_played)
+        game_choice, already_played = question_option(already_played)
 
-            if game_choice in games:
-                games[game_choice]()
-            elif game_choice == 3:
-                goodbye()
-                break
-            else:
-                invalid_choice()
-        except ValueError:
+        if game_choice in games:
+            games[game_choice]()
+        elif game_choice == 3:
+            goodbye()
+            break
+        else:
             invalid_choice()
 
 
