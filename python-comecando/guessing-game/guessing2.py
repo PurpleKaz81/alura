@@ -65,7 +65,9 @@ while True:
         break
 
     print("***" * 10, "\n")
-    print("Good luck! And don't fall below -5 points or you lose forever \U0001F630", "\n")
+    print(
+        "Good luck! And don't fall below -5 points or you lose forever \U0001F630", "\n"
+    )
     print("Guess the number between 1 and 10", "\n")
 
     tries_left = total_tries
@@ -110,7 +112,7 @@ while True:
                                 "\u2B07\ufe0f  " * 3,
                                 "Hmmm, a lower lower...",
                                 "\u2B07\ufe0f  " * 3,
-                                "\n"
+                                "\n",
                             )
                         tries_left -= 1
                         tries_taken += 1
@@ -123,7 +125,7 @@ while True:
                                 "\u2B06\ufe0f  " * 3,
                                 "A little higher, love...",
                                 "\u2B06\ufe0f  " * 3,
-                                "\n"
+                                "\n",
                             )
                         tries_left -= 1
                         tries_taken += 1
@@ -131,7 +133,10 @@ while True:
                             print(tries_statement)
                     points -= lost_points
                 else:
-                    print("\nGame O-VER! You fell below -5 points. All is lost. Go home \U0001F44B", "\n")
+                    print(
+                        "\nGame O-VER! You fell below -5 points. All is lost. Go home \U0001F44B",
+                        "\n",
+                    )
                     game_continue = False
                     break
 
@@ -154,7 +159,10 @@ while True:
     print("\nGame O-VER!")
 
     if tries_left == 0:
-        print(f"You lose. There is meaning in nothing \U0001F603 and you have {points} points.", "\n")
+        print(
+            f"You lose. There is meaning in nothing \U0001F603 and you have {points} points.",
+            "\n",
+        )
     else:
         tries_taken += 1
         print(f"\nCongrats! You won in {tries_taken} tries.", "\n")
