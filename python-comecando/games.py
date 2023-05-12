@@ -1,12 +1,7 @@
 #!/usr/bin/env python3.9
 
-import subprocess
-
-choices = {
-    1: ["python3", "hangman/hangman.py"],
-    2: ["python3", "guessing-game/guessing2.py"],
-    3: "quit",
-}
+import hangman.hangman as hangman
+import guessing_game.guessing2 as guessing2
 
 while True:
     try:
@@ -17,8 +12,10 @@ while True:
         print("[1]: Hangman", "[2]: Guess The Number", "[3]: Quit.", sep="\n", end="\n")
         game = input("\nWhich game would you like to play?\n\n")
         game = int(game)
-        if game in {1, 2}:
-            subprocess.run(choices[game])
+        if game == 1:
+            hangman.play()
+        if game == 2:
+            guessing2.play()
         elif game == 3:
             print("\nGoodbye, then...", "\U0001F984", "\n")
             break
