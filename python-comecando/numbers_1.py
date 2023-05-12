@@ -43,3 +43,5 @@ elif player_1_sum < player_2_sum:
 else:
     print("It's a tie!")
 
+3 / 2
+3 // 2
