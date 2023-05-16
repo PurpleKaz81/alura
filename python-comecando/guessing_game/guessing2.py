@@ -106,7 +106,7 @@ def play():
                 if guess not in integer_set:
                     print("\nOnly whole numbers between 1 and 10, champ.", "\n")
                 elif guess in guessed_numbers:
-                    print("\nYou already guessed that number. Try again.", "\n")
+                    print("\nYou've already guessed that number. Try again.", "\n")
                 elif correct:
                     print()
                     print(
