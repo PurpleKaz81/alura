@@ -1,37 +1,40 @@
 #!/usr/bin/env python3.9
 
 
+def goodbye():
+    print("\nGoodbye, then...", "\U0001F984", "\n")
+    print("***" * 10, "\n")
+
+
+def want_to_play():
+    while True:
+        answer = input("Type [y] for yes and [n] for no.\n\n")
+        print()
+
+        if answer == "n":
+            goodbye()
+            return False
+        elif answer == "y":
+            return True
+        else:
+            print("Just y or n, buddy.", "\n")
+            return False
+
+
 def play():
     already_played = False
 
+    print()
+    print("***" * 10, "\n")
+
     while True:
         if not already_played:
-            print()
-            print(
-                "***" * 3,
-                "Welcome to Hangman! Guess the letters, guess the word!",
-                "***" * 3,
-                "\n",
-            )
+            print("Welcome to Hangman!", "\n")
 
-            for _ in range(3):
-                answer = input("Type [y] for yes and [n] for no.\n\n")
-                print()
+        if not want_to_play():
+            break
 
-                if answer == "n":
-                    print("Goodbye, then...", "\U0001F984", "\n")
-                    print("***" * 10, "\n")
-                    break
-                elif answer == "y":
-                    break
-                else:
-                    print("Just y or n, buddy.", "\n")
-
-            if answer == "n":
-                break
-
-    print("***" * 10, "Game Over!", "\n")
-
+print("Game Over!", "\n")
 
 if __name__ == "__main__":
     print("***" * 10, "Hangman is being run directly!", "***" * 10, "\n")
