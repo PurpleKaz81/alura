@@ -59,20 +59,43 @@ def play():
             guess = input("Guess a letter: ").strip().lower()
             found = False
 
+            if guess.isdigit():
+                print("\nNo numbers, please.", "\n")
+                continue
+
+            if not guess:
+                print("\nNo empty guesses, please.", "\n")
+                continue
+
             for index, letter in enumerate(secret_word):
                 if guess == letter:
                     correct_guesses[index] = letter
                     found = True
 
             print()
-            print(correct_guesses, "\n")
+            if correct_guesses.count("_") > 0:
+                print("".join(correct_guesses), "\n")
+            else:
+                success = True
+                print(
+                    "\U0001F525 " * 3,
+                    f"That's right! The word is {secret_word}!",
+                    "\U0001F525 " * 3,
+                    "\n",
+                )
+
+            remaining_letters = correct_guesses.count("_")
+            if remaining_letters > 0:
+                print(
+                    f"There are {remaining_letters} letters left to guess, \U0001F9C1.",
+                    "\n",
+                )
+            else:
+                success = True
+                print("\U0001F973 " * 3, "You won!", "\U0001F973 " * 3, "\n")
 
             if not found:
                 print(f"{guess} not found in word.", "\n")
-
-            if "_" not in correct_guesses:
-                success = True
-                print("\U0001F973 " * 3, "You won!", "\U0001F973 " * 3, "\n")
 
 
 print("Game Over!", "\n")
