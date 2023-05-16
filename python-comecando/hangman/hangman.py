@@ -38,7 +38,7 @@ def play():
             break
 
         while not hanged and not success:
-            guess = input("Guess a letter: ")
+            guess = input("Guess a letter: ").strip().lower()
 
             for index, letter in enumerate(secret_word):
                 if guess == letter:
