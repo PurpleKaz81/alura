@@ -23,6 +23,9 @@ def want_to_play():
 
 def play():
     already_played = False
+    hanged = False
+    success = False
+    secret_word = "banana"
 
     print()
     print("***" * 10, "\n")
@@ -33,6 +36,10 @@ def play():
 
         if not want_to_play():
             break
+
+    while not hanged && not success:
+        guess = input("Guess a letter: ")
+
 
 print("Game Over!", "\n")
 
