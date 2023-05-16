@@ -55,7 +55,7 @@ def play():
         hanged = False
         errors = 0
         success = False
-        correct_guesses = ["_"] * len(secret_word)
+        correct_guesses = ["_" for _ in secret_word]
         guessed_letters = []
 
         if not already_played:
@@ -95,8 +95,8 @@ def play():
                     print("".join(correct_guesses), "\n")
                 elif correct_guesses.count("_") == 0:
                     success = True
+                    print()
                     print(
-                        print(),
                         "\U0001F525 " * 3,
                         f"That's right! The word is {secret_word}!",
                         "\U0001F525 " * 3,
