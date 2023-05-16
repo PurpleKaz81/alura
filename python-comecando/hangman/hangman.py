@@ -56,6 +56,7 @@ def play():
         errors = 0
         success = False
         correct_guesses = ["_"] * len(secret_word)
+        guessed_letters = []
 
         if not already_played:
             print("Welcome to Hangman!", "\n")
@@ -78,6 +79,12 @@ def play():
                 print("\nNo empty guesses, please.", "\n")
                 continue
 
+            if guess in guessed_letters:
+                print("\nYou already guessed that letter.", "\n")
+                continue
+
+            guessed_letters.append(guess)
+
             if guess in secret_word:
                 for index, letter in enumerate(secret_word):
                     if guess == letter:
@@ -89,6 +96,7 @@ def play():
                 elif correct_guesses.count("_") == 0:
                     success = True
                     print(
+                        print(),
                         "\U0001F525 " * 3,
                         f"That's right! The word is {secret_word}!",
                         "\U0001F525 " * 3,
