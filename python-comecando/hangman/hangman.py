@@ -5,6 +5,7 @@ def goodbye():
     print("Goodbye, then...", "\U0001F984", "\n")
     print("***" * 10, "\n")
 
+
 def want_to_play():
     while True:
         answer = input("Wanna play? Type [y] for yes and [n] for no.\n\n")
@@ -18,6 +19,7 @@ def want_to_play():
         else:
             print("Just y or n, buddy.", "\n")
 
+
 def wanna_play_again():
     while True:
         answer = input("Wanna play again? Type [y] for yes and [n] for no.\n\n")
@@ -30,6 +32,7 @@ def wanna_play_again():
             return True
         else:
             print("Just y or n, buddy.", "\n")
+
 
 def play():
     already_played = False
@@ -70,6 +73,7 @@ def play():
             if "_" not in correct_guesses:
                 success = True
                 print("\U0001F973 " * 3, "You won!", "\U0001F973 " * 3, "\n")
+
 
 print("Game Over!", "\n")
 
