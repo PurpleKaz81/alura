@@ -1,5 +1,7 @@
 #!/usr/bin/env python3.9
 
+import random
+
 
 def goodbye():
     print("Goodbye, then...", "\U0001F984", "\n")
@@ -34,17 +36,26 @@ def wanna_play_again():
             print("Just y or n, buddy.", "\n")
 
 
+def select_secret_word():
+    with open("dictionaries/American/2of12.txt") as f:
+        words = f.readlines()
+    return random.choice(words).strip()
+
+
 def play():
     already_played = False
 
     print()
     print("***" * 10, "\n")
 
-    hanged = False
-    secret_word = "banana"
+    secret_word = select_secret_word()
+
     while True:
+        game_on = True
+        hanged = False
+        errors = 0
         success = False
-        correct_guesses = ["_", "_", "_", "_", "_", "_"]
+        correct_guesses = ["_"] * len(secret_word)
 
         if not already_played:
             print("Welcome to Hangman!", "\n")
@@ -55,7 +66,7 @@ def play():
         elif not wanna_play_again():
             break
 
-        while not hanged and not success:
+        while game_on and not hanged and not success:
             guess = input("Guess a letter: ").strip().lower()
             found = False
 
@@ -67,39 +78,54 @@ def play():
                 print("\nNo empty guesses, please.", "\n")
                 continue
 
-            for index, letter in enumerate(secret_word):
-                if guess == letter:
-                    correct_guesses[index] = letter
-                    found = True
-
-            print()
-            if correct_guesses.count("_") > 0:
-                print("".join(correct_guesses), "\n")
+            if guess in secret_word:
+                for index, letter in enumerate(secret_word):
+                    if guess == letter:
+                        correct_guesses[index] = letter
+                        found = True
+                if correct_guesses.count("_") > 0:
+                    print()
+                    print("".join(correct_guesses), "\n")
+                elif correct_guesses.count("_") == 0:
+                    success = True
+                    print(
+                        "\U0001F525 " * 3,
+                        f"That's right! The word is {secret_word}!",
+                        "\U0001F525 " * 3,
+                        "\n",
+                    )
             else:
-                success = True
-                print(
-                    "\U0001F525 " * 3,
-                    f"That's right! The word is {secret_word}!",
-                    "\U0001F525 " * 3,
-                    "\n",
-                )
+                errors += 1
+                if errors < 6:
+                    print(f"\nThat's incorrect! You have {6 - errors} tries left.")
+                    print(f"\nThe word does not contain {guess}.", "\n")
+                else:
+                    hanged = True
+                    print()
+                    print(
+                        "\U0001F62D " * 3,
+                        "\n\nYou lost, love. But it's ok, you're only \U0001F480",
+                        "\n",
+                    )
+                    print(f"The word was {secret_word}", "\U0001F44B " * 3, "\n")
+                    game_on = False
+                    break
 
-            remaining_letters = correct_guesses.count("_")
-            if remaining_letters > 0:
-                print(
-                    f"There are {remaining_letters} letters left to guess, \U0001F9C1.",
-                    "\n",
-                )
-            else:
-                success = True
-                print("\U0001F973 " * 3, "You won!", "\U0001F973 " * 3, "\n")
-
-            if not found:
-                print(f"{guess} not found in word.", "\n")
+            if game_on:
+                remaining_letters = correct_guesses.count("_")
+                if remaining_letters > 0:
+                    print(
+                        f"There are {remaining_letters} letters left to guess, \U0001F9C1.",
+                        "\n",
+                    )
+                else:
+                    success = True
+                    print("\U0001F973 " * 3, "You won!", "\U0001F973 " * 3, "\n")
+                    game_on = False
 
 
 print("Game Over!", "\n")
 
 if __name__ == "__main__":
-    print("***" * 10, "Hangman is being run directly!", "***" * 10, "\n")
+    print("*" * 10, "Hangman is being run directly!", "*" * 10, "\n")
     play()
