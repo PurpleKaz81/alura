@@ -37,8 +37,8 @@ def play():
         if not want_to_play():
             break
 
-    while not hanged && not success:
-        guess = input("Guess a letter: ")
+        while not hanged and not success:
+            guess = input("Guess a letter: ")
 
 
 print("Game Over!", "\n")
