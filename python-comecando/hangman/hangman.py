@@ -5,7 +5,6 @@ def goodbye():
     print("Goodbye, then...", "\U0001F984", "\n")
     print("***" * 10, "\n")
 
-
 def want_to_play():
     while True:
         answer = input("Wanna play? Type [y] for yes and [n] for no.\n\n")
@@ -18,7 +17,6 @@ def want_to_play():
             return True
         else:
             print("Just y or n, buddy.", "\n")
-            return False
 
 def wanna_play_again():
     while True:
@@ -32,25 +30,26 @@ def wanna_play_again():
             return True
         else:
             print("Just y or n, buddy.", "\n")
-            return False
 
 def play():
     already_played = False
 
-
     print()
     print("***" * 10, "\n")
 
-
+    hanged = False
+    secret_word = "banana"
     while True:
-        hanged = False
         success = False
-        secret_word = "banana"
         correct_guesses = ["_", "_", "_", "_", "_", "_"]
+
         if not already_played:
             print("Welcome to Hangman!", "\n")
-
-        if not want_to_play():
+            if want_to_play():
+                already_played = True
+            else:
+                break
+        elif not wanna_play_again():
             break
 
         while not hanged and not success:
@@ -71,12 +70,6 @@ def play():
             if "_" not in correct_guesses:
                 success = True
                 print("\U0001F973 " * 3, "You won!", "\U0001F973 " * 3, "\n")
-
-        if not already_played:
-            already_played = True
-
-        if not wanna_play_again():
-            break
 
 print("Game Over!", "\n")
 
