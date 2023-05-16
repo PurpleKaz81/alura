@@ -40,6 +40,10 @@ def play():
         while not hanged and not success:
             guess = input("Guess a letter: ")
 
+            for index, letter in enumerate(secret_word):
+                if guess == letter:
+                    print(f"Found {guess} at position {index}")
+
 
 print("Game Over!", "\n")
 
