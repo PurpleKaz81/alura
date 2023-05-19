@@ -129,9 +129,6 @@ def play():
     already_played = False
     print("***" * 10, "\n")
 
-    secret_word = select_secret_word()
-    print(secret_word)
-
     found = False
 
     while True:
@@ -139,6 +136,9 @@ def play():
 
         if not game_on:
             break
+
+        secret_word = select_secret_word()
+        print(secret_word)
 
         print()
         hanged = False
