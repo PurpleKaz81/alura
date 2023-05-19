@@ -8,6 +8,15 @@ def goodbye():
     print("***" * 10, "\n")
 
 
+def print_success_message(secret_word):
+    print(
+        "\U0001F525 " * 3,
+        f"That's right! The word is {secret_word}! You're not going to \U0001F480",
+        "\U0001F525 " * 3,
+        "\n",
+    )
+
+
 def get_user_confirmation_prompt(prompt):
     while True:
         answer = input(prompt)
@@ -56,6 +65,7 @@ def play():
     print("***" * 10, "\n")
 
     secret_word = select_secret_word()
+    print(secret_word)
 
     while True:
         game_on, already_played = start_or_continue_game(already_played)
@@ -84,12 +94,7 @@ def play():
                 elif correct_guesses.count("_") == 0:
                     success = True
                     print()
-                    print(
-                        "\U0001F525 " * 3,
-                        f"That's right! The word is {secret_word}!",
-                        "\U0001F525 " * 3,
-                        "\n",
-                    )
+                    print_success_message(secret_word)
             else:
                 errors += 1
                 if errors < 6:
@@ -116,7 +121,7 @@ def play():
                     )
                 else:
                     success = True
-                    print("\U0001F973 " * 3, "You won!", "\U0001F973 " * 3, "\n")
+                    print("\U0001F973 " * 3, "You win!", "\U0001F973 " * 3, "\n")
                     game_on = False
 
 
