@@ -1,6 +1,8 @@
 #!/usr/bin/env python3.9
 
+import contextlib
 import random
+import os
 
 
 words = []
@@ -90,6 +92,17 @@ def select_secret_word():
     return secret_word
 
 
+def create_used_words_file():
+    with open("dictionaries/American/used_words.txt", "w") as file:
+        for word in used_words:
+            file.write(word + "\n")
+
+
+def delete_used_words_file():
+    with contextlib.suppress(FileNotFoundError):
+        os.remove("dictionaries/American/used_words.txt")
+
+
 def get_valid_guess(guessed_letters):
     while True:
         guess = input("Guess a letter: ").strip().lower()
@@ -174,6 +187,8 @@ def play():
         # print()
         # print(secret_word)
 
+        create_used_words_file()
+
         print()
         hanged = False
         errors = 0
@@ -196,6 +211,8 @@ def play():
                 )
 
             game_on, success = continue_game(correct_guesses, game_on, success)
+
+    delete_used_words_file()
 
 
 if __name__ == "__main__":
