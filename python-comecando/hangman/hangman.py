@@ -8,12 +8,12 @@ def goodbye():
     print("***" * 10, "\n")
 
 
-def get_user_confirmation_prompt():
+def get_user_confirmation_prompt(prompt):
     while True:
-        answer = input("Type [y] for yes and [n] for no.\n\n")
-        print()
+        answer = input(prompt)
 
         if answer == "n":
+            goodbye()
             return False
         elif answer == "y":
             return True
