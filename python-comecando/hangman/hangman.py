@@ -4,7 +4,7 @@ import random
 
 
 def goodbye():
-    print("Goodbye, then...", "\U0001F984", "\n")
+    print("\nGoodbye, then...", "\U0001F984", "\n")
     print("***" * 10, "\n")
 
 
@@ -109,6 +109,22 @@ def error_or_failure(errors, guess, hanged, secret_word, game_on):
         game_on = False
     return hanged, game_on, errors
 
+
+def continue_game(correct_guesses, game_on, success):
+    if game_on:
+        remaining_letters = correct_guesses.count("_")
+        if remaining_letters > 0:
+            print(
+                f"There are {remaining_letters} letters left to guess, \U0001F9C1.",
+                "\n",
+            )
+        else:
+            success = True
+            print("\U0001F973 " * 3, "You win!", "\U0001F973 " * 3, "\n")
+            game_on = False
+        return game_on, success
+
+
 def play():
     already_played = False
     print("***" * 10, "\n")
@@ -120,6 +136,10 @@ def play():
 
     while True:
         game_on, already_played = start_or_continue_game(already_played)
+
+        if not game_on:
+            break
+
         print()
         hanged = False
         errors = 0
@@ -137,17 +157,7 @@ def play():
             else:
                 hanged, game_on, errors = error_or_failure(errors, guess, hanged, secret_word, game_on)
 
-            if game_on:
-                remaining_letters = correct_guesses.count("_")
-                if remaining_letters > 0:
-                    print(
-                        f"There are {remaining_letters} letters left to guess, \U0001F9C1.",
-                        "\n",
-                    )
-                else:
-                    success = True
-                    print("\U0001F973 " * 3, "You win!", "\U0001F973 " * 3, "\n")
-                    game_on = False
+            game_on, success = continue_game(correct_guesses, game_on, success)
 
 
 print("Game Over!", "\n")
