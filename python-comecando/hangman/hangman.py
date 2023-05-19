@@ -20,6 +20,17 @@ def get_user_confirmation_prompt(prompt):
         else:
             print("Just y or n, buddy.", "\n")
 
+
+def start_or_continue_game(already_played):
+    if already_played:
+        prompt = "Would you like to play again? (y/n) "
+    else:
+        prompt = "Would you like to play Hangman? (y/n) "
+        already_played = True
+
+    return get_user_confirmation_prompt(prompt), already_played
+
+
 def select_secret_word():
     with open("dictionaries/American/2of12.txt") as f:
         words = f.readlines()
@@ -28,28 +39,18 @@ def select_secret_word():
 
 def play():
     already_played = False
-
-    print()
     print("***" * 10, "\n")
 
     secret_word = select_secret_word()
 
     while True:
-        game_on = True
+        game_on, already_played = start_or_continue_game(already_played)
+        print()
         hanged = False
         errors = 0
         success = False
         correct_guesses = ["_" for _ in secret_word]
         guessed_letters = []
-
-        if not already_played:
-            print("Welcome to Hangman!", "\n")
-            if get_user_confirmation_prompt():
-                already_played = True
-            else:
-                break
-        elif not get_user_confirmation_prompt():
-            break
 
         while game_on and not hanged and not success:
             guess = input("Guess a letter: ").strip().lower()
