@@ -75,7 +75,7 @@ def load_words():
         words = [
             word.strip()
             for word in f.readlines()
-            if set(word.strip()).issubset(set("abcdefghijklmnopqrstuvwxyz' "))
+            if set(word.strip()).issubset(set("abcdefghijklmnopqrstuvwxyz'- "))
         ]
 
 
@@ -171,8 +171,8 @@ def play():
             break
 
         secret_word = select_secret_word()
-        print()
-        print(secret_word)
+        # print()
+        # print(secret_word)
 
         print()
         hanged = False
