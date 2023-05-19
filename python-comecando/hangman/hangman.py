@@ -162,7 +162,7 @@ def continue_game(correct_guesses, game_on, success):
         remaining_letters = correct_guesses.count("_")
         if remaining_letters > 0:
             print_message1(
-                f"There are {remaining_letters} letters left to guess, \U0001F9C1"
+                f"There are {remaining_letters} letters left to guess"
             )
         else:
             success = True
@@ -215,6 +215,7 @@ def play():
             game_on, success = continue_game(correct_guesses, game_on, success)
 
     delete_used_words_file()
+
 
 def handle_sigint(sig, frame):
     delete_used_words_file()
