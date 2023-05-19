@@ -3,6 +3,10 @@
 import random
 
 
+words = []
+used_words = []
+
+
 def print_message1(message):
     print(f"{message}\n")
 
@@ -65,14 +69,25 @@ def start_or_continue_game(already_played):
     return get_user_confirmation_prompt(prompt), already_played
 
 
-def select_secret_word():
+def load_words():
+    global words
     with open("dictionaries/American/2of12.txt") as f:
         words = [
             word.strip()
             for word in f.readlines()
             if set(word.strip()).issubset(set("abcdefghijklmnopqrstuvwxyz' "))
         ]
-    return random.choice(words).strip()
+
+
+def select_secret_word():
+    global words, used_words
+    if not words:
+        load_words()
+
+    secret_word = random.choice(words)
+    words.remove(secret_word)
+    used_words.append(secret_word)
+    return secret_word
 
 
 def get_valid_guess(guessed_letters):
@@ -142,6 +157,8 @@ def continue_game(correct_guesses, game_on, success):
 
 
 def play():
+    global words, used_words
+    load_words()
     already_played = False
     print_message1("***" * 10)
 
@@ -182,5 +199,5 @@ def play():
 
 
 if __name__ == "__main__":
-    print_message1("Hangman is being run directly!")
+    print_message3("Hangman is being run directly!")
     play()
