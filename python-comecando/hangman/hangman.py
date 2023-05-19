@@ -64,8 +64,10 @@ def get_valid_guess(guessed_letters):
     while True:
         guess = input("Guess a letter: ").strip().lower()
 
-        if len(guess) != 1:
+        if len(guess) > 1:
             print("\nJust one entry, buddy.", "\n")
+        elif len(guess) == 0:
+            print("\nNo empty guesses, buddy.", "\n")
         elif not guess.isalpha():
             print("\nJust letters, buddy.", "\n")
         elif guess in guessed_letters:
@@ -133,7 +135,6 @@ def play():
 
     while True:
         game_on, already_played = start_or_continue_game(already_played)
-        print()
 
         if not game_on:
             break
