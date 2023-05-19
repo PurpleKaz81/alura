@@ -18,7 +18,7 @@ def get_user_confirmation_prompt(prompt):
         elif answer == "y":
             return True
         else:
-            print("Just y or n, buddy.", "\n")
+            print("\nJust y or n, buddy.", "\n")
 
 
 def start_or_continue_game(already_played):
@@ -37,6 +37,20 @@ def select_secret_word():
     return random.choice(words).strip()
 
 
+def get_valid_guess(guessed_letters):
+    while True:
+        guess = input("Guess a letter: ").strip().lower()
+
+        if len(guess) != 1:
+            print("\nJust one entry, buddy.", "\n")
+        elif not guess.isalpha():
+            print("\nJust letters, buddy.", "\n")
+        elif guess in guessed_letters:
+            print("\nYou already guessed that letter, buddy.", "\n")
+        else:
+            return guess
+
+
 def play():
     already_played = False
     print("***" * 10, "\n")
@@ -53,20 +67,9 @@ def play():
         guessed_letters = []
 
         while game_on and not hanged and not success:
-            guess = input("Guess a letter: ").strip().lower()
             found = False
 
-            if guess.isdigit():
-                print("\nNo numbers, please.", "\n")
-                continue
-
-            if not guess:
-                print("\nNo empty guesses, please.", "\n")
-                continue
-
-            if guess in guessed_letters:
-                print("\nYou already guessed that letter.", "\n")
-                continue
+            guess = get_valid_guess(guessed_letters)
 
             guessed_letters.append(guess)
 
