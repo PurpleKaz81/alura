@@ -7,12 +7,8 @@ def print_message1(message):
     print(f"{message}\n")
 
 
-def print_message2(message):
-    print(f"{message}\n")
-
-
 def goodbye():
-    print_message1("Goodbye, then... \U0001F984")
+    print_message1("\nGoodbye, then... \U0001F984")
     print_message1("***" * 10)
 
 
@@ -21,7 +17,7 @@ def print_success_message(secret_word):
         "\U0001F525 " * 3
         + f"That's right! The word is {secret_word}! You're not going to \U0001F480 "
     )
-    print_message2(success_message)
+    print_message1(success_message)
 
 
 def print_failure_message(secret_word):
@@ -30,11 +26,11 @@ def print_failure_message(secret_word):
     )
     secret_world_reveal = f"The word was {secret_word} " + "\U0001F44B " * 3
     final_message = failure_message + secret_world_reveal
-    print_message2(final_message)
+    print_message1(final_message)
 
 
 def wrong_guess_messages(errors, guess):
-    print_message2(f"That's incorrect! The word does not contain {guess}.")
+    print_message1(f"That's incorrect! The word does not contain {guess}.")
     print_message1(f"You have {6 - errors} tries left.")
 
 
