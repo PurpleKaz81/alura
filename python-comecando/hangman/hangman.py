@@ -52,14 +52,14 @@ def get_user_confirmation_prompt(prompt):
         elif answer == "y":
             return True
         else:
-            print("\nJust y or n, buddy.", "\n")
+            print_message3("Just y or n, buddy.")
 
 
 def start_or_continue_game(already_played):
     if already_played:
-        prompt = "Would you like to play again? (y/n) "
+        prompt = "Would you like to play again? Type [y] for yes or [n] for no: "
     else:
-        prompt = "Would you like to play Hangman? (y/n) "
+        prompt = "Would you like to play Hangman? Type [y] for yes or [n] for no: "
         already_played = True
 
     return get_user_confirmation_prompt(prompt), already_played
@@ -80,13 +80,13 @@ def get_valid_guess(guessed_letters):
         guess = input("Guess a letter: ").strip().lower()
 
         if len(guess) > 1:
-            print("\nJust one entry, buddy.", "\n")
+            print_message3("Just one entry, buddy.")
         elif len(guess) == 0:
-            print("\nNo empty guesses, buddy.", "\n")
+            print_message3("No empty guesses, buddy.")
         elif not guess.isalpha():
-            print("\nJust letters, buddy.", "\n")
+            print_message3("Just letters, buddy.")
         elif guess in guessed_letters:
-            print("\nYou already guessed that letter, buddy.", "\n")
+            print_message3("You already guessed that letter, buddy.")
         else:
             return guess
 
@@ -136,7 +136,7 @@ def continue_game(correct_guesses, game_on, success):
             )
         else:
             success = True
-            print("\U0001F973 " * 3, "You win!", "\U0001F973 " * 3, "\n")
+            print_message1("\U0001F973 " * 3 + "You win!" + "\U0001F973 " * 3)
             game_on = False
     return game_on, success
 
