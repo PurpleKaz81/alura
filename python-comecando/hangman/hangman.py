@@ -17,6 +17,20 @@ def print_success_message(secret_word):
     )
 
 
+def print_failure_message(secret_word):
+    print(
+        "\U0001F62D " * 3,
+        "\n\nYou lost, love. But it's ok, you're only \U0001F480",
+        "\n",
+    )
+    print(f"The word was {secret_word}", "\U0001F44B " * 3, "\n")
+
+
+def wrong_guess_messages(errors, guess):
+    print(f"\nThat's incorrect! You have {6 - errors} tries left.")
+    print(f"\nThe word does not contain {guess}.", "\n")
+
+
 def get_user_confirmation_prompt(prompt):
     while True:
         answer = input(prompt)
@@ -98,17 +112,11 @@ def play():
             else:
                 errors += 1
                 if errors < 6:
-                    print(f"\nThat's incorrect! You have {6 - errors} tries left.")
-                    print(f"\nThe word does not contain {guess}.", "\n")
+                    wrong_guess_messages(errors, guess)
                 else:
                     hanged = True
                     print()
-                    print(
-                        "\U0001F62D " * 3,
-                        "\n\nYou lost, love. But it's ok, you're only \U0001F480",
-                        "\n",
-                    )
-                    print(f"The word was {secret_word}", "\U0001F44B " * 3, "\n")
+                    print_failure_message(secret_word)
                     game_on = False
                     break
 
