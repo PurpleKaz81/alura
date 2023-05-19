@@ -8,33 +8,17 @@ def goodbye():
     print("***" * 10, "\n")
 
 
-def want_to_play():
+def get_user_confirmation_prompt():
     while True:
-        answer = input("Wanna play? Type [y] for yes and [n] for no.\n\n")
+        answer = input("Type [y] for yes and [n] for no.\n\n")
         print()
 
         if answer == "n":
-            goodbye()
             return False
         elif answer == "y":
             return True
         else:
             print("Just y or n, buddy.", "\n")
-
-
-def wanna_play_again():
-    while True:
-        answer = input("Wanna play again? Type [y] for yes and [n] for no.\n\n")
-        print()
-
-        if answer == "n":
-            goodbye()
-            return False
-        elif answer == "y":
-            return True
-        else:
-            print("Just y or n, buddy.", "\n")
-
 
 def select_secret_word():
     with open("dictionaries/American/2of12.txt") as f:
@@ -60,11 +44,11 @@ def play():
 
         if not already_played:
             print("Welcome to Hangman!", "\n")
-            if want_to_play():
+            if get_user_confirmation_prompt():
                 already_played = True
             else:
                 break
-        elif not wanna_play_again():
+        elif not get_user_confirmation_prompt():
             break
 
         while game_on and not hanged and not success:
