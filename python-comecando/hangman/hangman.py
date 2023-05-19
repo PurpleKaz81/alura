@@ -7,9 +7,17 @@ def print_message1(message):
     print(f"{message}\n")
 
 
+def print_message2(message):
+    print(f"\n{message}")
+
+
+def print_message3(message):
+    print(f"\n{message}\n")
+
+
 def goodbye():
-    print_message1("\nGoodbye, then... \U0001F984")
-    print_message1("***" * 10)
+    print_message2("Goodbye, then... \U0001F984")
+    print_message3("***" * 10)
 
 
 def print_success_message(secret_word):
@@ -30,8 +38,8 @@ def print_failure_message(secret_word):
 
 
 def wrong_guess_messages(errors, guess):
-    print_message1(f"That's incorrect! The word does not contain {guess}.")
-    print_message1(f"You have {6 - errors} tries left.")
+    print_message2(f"That's incorrect! The word does not contain {guess}.")
+    print_message3(f"You have {6 - errors} tries left, \U0001F9C1")
 
 
 def get_user_confirmation_prompt(prompt):
@@ -124,7 +132,7 @@ def continue_game(correct_guesses, game_on, success):
         remaining_letters = correct_guesses.count("_")
         if remaining_letters > 0:
             print_message1(
-                f"There are {remaining_letters} letters left to guess, \U0001F9C1."
+                f"There are {remaining_letters} letters left to guess, \U0001F9C1"
             )
         else:
             success = True
