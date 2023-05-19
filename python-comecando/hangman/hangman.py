@@ -122,7 +122,7 @@ def continue_game(correct_guesses, game_on, success):
             success = True
             print("\U0001F973 " * 3, "You win!", "\U0001F973 " * 3, "\n")
             game_on = False
-        return game_on, success
+    return game_on, success
 
 
 def play():
