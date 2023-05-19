@@ -3,32 +3,39 @@
 import random
 
 
+def print_message1(message):
+    print(f"{message}\n")
+
+
+def print_message2(message):
+    print(f"{message}\n")
+
+
 def goodbye():
-    print("\nGoodbye, then...", "\U0001F984", "\n")
-    print("***" * 10, "\n")
+    print_message1("Goodbye, then... \U0001F984")
+    print_message1("***" * 10)
 
 
 def print_success_message(secret_word):
-    print(
-        "\U0001F525 " * 3,
-        f"That's right! The word is {secret_word}! You're not going to \U0001F480",
-        "\U0001F525 " * 3,
-        "\n",
+    success_message = (
+        "\U0001F525 " * 3
+        + f"That's right! The word is {secret_word}! You're not going to \U0001F480 "
     )
+    print_message2(success_message)
 
 
 def print_failure_message(secret_word):
-    print(
-        "\U0001F62D " * 3,
-        "\n\nYou lost, love. But it's ok, you're only \U0001F480",
-        "\n",
+    failure_message = (
+        "\U0001F62D " * 3 + "You lost, love. But it's ok, you're only \U0001F480 "
     )
-    print(f"The word was {secret_word}", "\U0001F44B " * 3, "\n")
+    secret_world_reveal = f"The word was {secret_word} " + "\U0001F44B " * 3
+    final_message = failure_message + secret_world_reveal
+    print_message2(final_message)
 
 
 def wrong_guess_messages(errors, guess):
-    print(f"\nThat's incorrect! The word does not contain {guess}.")
-    print(f"\nYou have {6 - errors} tries left.", "\n")
+    print_message2(f"That's incorrect! The word does not contain {guess}.")
+    print_message1(f"You have {6 - errors} tries left.")
 
 
 def get_user_confirmation_prompt(prompt):
@@ -56,7 +63,11 @@ def start_or_continue_game(already_played):
 
 def select_secret_word():
     with open("dictionaries/American/2of12.txt") as f:
-        words = [word.strip() for word in f.readlines() if set(word.strip()).issubset(set("abcdefghijklmnopqrstuvwxyz' "))]
+        words = [
+            word.strip()
+            for word in f.readlines()
+            if set(word.strip()).issubset(set("abcdefghijklmnopqrstuvwxyz' "))
+        ]
     return random.choice(words).strip()
 
 
@@ -116,9 +127,8 @@ def continue_game(correct_guesses, game_on, success):
     if game_on:
         remaining_letters = correct_guesses.count("_")
         if remaining_letters > 0:
-            print(
-                f"There are {remaining_letters} letters left to guess, \U0001F9C1.",
-                "\n",
+            print_message1(
+                f"There are {remaining_letters} letters left to guess, \U0001F9C1."
             )
         else:
             success = True
@@ -129,7 +139,7 @@ def continue_game(correct_guesses, game_on, success):
 
 def play():
     already_played = False
-    print("***" * 10, "\n")
+    print_message1("***" * 10)
 
     found = False
 
@@ -140,13 +150,16 @@ def play():
             break
 
         secret_word = select_secret_word()
-        # print(secret_word)
+        print()
+        print(secret_word)
 
         print()
         hanged = False
         errors = 0
         success = False
-        correct_guesses = [char if char in [" ", "-", "'"] else "_" for char in secret_word]
+        correct_guesses = [
+            char if char in [" ", "-", "'"] else "_" for char in secret_word
+        ]
         guessed_letters = []
 
         while game_on and not hanged and not success:
@@ -157,13 +170,13 @@ def play():
             if guess in secret_word:
                 success = correct_guess(guess, secret_word, correct_guesses)
             else:
-                hanged, game_on, errors = error_or_failure(errors, guess, hanged, secret_word, game_on)
+                hanged, game_on, errors = error_or_failure(
+                    errors, guess, hanged, secret_word, game_on
+                )
 
             game_on, success = continue_game(correct_guesses, game_on, success)
 
 
-print("Game Over!", "\n")
-
 if __name__ == "__main__":
-    print("*" * 10, "Hangman is being run directly!", "*" * 10, "\n")
+    print_message1("Hangman is being run directly!")
     play()
