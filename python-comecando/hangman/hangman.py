@@ -3,6 +3,8 @@
 import contextlib
 import random
 import os
+import signal
+import sys
 
 
 words = []
@@ -213,6 +215,15 @@ def play():
             game_on, success = continue_game(correct_guesses, game_on, success)
 
     delete_used_words_file()
+
+def handle_sigint(sig, frame):
+    delete_used_words_file()
+    print_message3("Interrupted, cleaning up and exiting...")
+    sys.exit(0)
+
+
+# Set up SIGINT handler
+signal.signal(signal.SIGINT, handle_sigint)
 
 
 if __name__ == "__main__":
