@@ -56,7 +56,7 @@ def start_or_continue_game(already_played):
 
 def select_secret_word():
     with open("dictionaries/American/2of12.txt") as f:
-        words = f.readlines()
+        words = [word.strip() for word in f.readlines() if set(word.strip()).issubset(set("abcdefghijklmnopqrstuvwxyz' "))]
     return random.choice(words).strip()
 
 
@@ -133,18 +133,19 @@ def play():
 
     while True:
         game_on, already_played = start_or_continue_game(already_played)
+        print()
 
         if not game_on:
             break
 
         secret_word = select_secret_word()
-        print(secret_word)
+        # print(secret_word)
 
         print()
         hanged = False
         errors = 0
         success = False
-        correct_guesses = ["_" for _ in secret_word]
+        correct_guesses = [char if char in [" ", "-", "'"] else "_" for char in secret_word]
         guessed_letters = []
 
         while game_on and not hanged and not success:
