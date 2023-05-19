@@ -218,6 +218,7 @@ def play():
 
 def handle_sigint(sig, frame):
     delete_used_words_file()
+    print()
     print_message3("Interrupted, cleaning up and exiting...")
     sys.exit(0)
 
