@@ -23,6 +23,12 @@ def print_message3(message):
     print(f"\n{message}\n")
 
 
+def print_welcome_message():
+    print_message1("***" * 10)
+    print_message1("Welcome to Hangman! \U0001F3AE")
+    print_message1("***" * 10)
+
+
 def goodbye():
     print_message2("Goodbye, then... \U0001F984")
     print_message3("***" * 10)
@@ -173,7 +179,7 @@ def play():
     global words, used_words
     load_words()
     already_played = False
-    print_message1("***" * 10)
+    print_welcome_message()
 
     found = False
 
@@ -184,8 +190,8 @@ def play():
             break
 
         secret_word = select_secret_word()
-        print()
-        print(secret_word)
+        # print()
+        # print(secret_word)
 
         create_used_words_file()
 
@@ -197,7 +203,7 @@ def play():
             char if char in [" ", "-", "'"] else "_" for char in secret_word
         ]
 
-        print_message3(f"Let's do this! You've got {6 - errors} tries!")
+        print_message1(f"Let's do this! You've got {6 - errors} tries!")
         print("".join(correct_guesses), "\n")
 
         guessed_letters = []
