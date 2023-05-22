@@ -51,9 +51,9 @@ def print_failure_message(secret_word):
     print_message1(final_message)
 
 
-def wrong_guess_messages(errors, guess):
+def wrong_guess_messages(errors, guess, total_tries):
     print_message2(f"That's incorrect! The word does not contain {guess}.")
-    print_message3(f"You have {6 - errors} tries left, \U0001F9C1")
+    print_message3(f"You have {total_tries - errors} tries left, \U0001F9C1")
 
 
 def get_user_confirmation_prompt(prompt):
@@ -73,10 +73,33 @@ def start_or_continue_game(already_played):
     if already_played:
         prompt = "Would you like to play again? Type [y] for yes or [n] for no: "
     else:
-        prompt = "Would you like to play Hangman? Type [y] for yes or [n] for no: "
+        prompt = "Would you like to play? Type [y] for yes or [n] for no: "
         already_played = True
 
     return get_user_confirmation_prompt(prompt), already_played
+
+
+def get_level_choice():
+    while True:
+        print()
+        choice = input("Select your level (1 for 7 tries, 2 for 5 tries, 3 for 3 tries, 4 for 1 try, or q to quit): ")
+        if choice in ["1", "2", "3", "4", "q"]:
+            return choice
+        else:
+            print_message3("Just 1, 2, 3, 4, or q, buddy.")
+
+
+def get_level_tries(level_choice):
+    if level_choice == '1':
+        return 7
+    elif level_choice == '2':
+        return 5
+    elif level_choice == '3':
+        return 3
+    elif level_choice == '4':
+        return 1
+    else:
+        return None
 
 
 def load_words():
@@ -149,13 +172,13 @@ def correct_guess(guess, secret_word, correct_guesses):
     return False
 
 
-def error_or_failure(errors, guess, hanged, secret_word, game_on):
+def error_or_failure(errors, guess, hanged, secret_word, game_on, total_tries):
     hanged = False
     game_on = True
     errors += 1
-    if errors < 6:
-        wrong_guess_messages(errors, guess)
-    elif errors == 6:
+    if errors < total_tries:
+        wrong_guess_messages(errors, guess, total_tries)
+    elif errors == total_tries:
         hanged = True
         print()
         print_failure_message(secret_word)
@@ -189,6 +212,12 @@ def play():
         if not game_on:
             break
 
+        level_choice = get_level_choice()
+        if level_choice == 'q':
+            break
+
+        total_tries = get_level_tries(level_choice)
+
         secret_word = select_secret_word()
         # print()
         # print(secret_word)
@@ -203,7 +232,7 @@ def play():
             char if char in [" ", "-", "'"] else "_" for char in secret_word
         ]
 
-        print_message1(f"Let's do this! You've got {6 - errors} tries!")
+        print_message1(f"Let's do this! You've got {total_tries} tries!")
         print("".join(correct_guesses), "\n")
 
         guessed_letters = []
@@ -217,7 +246,7 @@ def play():
                 success = correct_guess(guess, secret_word, correct_guesses)
             else:
                 hanged, game_on, errors = error_or_failure(
-                    errors, guess, hanged, secret_word, game_on
+                    errors, guess, hanged, secret_word, game_on, total_tries
                 )
 
             game_on, success = continue_game(correct_guesses, game_on, success)
