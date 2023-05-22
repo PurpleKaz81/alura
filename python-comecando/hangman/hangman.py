@@ -161,9 +161,7 @@ def continue_game(correct_guesses, game_on, success):
     if game_on:
         remaining_letters = correct_guesses.count("_")
         if remaining_letters > 0:
-            print_message1(
-                f"There are {remaining_letters} letters left to guess"
-            )
+            print_message1(f"There are {remaining_letters} letters left to guess")
         else:
             success = True
             print_message1("\U0001F973 " * 3 + "You win!" + "\U0001F973 " * 3)
@@ -186,8 +184,8 @@ def play():
             break
 
         secret_word = select_secret_word()
-        # print()
-        # print(secret_word)
+        print()
+        print(secret_word)
 
         create_used_words_file()
 
@@ -198,6 +196,10 @@ def play():
         correct_guesses = [
             char if char in [" ", "-", "'"] else "_" for char in secret_word
         ]
+
+        print_message3(f"Let's do this! You've got {6 - errors} tries!")
+        print("".join(correct_guesses), "\n")
+
         guessed_letters = []
 
         while game_on and not hanged and not success:
