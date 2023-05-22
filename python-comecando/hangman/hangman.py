@@ -8,7 +8,8 @@ import sys
 
 
 words = []
-used_words = []
+used_words = set()
+
 
 
 def print_message1(message):
@@ -107,10 +108,11 @@ def select_secret_word():
     if not words:
         load_words()
 
-    secret_word = random.choice(words)
-    words.remove(secret_word)
-    used_words.append(secret_word)
+    available_words = [word for word in words if word not in used_words]
+    secret_word = random.choice(available_words)
+    used_words.add(secret_word)
     return secret_word
+
 
 
 def create_used_words_file():
