@@ -11,7 +11,6 @@ words = []
 used_words = set()
 
 
-
 def print_message1(message):
     print(f"{message}\n")
 
@@ -84,7 +83,9 @@ def get_level_and_tries():
     level_tries_dict = {"1": 7, "2": 5, "3": 3, "4": 1}
     while True:
         print()
-        choice = input("Select your level (1 for 7 tries, 2 for 5 tries, 3 for 3 tries, 4 for 1 try, or q to quit): ")
+        choice = input(
+            "Select your level (1 for 7 tries, 2 for 5 tries, 3 for 3 tries, 4 for 1 try, or q to quit): "
+        )
         if choice in level_tries_dict:
             return level_tries_dict[choice]
         elif choice == "q":
@@ -112,7 +113,6 @@ def select_secret_word():
     secret_word = random.choice(available_words)
     used_words.add(secret_word)
     return secret_word
-
 
 
 def create_used_words_file():
