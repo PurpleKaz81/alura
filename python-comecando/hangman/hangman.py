@@ -79,27 +79,17 @@ def start_or_continue_game(already_played):
     return get_user_confirmation_prompt(prompt), already_played
 
 
-def get_level_choice():
+def get_level_and_tries():
+    level_tries_dict = {"1": 7, "2": 5, "3": 3, "4": 1}
     while True:
         print()
         choice = input("Select your level (1 for 7 tries, 2 for 5 tries, 3 for 3 tries, 4 for 1 try, or q to quit): ")
-        if choice in ["1", "2", "3", "4", "q"]:
-            return choice
+        if choice in level_tries_dict:
+            return level_tries_dict[choice]
+        elif choice == "q":
+            return "q"
         else:
-            print_message3("Just 1, 2, 3, 4, or q, buddy.")
-
-
-def get_level_tries(level_choice):
-    if level_choice == '1':
-        return 7
-    elif level_choice == '2':
-        return 5
-    elif level_choice == '3':
-        return 3
-    elif level_choice == '4':
-        return 1
-    else:
-        return None
+            print_message2("Just 1, 2, 3, 4, or q, buddy.")
 
 
 def load_words():
@@ -190,7 +180,7 @@ def continue_game(correct_guesses, game_on, success):
     if game_on:
         remaining_letters = correct_guesses.count("_")
         if remaining_letters > 0:
-            print_message1(f"There are {remaining_letters} letters left to guess")
+            print_message1(f"There are {remaining_letters} letters left to guess.")
         else:
             success = True
             print_message1("\U0001F973 " * 3 + "You win!" + "\U0001F973 " * 3)
@@ -212,15 +202,15 @@ def play():
         if not game_on:
             break
 
-        level_choice = get_level_choice()
-        if level_choice == 'q':
-            break
-
-        total_tries = get_level_tries(level_choice)
+        total_tries = get_level_and_tries()
+        if total_tries == "q":
+            already_played = False
+            print_message3("Ok, buddy.")
+            continue
 
         secret_word = select_secret_word()
-        # print()
-        # print(secret_word)
+        print()
+        print(secret_word)
 
         create_used_words_file()
 
