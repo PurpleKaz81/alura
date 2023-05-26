@@ -6,9 +6,11 @@ def create_account(number, name, balance, limit):
         "limit": limit,
     }
 
+
 def deposit(account, value):
     account["balance"] += value
     return account["balance"]
+
 
 def withdrawal(account, value):
     account["balance"] -= value
@@ -28,11 +30,14 @@ def format_value(value):
 def format_balance(account):
     return "{:,.2f}".format(account["balance"])
 
+
 def format_limit(account):
     return "{:,.2f}".format(account["limit"])
 
+
 def account_balance(account):
     return f"Here's Nico's account info: Account {account['number']}. Account Holder: {account['holder']}. Balance: US${format_balance(account)}, limit: US${format_limit(account)}"
+
 
 def account_balance_keys(account):
     result = "Here's the client's information:\n"
