@@ -6,11 +6,9 @@ def create_account(number, name, balance, limit):
         "limit": limit,
     }
 
-
 def deposit(account, value):
     account["balance"] += value
     return account["balance"]
-
 
 def withdrawal(account, value):
     account["balance"] -= value
@@ -18,21 +16,29 @@ def withdrawal(account, value):
 
 
 def format_value(value):
-    return "{:,.2f}".format(value)
+    if value == account['number']:
+        return str(value)
+
+    if isinstance(value, (int, float)):
+        return "US${:,.2f}".format(value)
+    else:
+        return str(value)
 
 
 def format_balance(account):
     return "{:,.2f}".format(account["balance"])
 
-
 def format_limit(account):
     return "{:,.2f}".format(account["limit"])
 
-
 def account_balance(account):
-    print(
-        f"Here's Nico's account info: Account {account['number']}. Account Holder: {account['holder']}. Balance: US${format_balance(account)}, limit: US${format_limit(account)}",
-        end="\n\n")
+    return f"Here's Nico's account info: Account {account['number']}. Account Holder: {account['holder']}. Balance: US${format_balance(account)}, limit: US${format_limit(account)}"
+
+def account_balance_keys(account):
+    result = "Here's the client's information:\n"
+    for key, value in account.items():
+        result += f"{key}: {format_value(value)}\n"
+    return result
 
 
 account = create_account(123, "Nico", 55.0, 10000.0)
@@ -48,7 +54,7 @@ print(
     f"However, after a withdrawal of US${format_value(2000)}, Nico's pretty fucked and only has US${format_value(withdrawal(account, 2000))} left.",
     end="\n\n")
 
-account_balance(account)
+print(account_balance(account))
 print(f"US${format_balance(account)}", end="\n\n")
 
 print(
@@ -57,4 +63,6 @@ print(
 
 deposit(account, 5000)
 
-print(account_balance(account))
+print(account_balance(account), end="\n\n")
+
+print(account_balance_keys(account))
