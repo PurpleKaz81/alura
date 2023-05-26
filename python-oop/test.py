@@ -17,8 +17,8 @@ def withdrawal(account, value):
     return account["balance"]
 
 
-def format_value(value):
-    if value == account['number']:
+def format_value(value, account_number=None):
+    if account_number is not None and value == account_number: # account_number is a placeholder for account['number']
         return str(value)
 
     if isinstance(value, (int, float)):
@@ -42,7 +42,7 @@ def account_balance(account):
 def account_balance_keys(account):
     result = "Here's the client's information:\n"
     for key, value in account.items():
-        result += f"{key}: {format_value(value)}\n"
+        result += f"{key}: {format_value(value, account['number'])}\n"
     return result
 
 
