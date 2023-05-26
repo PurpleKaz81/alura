@@ -30,6 +30,16 @@ class Account:
     def print_client_info(self):
         print(self.client_info(vars(self)))
 
+    def print_client_list():
+        print("Here's a list of all our clients:\n")
+        for index, account in enumerate(accounts, start=1):
+            print(f"{index}) {account.holder}")
+        print()
+
+    def total_balance(self, accounts):
+        total_balance = sum(account.balance for account in accounts)
+        return self.format_value(total_balance)
+
 
 account_1 = Account(123, "Nico", 1000)
 account_2 = Account(321, "Marco", 100)
@@ -38,3 +48,10 @@ account_3 = Account(666, "Satan", 100, 2000)
 account_1.print_client_info()
 account_2.print_client_info()
 account_3.print_client_info()
+
+accounts = [account_1, account_2, account_3]
+Account.print_client_list()
+
+print(
+    f"The total balance of their accounts is {accounts[0].total_balance(accounts)}"
+)
