@@ -29,6 +29,12 @@ def format_limit(account):
     return "{:,.2f}".format(account["limit"])
 
 
+def account_balance(account):
+    print(
+        f"Here's Nico's account info: Account {account['number']}. Account Holder: {account['holder']}. Balance: US${format_balance(account)}, limit: US${format_limit(account)}",
+        end="\n\n")
+
+
 account = create_account(123, "Nico", 55.0, 10000.0)
 print(
     f"{account['holder']}'s account number is {account['number']}, where he has a balance of US${format_balance(account)} and a limit of US${format_limit(account)}.",
@@ -42,6 +48,13 @@ print(
     f"However, after a withdrawal of US${format_value(2000)}, Nico's pretty fucked and only has US${format_value(withdrawal(account, 2000))} left.",
     end="\n\n")
 
+account_balance(account)
+print(f"US${format_balance(account)}", end="\n\n")
+
 print(
-    f"Here's Nico's account info: Account {account['number']}. Account Holder: {account['holder']}. Balance: US${format_balance(account)}, limit: US${format_limit(account)}",
+    f"After a deposit of {format_value(3000)}, {account['holder']} now has a balance of US${format_value(deposit(account, 3000))} in account #{account['number']}.",
     end="\n\n")
+
+deposit(account, 5000)
+
+print(account_balance(account))
