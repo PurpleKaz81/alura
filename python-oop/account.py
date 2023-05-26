@@ -1,5 +1,5 @@
 class Account:
-    def __init__(self, number, holder, balance, limit):
+    def __init__(self, number, holder, balance, limit=1000):
         # print(f"Building object... {self}")
         self.number = number
         self.holder = holder
@@ -31,8 +31,10 @@ class Account:
         return result
 
 
-account = Account(123, "Nico", 1000, 10000)
-account_2 = Account(321, "Marco", 100, 1000)
+account_1 = Account(123, "Nico", 1000)
+account_2 = Account(321, "Marco", 100)
+account_3 = Account(666, "Satan", 100, 2000)
 
-print(account_2, "\n")
+print(account_1.client_info(account_1.__dict__))
 print(account_2.client_info(account_2.__dict__))
+print(account_2.client_info(account_3.__dict__))
