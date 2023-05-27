@@ -40,6 +40,10 @@ class Account:
         total_balance = sum(account.balance for account in accounts)
         return self.format_value(total_balance)
 
+    def total_limit(self, accounts):
+        total_limit = sum(account.limit for account in accounts)
+        return self.format_value(total_limit)
+
 
 account_1 = Account(123, "Nico", 1000)
 account_2 = Account(321, "Marco", 100)
@@ -53,5 +57,5 @@ accounts = [account_1, account_2, account_3]
 Account.print_client_list()
 
 print(
-    f"The total balance of their accounts is {accounts[0].total_balance(accounts)}"
+    f"The total balance and limit of their accounts is {accounts[0].total_balance(accounts)} and {accounts[0].total_limit(accounts)}, respectively."
 )
