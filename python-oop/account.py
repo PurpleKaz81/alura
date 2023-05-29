@@ -57,5 +57,5 @@ accounts = [account_1, account_2, account_3]
 Account.print_client_list()
 
 print(
-    f"The total balance and limit of their accounts is {accounts[0].total_balance(accounts)} and {accounts[0].total_limit(accounts)}, respectively."
+    f"The total balance and limit of their accounts are {accounts[0].total_balance(accounts)} and {accounts[0].total_limit(accounts)}, respectively."
 )
