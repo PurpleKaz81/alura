@@ -1,5 +1,6 @@
 from dates import Date
 
+
 class Account:
 
     def __init__(self, number, holder, balance, limit=1000):
@@ -117,4 +118,6 @@ account_2.print_client_info()
 account_3.print_client_info()
 print()
 date_2 = Date(17, "08", 2017)
-print(f"On {date_2.formatted_date()}, {account_3.holder} came to visit and never really went back home.")
+print(
+    f"On {date_2.formatted_date()}, {account_3.holder} came to visit and never really went back home."
+)
