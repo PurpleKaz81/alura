@@ -59,3 +59,12 @@ Account.print_client_list()
 print(
     f"The total balance and limit of their accounts are {accounts[0].total_balance(accounts)} and {accounts[0].total_limit(accounts)}, respectively."
 )
+
+print()
+print(f"Account 1's balance is {account_1.format_value(account_1.balance)}")
+print()
+print(f"Account 2's account number is {account_2.number}")
+print()
+print(f"Account 1's limit is {account_1.format_value(account_1.limit)}")
+print()
+print(f"{account_1.holder} would, of course, like to have {account_3.holder}'s limit of {account_3.format_value(account_3.limit)}")
