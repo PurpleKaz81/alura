@@ -97,7 +97,6 @@ def cheapest(restaurants):
         return "There are no cheap restaurants left in this world."
 
 
-
 restaurant1 = Restaurant("Crustacean", "Vietnamese", "$$$", 50, "5PM", "10PM",
                          "123 Main St", 4.5, True, ["Shrimp", "Noodle Soup"])
 
@@ -136,9 +135,25 @@ restaurant11 = Restaurant("Burger Palace", "American", "$$", 50, "11AM",
                           "11AM", "123 Main St", 2.5, True,
                           ["Burger", "Fries"])
 
+restaurant12 = Restaurant("Veggie Grill", "Vegetarian", "$$", 50, "11AM",
+                          "11PM", "123 Main St", 4.5, True,
+                          ["Burger", "Fries"])
+
+restaurant13 = Restaurant("Veggie Heaven", "Vegetarian", "$$", 50, "11AM",
+                          "11PM", "123 Main St", 4.5, True,
+                          ["Burger", "Fries"])
+
+restaurant14 = Restaurant("Veggie House", "Vegetarian", "$$", 50, "11AM",
+                          "11PM", "123 Main St", 4.5, True,
+                          ["Burger", "Fries"])
+
+restaurant15 = Restaurant("Burger King", "American", "$$", 50, "11AM", "11PM",
+                          "123 Main St", 4.5, True, ["Burger", "Fries"])
+
 restaurants = [
     restaurant1, restaurant2, restaurant3, restaurant4, restaurant5,
-    restaurant6, restaurant7, restaurant8, restaurant9, restaurant10, restaurant11
+    restaurant6, restaurant7, restaurant8, restaurant9, restaurant10,
+    restaurant11, restaurant12, restaurant13, restaurant14, restaurant15
 ]
 
 print(do_deliver(restaurants))
