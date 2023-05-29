@@ -13,4 +13,4 @@ date_obj = Date(10, 9, 2023)
 print(date_obj.formatted_date(), "\n")
 
 date_obj_2 = Date(11, "03", 2020)
-print(date_obj_2.formatted_date())
+print(date_obj_2.formatted_date(), "\n")
