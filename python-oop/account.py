@@ -28,11 +28,18 @@ class Account:
     def print_client_info(self):
         print(self.client_info(vars(self)))
 
-    def print_client_list():
+    @classmethod
+    def print_client_list(cls, accounts):
         print("Here's a list of all our clients:\n")
         for index, account in enumerate(accounts, start=1):
             print(f"{index}) {account.holder}")
         print()
+
+    @classmethod
+    def print_client_names(cls, accounts):
+        account_names = [account.holder for account in accounts]
+        print(", ".join(account_names[:2]) + ", and " + account_names[-1])
+
 
     def total_balance(self, accounts):
         total_balance = sum(account.balance for account in accounts)
@@ -60,7 +67,7 @@ account_2.print_client_info()
 account_3.print_client_info()
 
 accounts = [account_1, account_2, account_3]
-Account.print_client_list()
+Account.print_client_list(accounts)
 
 print(
     f"The total balance and limit of their accounts are {accounts[0].total_balance(accounts)} and {accounts[0].total_limit(accounts)}, respectively."
@@ -82,3 +89,8 @@ print(f"{account_1.holder} went to hospital in NYC to get an aspirin for a minor
 print()
 account_3.deposit(1000000)
 print(f"{account_3.holder} just made {account_3.format_value(100000)} selling shit T-shirts, cuz life's unfair, so he now has {account_3.format_value(account_3.balance)}.")
+account_2.deposit(85.67)
+print()
+print(f"{account_2.holder} now has a balance of {account_2.format_value(account_2.balance)}")
+print()
+Account.print_client_names(accounts)
