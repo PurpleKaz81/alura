@@ -62,6 +62,42 @@ def do_deliver(restaurants):
     return "\n".join(result)
 
 
+def average_rating(restaurants):
+    return sum(restaurant.rating
+               for restaurant in restaurants) / len(restaurants or 1)
+
+
+def mean_rating(restaurants):
+    ratings = [restaurant.rating for restaurant in restaurants]
+    min_rating = min(ratings)
+    max_rating = max(ratings)
+    filtered_restaurants = [
+        restaurant for restaurant in restaurants
+        if restaurant.rating not in [max(ratings), min(ratings)]
+    ]
+    return average_rating(filtered_restaurants)
+
+
+def cheapest(restaurants):
+    prices = [restaurant.price_range for restaurant in restaurants]
+    min_price = min(prices)
+    cheapest = [
+        restaurant.name for restaurant in restaurants
+        if restaurant.price_range == min_price
+    ]
+    if len(cheapest) > 2:
+        main_names = ", ".join(cheapest[:-1])
+        last_name = cheapest[-1]
+        return f"The cheapest restaurants are {main_names}, and {last_name}."
+    elif len(cheapest) == 2:
+        return f"The cheapest restaurants are {cheapest[0]} and {cheapest[1]}."
+    elif len(cheapest) == 1:
+        return f"The cheapest restaurant is {cheapest[0]}."
+    else:
+        return "There are no cheap restaurants left in this world."
+
+
+
 restaurant1 = Restaurant("Crustacean", "Vietnamese", "$$$", 50, "5PM", "10PM",
                          "123 Main St", 4.5, True, ["Shrimp", "Noodle Soup"])
 
@@ -69,7 +105,7 @@ restaurant2 = Restaurant("Green Lotus", "Thai", "$$", 40, "11AM", "11PM",
                          "456 High St", 4.5, True,
                          ["Pad Thai", "Tom Yum Soup"])
 
-restaurant3 = Restaurant("Sunset", "Indian", "$$", 60, "11AM", "11PM",
+restaurant3 = Restaurant("Sunset", "Indian", "$", 60, "11AM", "11PM",
                          "789 Broadway", 4.8, True,
                          ["Biryani", "Butter Chicken"])
 
@@ -97,14 +133,22 @@ restaurant10 = Restaurant("Herbs & Spice", "Vegetarian", "$$", 80, "11AM",
                           ["Salad", "Veggie Burger"])
 
 restaurant11 = Restaurant("Burger Palace", "American", "$$", 50, "11AM",
-                          "11AM", "123 Main St", 4.5, True,
+                          "11AM", "123 Main St", 2.5, True,
                           ["Burger", "Fries"])
 
 restaurants = [
     restaurant1, restaurant2, restaurant3, restaurant4, restaurant5,
-    restaurant6, restaurant7, restaurant8, restaurant9, restaurant10
+    restaurant6, restaurant7, restaurant8, restaurant9, restaurant10, restaurant11
 ]
 
 print(do_deliver(restaurants))
 print()
 print(restaurant11.hours_a_day_open())
+print()
+print(
+    f"The average rating for the restaurants on the list was {average_rating(restaurants):.2f}. It woulda been better, but {restaurant11.name}'s a real piece of shit'."
+)
+print()
+print(f"The mean rating is {mean_rating(restaurants):.2f}.")
+print()
+print(cheapest(restaurants))
