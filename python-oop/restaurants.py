@@ -97,10 +97,49 @@ def cheapest(restaurants):
         return "There are no cheap restaurants left in this world."
 
 
+def most_expensive(restaurants):
+    prices = [restaurant.price_range for restaurant in restaurants]
+    max_price = max(prices)
+    most_expensive = [
+        restaurant.name for restaurant in restaurants
+        if restaurant.price_range == max_price
+    ]
+    if len(most_expensive) > 2:
+        main_names = ", ".join(most_expensive[:-1])
+        last_name = most_expensive[-1]
+        return f"The most expensive restaurants are {main_names}, and {last_name}."
+    elif len(most_expensive) == 2:
+        return f"The most expensive restaurants are {most_expensive[0]} and {most_expensive[1]}."
+    elif len(most_expensive) == 1:
+        return f"The most expensive restaurant is {most_expensive[0]}."
+    else:
+        return "Everything's mysteriously cheap now."
+
+
+def most_intimate(restaurants):
+    restaurants_sorted = sorted(restaurants, key=lambda x: x.total_seats)
+    least_seating = [restaurant.name for restaurant in restaurants_sorted[:3]]
+    most_seating = [restaurant.name for restaurant in restaurants_sorted[-3:]]
+
+    if len(least_seating) > 1:
+        least_seating_str = ', '.join(
+            least_seating[:-1]) + ', and ' + least_seating[-1]
+    else:
+        least_seating_str = least_seating[0]
+
+    if len(most_seating) > 1:
+        most_seating_str = ', '.join(
+            most_seating[:-1]) + ', and ' + most_seating[-1]
+    else:
+        most_seating_str = most_seating[0]
+
+    return f"{least_seating_str} are the restaurants with the most intimate setting. {most_seating_str} are great for family events, however, since they seat more people."
+
+
 restaurant1 = Restaurant("Crustacean", "Vietnamese", "$$$", 50, "5PM", "10PM",
                          "123 Main St", 4.5, True, ["Shrimp", "Noodle Soup"])
 
-restaurant2 = Restaurant("Green Lotus", "Thai", "$$", 40, "11AM", "11PM",
+restaurant2 = Restaurant("Green Lotus", "Thai", "$", 40, "11AM", "11PM",
                          "456 High St", 4.5, True,
                          ["Pad Thai", "Tom Yum Soup"])
 
@@ -111,7 +150,7 @@ restaurant3 = Restaurant("Sunset", "Indian", "$", 60, "11AM", "11PM",
 restaurant4 = Restaurant("Italian Star", "Italian", "$$$", 30, "5PM", "11PM",
                          "321 Geo St", 4.3, False, ["Pasta", "Pizza"])
 
-restaurant5 = Restaurant("Samurai House", "Japanese", "$$$", 100, "5PM",
+restaurant5 = Restaurant("Samurai House", "Japanese", "$$$$$", 100, "5PM",
                          "10PM", "654 Call Rd", 4.9, True, ["Sushi", "Ramen"])
 
 restaurant6 = Restaurant("Pepito's", "Mexican", "$", 50, "11AM", "10PM",
@@ -131,7 +170,7 @@ restaurant10 = Restaurant("Herbs & Spice", "Vegetarian", "$$", 80, "11AM",
                           "11PM", "213 Main St", 4.2, True,
                           ["Salad", "Veggie Burger"])
 
-restaurant11 = Restaurant("Burger Palace", "American", "$$", 50, "11AM",
+restaurant11 = Restaurant("Burger Palace", "American", "$$$$", 50, "11AM",
                           "11AM", "123 Main St", 2.5, True,
                           ["Burger", "Fries"])
 
@@ -139,11 +178,11 @@ restaurant12 = Restaurant("Veggie Grill", "Vegetarian", "$$", 50, "11AM",
                           "11PM", "123 Main St", 4.5, True,
                           ["Burger", "Fries"])
 
-restaurant13 = Restaurant("Veggie Heaven", "Vegetarian", "$$", 50, "11AM",
+restaurant13 = Restaurant("Veggie Heaven", "Vegetarian", "$$$$$", 50, "11AM",
                           "11PM", "123 Main St", 4.5, True,
                           ["Burger", "Fries"])
 
-restaurant14 = Restaurant("Veggie House", "Vegetarian", "$$", 50, "11AM",
+restaurant14 = Restaurant("Veggie House", "Vegetarian", "$$$", 50, "11AM",
                           "11PM", "123 Main St", 4.5, True,
                           ["Burger", "Fries"])
 
@@ -167,3 +206,7 @@ print()
 print(f"The mean rating is {mean_rating(restaurants):.2f}.")
 print()
 print(cheapest(restaurants))
+print()
+print(most_expensive(restaurants))
+print()
+print(most_intimate(restaurants))
