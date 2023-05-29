@@ -17,8 +17,8 @@ class Restaurant:
 
     def _parse_open_close_time(self):  # sourcery skip: raise-specific-error
         try:
-            open_time = int(self.open_time[:-2]) % 12
-            close_time = int(self.close_time[:-2]) % 12
+            open_time = int(self.open_time[:-2])
+            close_time = int(self.close_time[:-2])
 
             if self.open_time[-2:] == "PM":
                 open_time += 12
@@ -227,7 +227,7 @@ restaurants = [
 
 print(do_deliver(restaurants))
 print()
-print(restaurant11.hours_a_day_open())
+print(restaurant7.hours_a_day_open())
 print()
 print(
     f"The average rating for the restaurants on the list was {average_rating(restaurants):.2f}. It cloud have been better, but {restaurant11.name}'s a real piece of shit."
