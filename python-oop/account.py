@@ -1,11 +1,13 @@
 class Account:
 
     def __init__(self, number, holder, balance, limit=1000):
-        # print(f"Building object... {self}")
         self.number = number
         self.holder = holder
         self.balance = balance
         self.limit = limit
+
+    def __str__(self):
+        return f"Account: {self.number}, Holder: {self.holder}, Balance: {self.balance}, Limit: {self.limit}"
 
     def format_value(self, value, account_number=None):
         if account_number is not None and account_number == value:
@@ -16,9 +18,6 @@ class Account:
         else:
             return value
 
-    def __str__(self):
-        return f"Account: {self.number}, Holder: {self.holder}, Balance: {self.balance}, Limit: {self.limit}"
-
     def client_info(self, account):
         result = "Here's the client's information:\n"
         for index, (key, value) in enumerate(account.items(), start=1):
@@ -27,6 +26,14 @@ class Account:
 
     def print_client_info(self):
         print(self.client_info(vars(self)))
+
+    def deposit(self, value):
+        self.balance += value if value > 0 else print(
+            "You must deposit a positive value.")
+
+    def withdraw(self, value):
+        self.balance -= value if value > 0 else print(
+            "You must withdraw a negative value.")
 
     @classmethod
     def print_client_list(cls, accounts):
@@ -38,7 +45,8 @@ class Account:
     @classmethod
     def print_client_names(cls, accounts):
         if len(accounts) > 2:
-            first_two_names = ", ".join(account.holder for account in accounts[:2])
+            first_two_names = ", ".join(account.holder
+                                        for account in accounts[:2])
             last_name = accounts[-1].holder
             print(f"{first_two_names}, and {last_name}")
         elif len(accounts) == 2:
@@ -55,14 +63,6 @@ class Account:
     def total_limit(self, accounts):
         total_limit = sum(account.limit for account in accounts)
         return self.format_value(total_limit)
-
-    def deposit(self, value):
-        self.balance += value if value > 0 else print(
-            "You must deposit a positive value.")
-
-    def withdraw(self, value):
-        self.balance -= value if value > 0 else print(
-            "You must withdraw a negative value.")
 
 
 account_1 = Account(123, "Nico", 1000)
@@ -92,12 +92,22 @@ print(
 )
 print()
 account_1.withdraw(500000)
-print(f"{account_1.holder} went to hospital in NYC to get an aspirin for a minor headache. He now has US${account_1.balance} in his account. He's proper fucked.")
+print(
+    f"{account_1.holder} went to hospital in NYC to get an aspirin for a minor headache. He now has US${account_1.balance} in his account. He's proper fucked."
+)
 print()
 account_3.deposit(1000000)
-print(f"{account_3.holder} just made {account_3.format_value(100000)} selling shit T-shirts, cuz life's unfair, so he now has {account_3.format_value(account_3.balance)}.")
+print(
+    f"{account_3.holder} just made {account_3.format_value(100000)} selling shit T-shirts, cuz life's unfair, so he now has {account_3.format_value(account_3.balance)}."
+)
 account_2.deposit(85.67)
 print()
-print(f"{account_2.holder} now has a balance of {account_2.format_value(account_2.balance)}")
+print(
+    f"{account_2.holder} now has a balance of {account_2.format_value(account_2.balance)}"
+)
 print()
 Account.print_client_names(accounts)
+print()
+account_1.print_client_info()
+account_2.print_client_info()
+account_3.print_client_info()
