@@ -1,3 +1,5 @@
+from collections import Counter
+
 class Restaurant:
 
     def __init__(self, name, cuisine_type, price_range, total_seats, open_time,
@@ -116,7 +118,7 @@ def most_expensive(restaurants):
         return "Everything's mysteriously cheap now."
 
 
-def most_intimate(restaurants):
+def intimacy(restaurants):
     restaurants_sorted = sorted(restaurants, key=lambda x: x.total_seats)
     least_seating = [restaurant.name for restaurant in restaurants_sorted[:3]]
     most_seating = [restaurant.name for restaurant in restaurants_sorted[-3:]]
@@ -134,6 +136,34 @@ def most_intimate(restaurants):
         most_seating_str = most_seating[0]
 
     return f"{least_seating_str} are the restaurants with the most intimate setting. {most_seating_str} are great for family events, however, since they seat more people."
+
+
+def most_popular_cuisine_type(restaurants):
+    cuisine_types = [restaurant.cuisine_type for restaurant in restaurants]
+    cuisine_type_count = {}
+    for cuisine_type in cuisine_types:
+        if cuisine_type in cuisine_type_count:
+            cuisine_type_count[cuisine_type] += 1
+        else:
+            cuisine_type_count[cuisine_type] = 1
+    return max(cuisine_type_count, key=cuisine_type_count.get)
+
+
+def least_popular_cuisine_type(restaurants):
+    cuisine_types = [restaurant.cuisine_type for restaurant in restaurants]
+    cuisine_type_count = {}
+    for cuisine_type in cuisine_types:
+        if cuisine_type in cuisine_type_count:
+            cuisine_type_count[cuisine_type] += 1
+        else:
+            cuisine_type_count[cuisine_type] = 1
+    return min(cuisine_type_count, key=cuisine_type_count.get)
+
+
+def most_popular_menu_item(restaurants):
+    menu_items = [item for restaurant in restaurants for item in restaurant.menu]
+    menu_items_count = Counter(menu_items)
+    return menu_items_count.most_common(1)[0][0].lower()
 
 
 restaurant1 = Restaurant("Crustacean", "Vietnamese", "$$$", 50, "5PM", "10PM",
@@ -200,7 +230,7 @@ print()
 print(restaurant11.hours_a_day_open())
 print()
 print(
-    f"The average rating for the restaurants on the list was {average_rating(restaurants):.2f}. It woulda been better, but {restaurant11.name}'s a real piece of shit'."
+    f"The average rating for the restaurants on the list was {average_rating(restaurants):.2f}. It cloud have been better, but {restaurant11.name}'s a real piece of shit."
 )
 print()
 print(f"The mean rating is {mean_rating(restaurants):.2f}.")
@@ -209,4 +239,16 @@ print(cheapest(restaurants))
 print()
 print(most_expensive(restaurants))
 print()
-print(most_intimate(restaurants))
+print(intimacy(restaurants))
+print()
+print(
+    f"The most popular cuisine type is {most_popular_cuisine_type(restaurants)}."
+)
+print()
+print(
+    f"The least popular type of cuisine is {least_popular_cuisine_type(restaurants)}."
+)
+print()
+print(
+    f"The most popular menu items among the restaurants is {most_popular_menu_item(restaurants)}."
+)
