@@ -63,6 +63,15 @@ def hair_color_frequency(persons):
     return max(hair_count, key=hair_count.get)
 
 
+def total_weight(persons):
+    return sum(int(person.weight) for person in persons)
+
+
+def weight_average(persons):
+    average_weight = int(total_weight(persons) / len(persons))
+    return f"The guests together weigh {total_weight(persons)} pounds and average {average_weight}."
+
+
 # create persons 1-5
 person1 = Person("John", "Silva", "6'2", "180", "The Godfather", "Missionary")
 person2 = Person("Jane", "dos Santos", "5'8", "120", "The Notebook", "Doggy")
@@ -89,3 +98,5 @@ print()
 print(f"The most popular movie among guests is {favorite_movie(persons)}.")
 print()
 print(f"Pretty much all the guests have {hair_color_frequency(persons)} hair.")
+print()
+print(weight_average(persons))
