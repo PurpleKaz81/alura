@@ -11,12 +11,10 @@ class Account:
         if account_number is not None and account_number == value:
             return str(value)
 
-        if isinstance(value, float):
+        if isinstance(value, float) or not isinstance(value, str):
             return "US${:,.2f}".format(value)
-        elif isinstance(value, str):
-            return value
         else:
-            return "US${:,.2f}".format(value)
+            return value
 
     def __str__(self):
         return f"Account: {self.number}, Holder: {self.holder}, Balance: {self.balance}, Limit: {self.limit}"
@@ -44,6 +42,14 @@ class Account:
         total_limit = sum(account.limit for account in accounts)
         return self.format_value(total_limit)
 
+    def deposit(self, value):
+        self.balance += value if value > 0 else print(
+            "You must deposit a positive value.")
+
+    def withdraw(self, value):
+        self.balance -= value if value > 0 else print(
+            "You must withdraw a negative value.")
+
 
 account_1 = Account(123, "Nico", 1000)
 account_2 = Account(321, "Marco", 100)
@@ -67,4 +73,12 @@ print(f"Account 2's account number is {account_2.number}")
 print()
 print(f"Account 1's limit is {account_1.format_value(account_1.limit)}")
 print()
-print(f"{account_1.holder} would, of course, like to have {account_3.holder}'s limit of {account_3.format_value(account_3.limit)}")
+print(
+    f"{account_1.holder} would, of course, like to have {account_3.holder}'s limit of {account_3.format_value(account_3.limit)}"
+)
+print()
+account_1.withdraw(500000)
+print(f"{account_1.holder} went to hospital in NYC to get an aspirin for a minor headache. He now has US${account_1.balance} in his account. He's proper fucked.")
+print()
+account_3.deposit(1000000)
+print(f"{account_3.holder} just made {account_3.format_value(100000)} selling shit T-shirts, cuz life's unfair, so he now has {account_3.format_value(account_3.balance)}.")
