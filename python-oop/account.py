@@ -37,9 +37,16 @@ class Account:
 
     @classmethod
     def print_client_names(cls, accounts):
-        account_names = [account.holder for account in accounts]
-        print(", ".join(account_names[:2]) + ", and " + account_names[-1])
-
+        if len(accounts) > 2:
+            first_two_names = ", ".join(account.holder for account in accounts[:2])
+            last_name = accounts[-1].holder
+            print(f"{first_two_names}, and {last_name}")
+        elif len(accounts) == 2:
+            print(f"{accounts[0].holder} and {accounts[1].holder}")
+        elif accounts:
+            print(accounts[0].holder)
+        else:
+            print("No account holders")
 
     def total_balance(self, accounts):
         total_balance = sum(account.balance for account in accounts)
