@@ -14,22 +14,22 @@ class Restaurant:
         self.menu = menu
 
     def _parse_open_close_time(self):  # sourcery skip: raise-specific-error
-            try:
-                open_time = int(self.open_time[:-2]) % 12
-                close_time = int(self.close_time[:-2]) % 12
+        try:
+            open_time = int(self.open_time[:-2]) % 12
+            close_time = int(self.close_time[:-2]) % 12
 
-                if self.open_time[-2:] == "PM":
-                    open_time += 12
-                if self.close_time[-2:] == "PM":
-                    close_time += 12
+            if self.open_time[-2:] == "PM":
+                open_time += 12
+            if self.close_time[-2:] == "PM":
+                close_time += 12
 
-                # Handling closing time after midnight
-                if close_time <= open_time:
-                    close_time += 24
+            # Handling closing time after midnight
+            if close_time <= open_time:
+                close_time += 24
 
-                return open_time, close_time
-            except ValueError as e:
-                raise Exception("Invalid time format") from e
+            return open_time, close_time
+        except ValueError as e:
+            raise Exception("Invalid time format") from e
 
     def hours_a_day_open(self):
         try:
@@ -42,6 +42,7 @@ class Restaurant:
                 return f"{self.name} is open from {self.open_time} to {self.close_time}. That's {total_hours_open} hours a day!"
         except Exception as e:
             return str(e)
+
 
 def do_deliver(restaurants):
     result = [
@@ -95,6 +96,10 @@ restaurant10 = Restaurant("Herbs & Spice", "Vegetarian", "$$", 80, "11AM",
                           "11PM", "213 Main St", 4.2, True,
                           ["Salad", "Veggie Burger"])
 
+restaurant11 = Restaurant("Burger Palace", "American", "$$", 50, "11AM",
+                          "11AM", "123 Main St", 4.5, True,
+                          ["Burger", "Fries"])
+
 restaurants = [
     restaurant1, restaurant2, restaurant3, restaurant4, restaurant5,
     restaurant6, restaurant7, restaurant8, restaurant9, restaurant10
@@ -102,4 +107,4 @@ restaurants = [
 
 print(do_deliver(restaurants))
 print()
-print(restaurant10.hours_a_day_open())
+print(restaurant11.hours_a_day_open())
