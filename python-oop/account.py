@@ -4,6 +4,7 @@ from date import Date
 class Account:
     accounts = []
 
+    # initialization
     def __init__(self, number, holder, balance, limit=1000):
         self.__number = number
         self.__holder = holder
@@ -14,7 +15,7 @@ class Account:
     def __str__(self):
         return f"Account: {self.__number}, Holder: {self.__holder}, Balance: {self.__balance}, Limit: {self.__limit}"
 
-    # Getters
+    # getter properties
     @property
     def number(self):
         return self.__number
@@ -31,6 +32,7 @@ class Account:
     def limit(self):
         return self.__limit
 
+    # utility functions
     @staticmethod
     def format_value(value, account_number=None):
         if account_number is not None and account_number == value:
@@ -41,6 +43,7 @@ class Account:
         else:
             return value
 
+    # instance methods
     def client_info(self):
         result = "Here's the client's information:\n"
         account_info = {
@@ -66,7 +69,7 @@ class Account:
         if value > 0:
             self.__balance -= value
         else:
-            print("You must withdraw a negative value.")
+            print("The withdrawal amount must be a positive value.")
 
     def transfer(self, value, origin, destination):
         if origin == destination or origin.balance < value or value <= 0:
@@ -92,6 +95,7 @@ class Account:
         else:
             print("Let him go... for now...")
 
+    # class methods
     @classmethod
     def print_client_list(cls):
         print("Here's a list of all our clients:\n")
