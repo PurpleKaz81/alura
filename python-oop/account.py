@@ -92,6 +92,7 @@ class Account:
                 print(f"{index}) {account.holder}")
                 print()
                 account.what_to_do_with_client(accounts)
+                print()
 
     @staticmethod
     def print_client_names(accounts):
