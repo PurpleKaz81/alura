@@ -1,13 +1,15 @@
-from dates import Date
+from date import Date
 
 
 class Account:
+    accounts = []
 
     def __init__(self, number, holder, balance, limit=1000):
         self.__number = number
         self.__holder = holder
         self.__balance = balance
         self.__limit = limit
+        Account.accounts.append(self)
 
     def __str__(self):
         return f"Account: {self.__number}, Holder: {self.__holder}, Balance: {self.__balance}, Limit: {self.__limit}"
@@ -77,51 +79,12 @@ class Account:
         except Exception as e:
             print("Transfer error: ", e)
 
-    @classmethod
-    def print_client_list(cls, accounts):
-        print("Here's a list of all our clients:\n")
-        for index, account in enumerate(accounts, start=1):
-            print(f"{index}) {account.holder}")
-        print()
-
-    @classmethod
-    def print_delinquent_list(cls, accounts):
-        print("Here's a list of all our delinquent clients:\n")
-        for index, account in enumerate(accounts, start=1):
-            if account.is_delinquent():
-                print(f"{index}) {account.holder}")
-                print()
-                account.what_to_do_with_client(accounts)
-                print()
-
-    @staticmethod
-    def print_client_names(accounts):
-        if len(accounts) > 2:
-            first_two_names = ", ".join(account.holder
-                                        for account in accounts[:2])
-            last_name = accounts[-1].holder
-            print(f"{first_two_names}, and {last_name}")
-        elif len(accounts) == 2:
-            print(f"{accounts[0].holder} and {accounts[1].holder}")
-        elif accounts:
-            print(accounts[0].holder)
-        else:
-            print("No account holders")
-
-    def total_balance(self):
-        total_balance = sum(account.balance for account in accounts)
-        return Account.format_value(total_balance)
-
-    def total_limit(self):
-        total_limit = sum(account.limit for account in accounts)
-        return Account.format_value(total_limit)
-
     def is_delinquent(self):
         return self.balance < 0
 
-    def what_to_do_with_client(self, accounts):
+    def what_to_do_with_client(self):
         if self.balance > 0:
-            print(f"{account.holder}'s in good standing.")
+            print(f"{self.holder}'s in good standing.")
         if self.balance < -abs(self.limit):
             print("Looks like we're gonna have to throw him in a dungeon.")
         elif abs(self.balance) == -abs(self.limit):
@@ -129,7 +92,49 @@ class Account:
         else:
             print("Let him go... for now...")
 
+    @classmethod
+    def print_client_list(cls):
+        print("Here's a list of all our clients:\n")
+        for index, account in enumerate(cls.accounts, start=1):
+            print(f"{index}) {account.holder}")
+        print()
 
+    @classmethod
+    def print_delinquent_list(cls):
+        print("Here's a list of all our delinquent clients:\n")
+        for index, account in enumerate(cls.accounts, start=1):
+            if account.is_delinquent():
+                print(f"{index}) {account.holder}")
+                print()
+                account.what_to_do_with_client()
+                print()
+
+    @classmethod
+    def print_client_names(cls):
+        if len(cls.accounts) > 2:
+            first_two_names = ", ".join(account.holder
+                                        for account in cls.accounts[:2])
+            last_name = cls.accounts[-1].holder
+            print(f"{first_two_names}, and {last_name}")
+        elif len(cls.accounts) == 2:
+            print(f"{cls.accounts[0].holder} and {cls.accounts[1].holder}")
+        elif cls.accounts:
+            print(cls.accounts[0].holder)
+        else:
+            print("No account holders")
+
+    @classmethod
+    def total_balance(cls):
+        total_balance = sum(account.balance for account in cls.accounts)
+        return cls.format_value(total_balance)
+
+    @classmethod
+    def total_limit(cls):
+        total_limit = sum(account.limit for account in cls.accounts)
+        return cls.format_value(total_limit)
+
+
+# creating accounts and adding to the list
 account_1 = Account(123, "Nico", 1000)
 account_2 = Account(321, "Marco", 100)
 account_3 = Account(666, "Satan", 2679, 2000)
@@ -138,11 +143,11 @@ account_1.print_client_info()
 account_2.print_client_info()
 account_3.print_client_info()
 
-accounts = [account_1, account_2, account_3]
-Account.print_client_list(accounts)
+# Printing the client list
+Account.print_client_list()
 
 print(
-    f"The total balance and limit of their accounts are {Account.total_balance(accounts)} and {Account.total_limit(accounts)}, respectively.",
+    f"The total balance and limit of their accounts are {Account.total_balance()} and {Account.total_limit()}, respectively.",
     "\n")
 
 print(f"Account 1's balance is {account_1.format_value(account_1.balance)}",
@@ -166,7 +171,7 @@ account_2.deposit(85.67)
 print(
     f"{account_2.holder} now has a balance of {account_2.format_value(account_2.balance)}",
     "\n")
-Account.print_client_names(accounts)
+Account.print_client_names()
 print()
 
 account_1.print_client_info()
@@ -186,4 +191,4 @@ print(
 account_1.print_client_info()
 account_3.print_client_info()
 
-Account.print_delinquent_list(accounts)
+Account.print_delinquent_list()
