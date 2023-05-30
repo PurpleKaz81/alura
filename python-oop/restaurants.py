@@ -3,7 +3,7 @@ from collections import Counter
 class Restaurant:
 
     def __init__(self, name, cuisine_type, price_range, total_seats, open_time,
-                 close_time, address, rating, delivery_service, menu):
+                 close_time, address, rating, delivery_service, menu, chef):
         self.name = name
         self.cuisine_type = cuisine_type
         self.price_range = price_range
@@ -14,6 +14,7 @@ class Restaurant:
         self.rating = rating
         self.delivery_service = delivery_service
         self.menu = menu
+        self.chef = chef
 
     def _parse_open_close_time(self):  # sourcery skip: raise-specific-error
         try:
