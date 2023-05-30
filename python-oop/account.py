@@ -4,15 +4,33 @@ from dates import Date
 class Account:
 
     def __init__(self, number, holder, balance, limit=1000):
-        self.number = number
-        self.holder = holder
-        self.balance = balance
-        self.limit = limit
+        self.__number = number
+        self.__holder = holder
+        self.__balance = balance
+        self.__limit = limit
 
     def __str__(self):
-        return f"Account: {self.number}, Holder: {self.holder}, Balance: {self.balance}, Limit: {self.limit}"
+        return f"Account: {self.__number}, Holder: {self.__holder}, Balance: {self.__balance}, Limit: {self.__limit}"
 
-    def format_value(self, value, account_number=None):
+    # Getters
+    @property
+    def number(self):
+        return self.__number
+
+    @property
+    def holder(self):
+        return self.__holder
+
+    @property
+    def balance(self):
+        return self.__balance
+
+    @property
+    def limit(self):
+        return self.__limit
+
+    @staticmethod
+    def format_value(value, account_number=None):
         if account_number is not None and account_number == value:
             return str(value)
 
@@ -21,22 +39,43 @@ class Account:
         else:
             return value
 
-    def client_info(self, account):
+    def client_info(self):
         result = "Here's the client's information:\n"
-        for index, (key, value) in enumerate(account.items(), start=1):
-            result += f"{index}) {key}: {self.format_value(value, account['number'])}\n"
+        account_info = {
+            "number": self.number,
+            "holder": self.holder,
+            "balance": self.format_value(self.balance),
+            "limit": self.format_value(self.limit)
+        }
+        for index, (key, value) in enumerate(account_info.items(), start=1):
+            result += f"{index}) {key}: {value}\n"
         return result
 
     def print_client_info(self):
-        print(self.client_info(vars(self)))
+        print(self.client_info())
 
     def deposit(self, value):
-        self.balance += value if value > 0 else print(
-            "You must deposit a positive value.")
+        if value > 0:
+            self.__balance += value
+        else:
+            print("You must deposit a positive value.")
 
     def withdraw(self, value):
-        self.balance -= value if value > 0 else print(
-            "You must withdraw a negative value.")
+        if value > 0:
+            self.__balance -= value
+        else:
+            print("You must withdraw a negative value.")
+
+    def transfer(self, value, origin, destination):
+        if origin == destination or origin.balance < value or value <= 0:
+            print("Invalid transfer", "\n")
+            return
+
+        try:
+            origin.withdraw(value)
+            destination.deposit(value)
+        except Exception as e:
+            print("Transfer error: ", e)
 
     @classmethod
     def print_client_list(cls, accounts):
@@ -46,7 +85,16 @@ class Account:
         print()
 
     @classmethod
-    def print_client_names(cls, accounts):
+    def print_delinquent_list(cls, accounts):
+        print("Here's a list of all our delinquent clients:\n")
+        for index, account in enumerate(accounts, start=1):
+            if account.is_delinquent():
+                print(f"{index}) {account.holder}")
+                print()
+                account.what_to_do_with_client(accounts)
+
+    @staticmethod
+    def print_client_names(accounts):
         if len(accounts) > 2:
             first_two_names = ", ".join(account.holder
                                         for account in accounts[:2])
@@ -59,13 +107,26 @@ class Account:
         else:
             print("No account holders")
 
-    def total_balance(self, accounts):
+    def total_balance(self):
         total_balance = sum(account.balance for account in accounts)
-        return self.format_value(total_balance)
+        return Account.format_value(total_balance)
 
-    def total_limit(self, accounts):
+    def total_limit(self):
         total_limit = sum(account.limit for account in accounts)
-        return self.format_value(total_limit)
+        return Account.format_value(total_limit)
+
+    def is_delinquent(self):
+        return self.balance < 0
+
+    def what_to_do_with_client(self, accounts):
+        if self.balance > 0:
+            print(f"{account.holder}'s in good standing.")
+        if self.balance < -abs(self.limit):
+            print("Looks like we're gonna have to throw him in a dungeon.")
+        elif abs(self.balance) == -abs(self.limit):
+            print("Living dangerously, are we?")
+        else:
+            print("Let him go... for now...")
 
 
 account_1 = Account(123, "Nico", 1000)
@@ -80,44 +141,48 @@ accounts = [account_1, account_2, account_3]
 Account.print_client_list(accounts)
 
 print(
-    f"The total balance and limit of their accounts are {accounts[0].total_balance(accounts)} and {accounts[0].total_limit(accounts)}, respectively."
-)
+    f"The total balance and limit of their accounts are {Account.total_balance(accounts)} and {Account.total_limit(accounts)}, respectively.",
+    "\n")
 
-print()
-print(f"Account 1's balance is {account_1.format_value(account_1.balance)}")
-print()
-print(f"Account 2's account number is {account_2.number}")
-print()
-print(f"Account 1's limit is {account_1.format_value(account_1.limit)}")
-print()
+print(f"Account 1's balance is {account_1.format_value(account_1.balance)}",
+      "\n")
+print(f"Account 2's account number is {account_2.number}", "\n")
+print(f"Account 1's limit is {account_1.format_value(account_1.limit)}", "\n")
 print(
-    f"{account_1.holder} would, of course, like to have {account_3.holder}'s limit of {account_3.format_value(account_3.limit)}"
-)
-print()
+    f"{account_1.holder} would, of course, like to have {account_3.holder}'s limit of {account_3.format_value(account_3.limit)}",
+    "\n")
 account_1.withdraw(500000)
 print(
-    f"{account_1.holder} went to hospital in NYC to get an aspirin for a minor headache. He now has US${account_1.balance} in his account. He's proper fucked."
-)
-print()
+    f"{account_1.holder} went to hospital in NYC to get an aspirin for a minor headache. He now has {account_1.format_value(account_1.balance)} in his account. He's proper fucked.",
+    "\n")
 account_3.deposit(1000000)
 
 date_1 = Date(12, 5, 2023)
 print(
-    f"{account_3.holder} made {account_3.format_value(100000)} selling shit T-shirts on {date_1.formatted_date()}, cuz life's unfair, so he now has {account_3.format_value(account_3.balance)}."
-)
+    f"{account_3.holder} made {account_3.format_value(100000)} selling shit T-shirts on {date_1.formatted_date()}, cuz life's unfair, so he now has {account_3.format_value(account_3.balance)}.",
+    "\n")
 account_2.deposit(85.67)
-print()
 print(
-    f"{account_2.holder} now has a balance of {account_2.format_value(account_2.balance)}"
-)
-print()
+    f"{account_2.holder} now has a balance of {account_2.format_value(account_2.balance)}",
+    "\n")
 Account.print_client_names(accounts)
 print()
+
 account_1.print_client_info()
 account_2.print_client_info()
 account_3.print_client_info()
-print()
+
 date_2 = Date(17, "08", 2017)
 print(
-    f"On {date_2.formatted_date()}, {account_3.holder} came to visit and never really went back home."
-)
+    f"On {date_2.formatted_date()}, {account_3.holder} came to visit and never really went back home.",
+    "\n")
+
+transfer_value = 30000
+transfer = account_1.transfer(transfer_value, account_3, account_1)
+print(
+    f"{account_1.holder} received a transfer of {account_3.format_value(transfer_value)} from {account_3.holder}, who now owns the title to {account_1.holder}'s soul.",
+    "\n")
+account_1.print_client_info()
+account_3.print_client_info()
+
+Account.print_delinquent_list(accounts)
