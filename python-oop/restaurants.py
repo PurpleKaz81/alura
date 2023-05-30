@@ -167,57 +167,65 @@ def most_popular_menu_item(restaurants):
 
 
 restaurant1 = Restaurant("Crustacean", "Vietnamese", "$$$", 50, "5PM", "10PM",
-                         "123 Main St", 4.5, True, ["Shrimp", "Noodle Soup"])
+                         "123 Main St", 4.5, True, ["Shrimp", "Noodle Soup"],
+                         ["Chef Nguyen", "Nguyen Van A", "5'6", "Culinary Institute of America"])
 
 restaurant2 = Restaurant("Green Lotus", "Thai", "$", 40, "11AM", "11PM",
-                         "456 High St", 4.5, True,
-                         ["Pad Thai", "Tom Yum Soup"])
+                         "456 High St", 4.5, True, ["Pad Thai", "Tom Yum Soup"],
+                         ["Chef Somsak", "Somsak Boonkam", "5'7", "Le Cordon Bleu"])
 
 restaurant3 = Restaurant("Sunset", "Indian", "$", 60, "11AM", "11PM",
-                         "789 Broadway", 4.8, True,
-                         ["Biryani", "Butter Chicken"])
+                         "789 Broadway", 4.8, True, ["Biryani", "Butter Chicken"],
+                         ["Chef Sharma", "Ramesh Sharma", "6'0", "Institute of Hotel Management, Catering & Nutrition, Pusa"])
 
 restaurant4 = Restaurant("Italian Star", "Italian", "$$$", 30, "5PM", "11PM",
-                         "321 Geo St", 4.3, False, ["Pasta", "Pizza"])
+                         "321 Geo St", 4.3, False, ["Pasta", "Pizza"],
+                         ["Chef Martini", "Gianluca Martini", "5'8", "ALMA Scuola di Cucina"])
 
 restaurant5 = Restaurant("Samurai House", "Japanese", "$$$$$", 100, "5PM",
-                         "10PM", "654 Call Rd", 4.9, True, ["Sushi", "Ramen"])
+                         "10PM", "654 Call Rd", 4.9, True, ["Sushi", "Ramen"],
+                         ["Chef Yamada", "Yamada Taro", "5'5", "Tsukiji Cooking School"])
 
 restaurant6 = Restaurant("Pepito's", "Mexican", "$", 50, "11AM", "10PM",
-                         "987 Park St", 4.1, True, ["Tacos", "Burritos"])
+                         "987 Park St", 4.1, True, ["Tacos", "Burritos"],
+                         ["Chef Gonzalez", "Jose Gonzalez", "5'8", "Escuela de Gastronomía Mexicana"])
 
 restaurant7 = Restaurant("La Gourmandise", "French", "$$$$", 20, "6PM", "12AM",
-                         "951 Aria Rd", 4.7, False, ["Foie Gras", "Croissant"])
+                         "951 Aria Rd", 4.7, False, ["Foie Gras", "Croissant"],
+                         ["Chef Lefevre", "Jean Lefevre", "6'1", "École Grégoire-Ferrandi"])
 
 restaurant8 = Restaurant("Athenian", "Greek", "$$", 75, "11AM", "11PM",
-                         "521 Metro St", 4.4, True, ["Gyros", "Moussaka"])
+                         "521 Metro St", 4.4, True, ["Gyros", "Moussaka"],
+                         ["Chef Papadopoulos", "George Papadopoulos", "5'10", "Le Monde Institute"])
 
 restaurant9 = Restaurant("Viking", "Scandinavian", "$$$$", 10, "6PM", "1AM",
-                         "846 Fjord St", 4.6, False,
-                         ["Gravlax", "Swedish Meatballs"])
+                         "846 Fjord St", 4.6, False, ["Gravlax", "Swedish Meatballs"],
+                         ["Chef Thomsen", "Ottis Thomsen", "6'2", "Oslo Culinary Academy"])
 
 restaurant10 = Restaurant("Herbs & Spice", "Vegetarian", "$$", 80, "11AM",
-                          "11PM", "213 Main St", 4.2, True,
-                          ["Salad", "Veggie Burger"])
+                          "11PM", "213 Main St", 4.2, True, ["Salad", "Veggie Burger"],
+                          ["Chef Green", "Emma Green", "5'9", "Natural Gourmet Institute"])
 
 restaurant11 = Restaurant("Burger Palace", "American", "$$$$", 50, "11AM",
-                          "11AM", "123 Main St", 2.5, True,
-                          ["Burger", "Fries"])
+                          "11AM", "123 Main St", 2.5, True, ["Burger", "Fries"],
+                          ["Chef Johnson", "John Johnson", "5'11", "Culinary Institute of America"])
 
 restaurant12 = Restaurant("Veggie Grill", "Vegetarian", "$$", 50, "11AM",
-                          "11PM", "123 Main St", 4.5, True,
-                          ["Burger", "Fries"])
+                          "11PM", "123 Main St", 4.5, True, ["Burger", "Fries"],
+                          ["Chef Patel", "Anita Patel", "5'5", "Natural Gourmet Institute"])
 
 restaurant13 = Restaurant("Veggie Heaven", "Vegetarian", "$$$$$", 50, "11AM",
-                          "11PM", "123 Main St", 4.5, True,
-                          ["Burger", "Fries"])
+                          "11PM", "123 Main St", 4.5, True, ["Burger", "Fries"],
+                          ["Chef Kim", "Min-Jae Kim", "5'7", "Natural Gourmet Institute"])
 
 restaurant14 = Restaurant("Veggie House", "Vegetarian", "$$$", 50, "11AM",
-                          "11PM", "123 Main St", 4.5, True,
-                          ["Burger", "Fries"])
+                          "11PM", "123 Main St", 4.5, True, ["Burger", "Fries"],
+                          ["Chef Brown", "Oliver Brown", "6'1", "Natural Gourmet Institute"])
 
 restaurant15 = Restaurant("Burger King", "American", "$$", 50, "11AM", "11PM",
-                          "123 Main St", 4.5, True, ["Burger", "Fries"])
+                          "123 Main St", 4.5, True, ["Burger", "Fries"],
+                          ["Chef Smith", "William Smith", "5'10", "Culinary Institute of America"])
+
 
 restaurants = [
     restaurant1, restaurant2, restaurant3, restaurant4, restaurant5,
