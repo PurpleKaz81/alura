@@ -2,7 +2,7 @@ from date import Date
 
 
 class Account:
-    accounts = []
+    accounts = {}
 
     # initialization
     def __init__(self, number, holder, balance, limit=1000):
@@ -10,7 +10,8 @@ class Account:
         self.__holder = holder
         self.__balance = balance
         self.__limit = limit
-        Account.accounts.append(self)
+        # Account.accounts.append(self) # list
+        Account.accounts[number] = self # dictionary
 
     def __str__(self):
         return f"Account: {self.__number}, Holder: {self.__holder}, Balance: {self.__balance}, Limit: {self.__limit}"
@@ -31,6 +32,14 @@ class Account:
     @property
     def limit(self):
         return self.__limit
+
+    # setter properties
+    @limit.setter
+    def limit(self, value):
+        if value < 0:
+            raise ValueError("You can't have a negative limit.")
+        else:
+            self.__limit = value
 
     # utility functions
     @staticmethod
@@ -99,7 +108,7 @@ class Account:
     @classmethod
     def print_client_list(cls):
         print("Here's a list of all our clients:\n")
-        for index, account in enumerate(cls.accounts, start=1):
+        for index, account in enumerate(cls.accounts.values(), start=1):
             print(f"{index}) {account.holder}")
         print()
 

@@ -1,14 +1,9 @@
 from account import Account
+import accounts
 from date import Date
 
-# creating accounts and adding to the list
-account_1 = Account(123, "Nico", 1000)
-account_2 = Account(321, "Marco", 100)
-account_3 = Account(666, "Satan", 2679, 2000)
-
-account_1.print_client_info()
-account_2.print_client_info()
-account_3.print_client_info()
+for account in Account.accounts.values():
+    account.print_client_info()
 
 # Printing the client list
 Account.print_client_list()
@@ -58,4 +53,13 @@ print(
 account_1.print_client_info()
 account_3.print_client_info()
 
+Account.print_delinquent_list()
+
+print(account_1.format_value(account_1.limit), "\n")
+account_1.limit = 2000000
+print(
+    f"{account_1.holder} needs a new limit. We'll give him {account_1.format_value(account_1.limit)}.",
+    "\n")
+
+account_1.print_client_info()
 Account.print_delinquent_list()
