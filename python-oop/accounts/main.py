@@ -76,3 +76,6 @@ balance_difference = Account.accounts[123].balance - Account.accounts[
 print(
     f"Now, {Account.accounts[321].holder} has {Account.accounts[123].format_value(balance_difference)} less than {Account.accounts[123].holder}.",
     "\n")
+
+date_3 = Date(25, 12, 1996)
+print(f"Coincidentally, {Account.accounts[222].holder} arrived in town on {date_3.formatted_date()}.")

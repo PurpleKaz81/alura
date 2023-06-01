@@ -4,3 +4,4 @@ from account import Account
 account_1 = Account(123, "Nico", 1000)
 account_2 = Account(321, "Marco", 100)
 account_3 = Account(666, "Satan", 2679, 2000)
+account_4 = Account(222, "Kevin Lomax", 140000, 600000)

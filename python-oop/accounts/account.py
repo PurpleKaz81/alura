@@ -1,12 +1,12 @@
 from date import Date
-from .client import Client
+from client import Client
 
 
 class Account:
     accounts = {}
 
     # initialization
-    def __init__(self, number, holder, balance, limit=1000):
+    def __init__(self, number, holder: Client, balance, limit=1000):
         self.__number = number
         self.__holder = holder
         self.__balance = balance
