@@ -1,4 +1,3 @@
-from date import Date
 from client import Client
 
 
@@ -14,6 +13,7 @@ class Account:
         # Account.accounts.append(self) # list
         Account.accounts[number] = self  # dictionary
 
+    # dunder methods
     def __str__(self):
         return f"Account: {self.__number}, Holder: {self.__holder}, Balance: {self.__balance}, Limit: {self.__limit}"
 
@@ -127,14 +127,14 @@ class Account:
     def print_client_names(cls):
         accounts_list = list(cls.accounts.values())
         if len(accounts_list) > 2:
-            first_two_names = ", ".join(account.holder
+            first_two_names = ", ".join(account.holder.full_name
                                         for account in accounts_list[:2])
-            last_name = accounts_list[-1].holder
+            last_name = accounts_list[-1].holder.full_name
             print(f"{first_two_names}, and {last_name}")
         elif len(accounts_list) == 2:
-            print(f"{accounts_list[0].holder} and {accounts_list[1].holder}")
+            print(f"{accounts_list[0].holder.full_name} and {accounts_list[1].holder.full_name}")
         elif accounts_list:
-            print(accounts_list[0].holder)
+            print(accounts_list[0].holder.full_name)
         else:
             print("No account holders")
 

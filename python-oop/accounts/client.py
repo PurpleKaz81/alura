@@ -4,6 +4,10 @@ class Client:
         self.__first_name = first_name
         self.__last_name = last_name
 
+    # dunder methods
+    def __str__(self):
+        return f"{self.full_name}"
+
     # getter properties
     @property
     def first_name(self):

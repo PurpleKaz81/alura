@@ -1,6 +1,7 @@
 from account import Account
-import accounts
 from date import Date
+import accounts
+import clients
 
 for account in Account.accounts.values():
     account.print_client_info()
@@ -78,4 +79,6 @@ print(
     "\n")
 
 date_3 = Date(25, 12, 1996)
-print(f"Coincidentally, {Account.accounts[222].holder} arrived in town on {date_3.formatted_date()}.")
+print(
+    f"Coincidentally, {Account.accounts[222].holder.full_name} arrived in town on {date_3.formatted_date()}."
+)
