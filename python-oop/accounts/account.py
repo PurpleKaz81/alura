@@ -145,10 +145,3 @@ class Account:
     def total_limit(cls):
         total_limit = sum(account.limit for account in cls.accounts.values())
         return cls.format_value(total_limit)
-
-    @classmethod
-    def add_zero_prefix_to_account_number(cls):
-        cls.accounts = {
-            f"0{number}": account
-            for number, account in cls.accounts.items()
-        }
