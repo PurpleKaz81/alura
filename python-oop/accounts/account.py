@@ -115,7 +115,7 @@ class Account:
     @classmethod
     def print_delinquent_list(cls):
         print("Here's a list of all our delinquent clients:\n")
-        for index, account in enumerate(cls.accounts, start=1):
+        for index, account in enumerate(cls.accounts.values(), start=1):
             if account.is_delinquent():
                 print(f"{index}) {account.holder}")
                 print()
@@ -124,24 +124,24 @@ class Account:
 
     @classmethod
     def print_client_names(cls):
-        if len(cls.accounts) > 2:
-            first_two_names = ", ".join(account.holder
-                                        for account in cls.accounts[:2])
-            last_name = cls.accounts[-1].holder
+        accounts_list = list(cls.accounts.values())
+        if len(accounts_list) > 2:
+            first_two_names = ", ".join(account.holder for account in accounts_list[:2])
+            last_name = accounts_list[-1].holder
             print(f"{first_two_names}, and {last_name}")
-        elif len(cls.accounts) == 2:
-            print(f"{cls.accounts[0].holder} and {cls.accounts[1].holder}")
-        elif cls.accounts:
-            print(cls.accounts[0].holder)
+        elif len(accounts_list) == 2:
+            print(f"{accounts_list[0].holder} and {accounts_list[1].holder}")
+        elif accounts_list:
+            print(accounts_list[0].holder)
         else:
             print("No account holders")
 
     @classmethod
     def total_balance(cls):
-        total_balance = sum(account.balance for account in cls.accounts)
+        total_balance = sum(account.balance for account in cls.accounts.values())
         return cls.format_value(total_balance)
 
     @classmethod
     def total_limit(cls):
-        total_limit = sum(account.limit for account in cls.accounts)
+        total_limit = sum(account.limit for account in cls.accounts.values())
         return cls.format_value(total_limit)
