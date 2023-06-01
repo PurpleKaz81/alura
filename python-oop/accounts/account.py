@@ -1,4 +1,5 @@
 from date import Date
+from .client import Client
 
 
 class Account:
