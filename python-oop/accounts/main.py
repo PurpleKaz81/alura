@@ -12,16 +12,19 @@ print(
     f"The total balance and limit of their accounts are {Account.total_balance()} and {Account.total_limit()}, respectively.",
     "\n")
 
-print(f"Account 1's balance is {Account.accounts[123].format_value(Account.accounts[123].balance)}",
-      "\n")
+print(
+    f"Account 1's balance is {Account.accounts[123].format_value(Account.accounts[123].balance)}",
+    "\n")
 print(f"Account 2's account number is {Account.accounts[321].number}", "\n")
-print(f"Account 1's limit is {Account.accounts[123].format_value(Account.accounts[123].limit)}", "\n")
+print(
+    f"Account 3's limit is {Account.accounts[666].format_value(Account.accounts[666].limit)}",
+    "\n")
 print(
     f"{Account.accounts[123].holder} would, of course, like to have {Account.accounts[666].holder}'s limit of {Account.accounts[666].format_value(Account.accounts[666].limit)}",
     "\n")
 Account.accounts[123].withdraw(500000)
 print(
-    f"{Account.accounts[123].holder} went to hospital in NYC to get an aspirin for a minor headache. He now has {Account.accounts[123].format_value(Account.accounts[123].balance)} in his account. He's proper fucked.",
+    f"{Account.accounts[123].holder} went to hospital in NYC to get an aspirin for a minor headache. He now has {Account.accounts[123].format_value(Account.accounts[123].balance)} in his account. He's now a bit short on change.",
     "\n")
 Account.accounts[666].deposit(1000000)
 
@@ -46,7 +49,9 @@ print(
     "\n")
 
 transfer_value = 30000
-transfer = Account.accounts[123].transfer(transfer_value, Account.accounts[666], Account.accounts[123])
+transfer = Account.accounts[123].transfer(transfer_value,
+                                          Account.accounts[666],
+                                          Account.accounts[123])
 print(
     f"{Account.accounts[123].holder} received a transfer of {Account.accounts[666].format_value(transfer_value)} from {Account.accounts[666].holder}, who now owns the title to {Account.accounts[123].holder}'s soul.",
     "\n")
@@ -64,3 +69,7 @@ print(
 Account.accounts[123].print_client_info()
 Account.print_delinquent_list()
 
+print(Account.accounts[123].format_value(Account.accounts[123].limit), "\n")
+
+balance_difference = Account.accounts[123].balance - Account.accounts[321].balance
+print(f"Now, {Account.accounts[321].holder} has {Account.accounts[123].format_value(balance_difference)} less than {Account.accounts[123].holder}.", "\n")
