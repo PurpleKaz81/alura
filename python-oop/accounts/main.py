@@ -90,3 +90,7 @@ Account.accounts[321].holder.last_name = "Kiddo"
 print(Account.accounts[321].holder)
 Account.accounts[321].holder.full_name = "Yo Mama"
 print(Account.accounts[321].holder)
+print()
+
+Account.accounts[666].withdraw(40000000)
+Account.accounts[666].print_client_info()

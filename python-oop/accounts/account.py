@@ -76,10 +76,15 @@ class Account:
             print("You must deposit a positive value.")
 
     def withdraw(self, value):
-        if value > 0:
-            self.__balance -= value
-        else:
-            print("The withdrawal amount must be a positive value.")
+        if value < 0:
+            raise ValueError("You wanna give us money?!")
+        return
+
+        if value > (self.__balance + self.__limit):
+            raise ValueError("Not gonna happen.")
+        return
+
+        self.__balance -= value
 
     def transfer(self, value, origin, destination):
         if origin == destination or origin.balance < value or value <= 0:
