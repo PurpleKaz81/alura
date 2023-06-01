@@ -71,7 +71,8 @@ Account.print_delinquent_list()
 
 print(Account.accounts[123].format_value(Account.accounts[123].limit), "\n")
 
-balance_difference = Account.accounts[123].balance - Account.accounts[321].balance
-print(f"Now, {Account.accounts[321].holder} has {Account.accounts[123].format_value(balance_difference)} less than {Account.accounts[123].holder}.", "\n")
-
-
+balance_difference = Account.accounts[123].balance - Account.accounts[
+    321].balance
+print(
+    f"Now, {Account.accounts[321].holder} has {Account.accounts[123].format_value(balance_difference)} less than {Account.accounts[123].holder}.",
+    "\n")

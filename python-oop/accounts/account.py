@@ -11,7 +11,7 @@ class Account:
         self.__balance = balance
         self.__limit = limit
         # Account.accounts.append(self) # list
-        Account.accounts[number] = self # dictionary
+        Account.accounts[number] = self  # dictionary
 
     def __str__(self):
         return f"Account: {self.__number}, Holder: {self.__holder}, Balance: {self.__balance}, Limit: {self.__limit}"
@@ -126,7 +126,8 @@ class Account:
     def print_client_names(cls):
         accounts_list = list(cls.accounts.values())
         if len(accounts_list) > 2:
-            first_two_names = ", ".join(account.holder for account in accounts_list[:2])
+            first_two_names = ", ".join(account.holder
+                                        for account in accounts_list[:2])
             last_name = accounts_list[-1].holder
             print(f"{first_two_names}, and {last_name}")
         elif len(accounts_list) == 2:
@@ -138,7 +139,8 @@ class Account:
 
     @classmethod
     def total_balance(cls):
-        total_balance = sum(account.balance for account in cls.accounts.values())
+        total_balance = sum(account.balance
+                            for account in cls.accounts.values())
         return cls.format_value(total_balance)
 
     @classmethod
