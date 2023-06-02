@@ -75,14 +75,19 @@ class Account:
         else:
             print("You must deposit a positive value.")
 
+    #private method
+    def _may_not_withdraw(self, value_desired):
+        available_value = self.__balance + self.__limit
+        return value_desired > available_value
+
     def withdraw(self, value):
         if value < 0:
-            raise ValueError("You wanna give us money?!")
-        return
+            raise ValueError(f"{self.holder.first_name} wants to give us money?!")
 
-        if value > (self.__balance + self.__limit):
-            raise ValueError("Not gonna happen.")
-        return
+        if self._may_not_withdraw(value):
+            raise ValueError(
+                f"{self.holder.full_name} can't withdraw {self.format_value(value)}, he ain't got the bread."
+            )
 
         self.__balance -= value
 
@@ -137,7 +142,9 @@ class Account:
             last_name = accounts_list[-1].holder.full_name
             print(f"{first_two_names}, and {last_name}")
         elif len(accounts_list) == 2:
-            print(f"{accounts_list[0].holder.full_name} and {accounts_list[1].holder.full_name}")
+            print(
+                f"{accounts_list[0].holder.full_name} and {accounts_list[1].holder.full_name}"
+            )
         elif accounts_list:
             print(accounts_list[0].holder.full_name)
         else:
