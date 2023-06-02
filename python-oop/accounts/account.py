@@ -82,7 +82,8 @@ class Account:
 
     def withdraw(self, value):
         if value < 0:
-            raise ValueError(f"{self.holder.first_name} wants to give us money?!")
+            raise ValueError(
+                f"{self.holder.first_name} wants to give us money?!")
 
         if self._may_not_withdraw(value):
             raise ValueError(
