@@ -53,6 +53,10 @@ class Account:
         else:
             return value
 
+    @staticmethod
+    def bank_code():
+        return ("001")
+
     # instance methods
     def client_info(self):
         result = "Here's the client's information:\n"
