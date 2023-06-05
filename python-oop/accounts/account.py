@@ -1,4 +1,5 @@
 from client import Client
+from bank_list import banks
 
 
 class Account:
@@ -54,8 +55,8 @@ class Account:
             return value
 
     @staticmethod
-    def bank_code():
-        return ("001")
+    def bank_code(code):
+        return banks.get(code, "There's no such bank")
 
     # instance methods
     def client_info(self):

@@ -4,7 +4,6 @@ import accounts
 import clients
 from bank_list import banks
 
-
 # for account in Account.accounts.values():
 #     account.print_client_info()
 
@@ -85,18 +84,20 @@ from bank_list import banks
 #     f"Coincidentally, {Account.accounts[222].holder.full_name} arrived in town on {date_3.formatted_date()}.",
 #     "\n")
 
-print(Account.accounts[321].holder)
-Account.accounts[321].holder.first_name = "Beatrix"
-print(Account.accounts[321].holder)
-Account.accounts[321].holder.last_name = "Kiddo"
-print(Account.accounts[321].holder)
-Account.accounts[321].holder.full_name = "Yo Mama"
-print(Account.accounts[321].holder)
-print()
+# print(Account.accounts[321].holder)
+# Account.accounts[321].holder.first_name = "Beatrix"
+# print(Account.accounts[321].holder)
+# Account.accounts[321].holder.last_name = "Kiddo"
+# print(Account.accounts[321].holder)
+# Account.accounts[321].holder.full_name = "Yo Mama"
+# print(Account.accounts[321].holder)
+# print()
 
-try:
-    Account.accounts[321].withdraw(1000)
-except ValueError as e:
-    print(e, "\n")
+# try:
+#     Account.accounts[321].withdraw(1000)
+# except ValueError as e:
+#     print(e, "\n")
 
-Account.accounts[321].print_client_info()
+# Account.accounts[321].print_client_info()
+
+print(f"Bank you want: {Account.bank_code('3')}")
