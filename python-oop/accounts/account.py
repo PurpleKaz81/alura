@@ -11,7 +11,6 @@ class Account:
         self.__holder = holder
         self.__balance = balance
         self.__limit = limit
-        # Account.accounts.append(self) # list
         Account.accounts[number] = self  # dictionary
 
     # dunder methods
@@ -80,7 +79,7 @@ class Account:
         else:
             print("You must deposit a positive value.")
 
-    #private method
+    # private method
     def _may_not_withdraw(self, value_desired):
         available_value = self.__balance + self.__limit
         return value_desired > available_value

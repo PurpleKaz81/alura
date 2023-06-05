@@ -24,7 +24,12 @@ print(
 print(
     f"{Account.accounts[123].holder} would, of course, like to have {Account.accounts[666].holder}'s limit of {Account.accounts[666].format_value(Account.accounts[666].limit)}",
     "\n")
-Account.accounts[123].withdraw(500)
+
+try:
+    Account.accounts[123].withdraw(500)
+except ValueError as e:
+    print(e, "\n")
+
 print(
     f"{Account.accounts[123].holder} went to hospital in NYC to get an aspirin for a minor headache. He now has {Account.accounts[123].format_value(Account.accounts[123].balance)} in his account. He's now a bit short on change.",
     "\n")
