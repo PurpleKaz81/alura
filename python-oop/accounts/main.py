@@ -105,4 +105,6 @@ except ValueError as e:
 
 Account.accounts[321].print_client_info()
 
-print(f"Bank you want: {Account.bank_code('3')}")
+print(f"Bank you want: {Account.bank_code('1')}", "\n")
+
+print(f"{Account.accounts[222].holder.full_name}'s exotic, he has an account at {Account.bank_code('612')}, cuz that's how he rolls.")
