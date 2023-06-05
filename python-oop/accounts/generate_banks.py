@@ -8,4 +8,3 @@ banks = {item['code']: item.get('name', 'Unknown') for item in data}
 
 with open("accounts/bank_list.py", "w") as f:
     f.write(f"banks = {json.dumps(banks, indent=4)}")
-
