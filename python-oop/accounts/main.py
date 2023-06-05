@@ -2,6 +2,8 @@ from account import Account
 from date import Date
 import accounts
 import clients
+from bank_list import banks
+
 
 # for account in Account.accounts.values():
 #     account.print_client_info()
