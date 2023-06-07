@@ -20,7 +20,7 @@ class Movie:
         if new_name is None or new_name == "":
             raise ValueError("Gotta have a name!")
         else:
-            self.__name = new_name
+            self.__name = new_name.title()
 
     @likes.setter
     def likes(self, new_amount):
@@ -57,7 +57,7 @@ class Series:
         if new_name is None or new_name == "":
             raise ValueError("Gotta have a name!")
         else:
-            self.__name = new_name
+            self.__name = new_name.title()
 
     @likes.setter
     def likes(self, new_amount):
@@ -74,6 +74,7 @@ class Series:
 
 avengers = Movie("Avengers", 2009, 160)
 avengers.add_like(3)
+avengers.name = "the Avengers"
 print(f"{avengers.name} is a movie from {avengers.year} with a {avengers.length}-minute runtime. Likes: {avengers.likes}", "\n")
 
 sopranos = Series("Sopranos", 1999, 6)
