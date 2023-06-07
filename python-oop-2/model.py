@@ -16,20 +16,20 @@ class Movie:
 
     #setter properties
     @name.setter
-    def name(self, name):
-        if name is None or name == "":
+    def name(self, new_name):
+        if new_name is None or new_name == "":
             raise ValueError("Gotta have a name!")
         else:
-            return self.__name
+            self.__name = new_name
 
     @likes.setter
-    def likes(self, amount):
+    def likes(self, new_amount):
         if amount is None or amount == "":
             raise ValueError("Give us an actual amount")
         elif amount < 0:
             raise ValueError("There are no negative likes")
         else:
-            return self.__likes
+            self.__likes = new_amount
 
     #instance methods
     def add_like(self, occurrences):
@@ -53,20 +53,20 @@ class Series:
 
     #setter properties
     @name.setter
-    def name(self, name):
-        if name is None or name == "":
+    def name(self, new_name):
+        if new_name is None or new_name == "":
             raise ValueError("Gotta have a name!")
         else:
-            return self.__name
+            self.__name = new_name
 
     @likes.setter
-    def likes(self, amount):
+    def likes(self, new_amount):
         if amount is None or amount == "":
             raise ValueError("Give us an actual amount")
         elif amount < 0:
             raise ValueError("There are no negative likes")
         else:
-            return self.__likes
+            self.__likes = new_amount
 
     #instance methods
     def add_like(self, occurrences):
