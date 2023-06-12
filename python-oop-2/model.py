@@ -1,4 +1,5 @@
 class Movie:
+
     def __init__(self, name, year, length):
         self.__name = name.title()
         self.year = year
@@ -38,7 +39,9 @@ class Movie:
         new_likes = self.__likes + occurrences
         self.likes = new_likes
 
+
 class Series:
+
     def __init__(self, name, year, seasons):
         self.__name = name.title()
         self.year = year
@@ -78,11 +81,32 @@ class Series:
         new_likes = self.__likes + occurrences
         self.likes = new_likes
 
+    #static methods
+    @staticmethod
+    def format_small_numbers(number):
+        numbers_to_words = {
+            1: 'one',
+            2: 'two',
+            3: 'three',
+            4: 'four',
+            5: 'five',
+            6: 'six',
+            7: 'seven',
+            8: 'eight',
+            9: 'nine',
+            10: 'ten'
+        }
+        return numbers_to_words.get(number, number)
+
 avengers = Movie("Avengers", 2009, 160)
 avengers.add_like(3)
 avengers.name = "the AveNgers"
-print(f"{avengers.name} is a movie from {avengers.year} with a {avengers.length}-minute runtime. Likes: {avengers.likes}", "\n")
+print(
+    f"{avengers.name} is a movie from {avengers.year} with a {avengers.length}-minute runtime. Likes: {avengers.likes}",
+    "\n")
 
 sopranos = Series("Sopranos", 1999, 6)
 sopranos.add_like(2)
-print(f"{sopranos.name} started in {sopranos.year} and ran for {sopranos.seasons} seasons. Likes: {sopranos.likes}", "\n")
+print(
+    f"{sopranos.name} started in {sopranos.year} and ran for {Series.format_small_numbers(sopranos.seasons)} seasons. Likes: {sopranos.likes}",
+    "\n")
