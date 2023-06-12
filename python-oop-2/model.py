@@ -9,31 +9,32 @@ class Watchable:
     def __str__(self, name, year):
         return f"{self.name} ({self.year})"
 
-    #getter properties
     @property
     def name(self):
         return self._name
+
+    @name.setter
+    def name(self, new_name):
+        if not new_name:
+            raise ValueError("Gotta have a name!")
+        self._name = new_name.title()
 
     @property
     def likes(self):
         return self._likes
 
-    #setter properties
-    @name.setter
-    def name(self, new_name):
-        if new_name is None or new_name == "":
-            raise ValueError("Gotta have a name!")
-        else:
-            self._name = new_name.title()
-
     @likes.setter
     def likes(self, new_amount):
         if not isinstance(new_amount, int):
             raise TypeError("Amount of likes needs to be an integer.")
-        elif new_amount < 0:
+        if new_amount < 0:
             raise ValueError("There are no negative likes.")
-        else:
-            self._likes = new_amount
+        self._likes = new_amount
+
+    def add_like(self, occurrences):
+        if occurrences < 0:
+            raise ValueError("Can't decrement likes.")
+        self.likes += occurrences
 
     #instance methods
     def add_like(self, occurrences):
@@ -51,10 +52,12 @@ class Movie(Watchable):
         super().__init__(name, year)
         self.length = length
         Movie._id += 1
-        self.id = Movie._id
+        self.id = Movie.new_id()
 
-    def return_movie_id(self):
-        return self.id
+    @classmethod
+    def new_id(cls):
+        cls._id += 1
+        return cls._id
 
 
 class Series(Watchable):
@@ -66,28 +69,22 @@ class Series(Watchable):
 
 class SmallNumberFormatter:
     #static methods
+    WORDS = {
+        number: word
+        for number, word in enumerate(
+            'zero one two three four five six seven eight nine ten'.split(), 1)
+    }
+
     @staticmethod
     def format_small_numbers(number):
-        words = {
-            1: 'one',
-            2: 'two',
-            3: 'three',
-            4: 'four',
-            5: 'five',
-            6: 'six',
-            7: 'seven',
-            8: 'eight',
-            9: 'nine',
-            10: 'ten'
-        }
-        return words.get(number, number)
+        return SmallNumberFormatter.WORDS.get(number, str(number))
 
 
 avengers = Movie("Avengers", 2009, 160)
 avengers.add_like(3)
 avengers.name = "the AveNgers"
 print(
-    f"{avengers.name} (ID: {Movie._id}) is a movie from {avengers.year} with a {avengers.length}-minute runtime. Likes: {avengers.likes}",
+    f"{avengers.name} (ID: {avengers._id}) is a movie from {avengers.year} with a {avengers.length}-minute runtime. Likes: {avengers.likes}",
     "\n")
 
 sopranos = Series("Sopranos", 1999, 6)
@@ -100,5 +97,5 @@ sentinelle = Movie("Sentinelle", 1992, 139)
 sentinelle.add_like(0)
 sentinelle.name = "la sentinelLe"
 print(
-    f"{sentinelle.name} (ID: {Movie._id}) is a movie from {sentinelle.year} with a {sentinelle.length}-minute runtime. It has {sentinelle.likes} likes cuz it's a piece of shit.",
+    f"{sentinelle.name} (ID: {sentinelle._id}) is a movie from {sentinelle.year} with a {sentinelle.length}-minute runtime. It has {sentinelle.likes} likes cuz it's a piece of shit.",
 )
