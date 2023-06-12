@@ -14,6 +14,6 @@ products["movie_2"].name = "la sentinelLe"
 
 new_movies = [
     Movie("The Godfather", 1972, 175),
-    Movie("The Godfather: Part II", 1974, 202),
     Movie("The Dark Knight", 2008, 152),
+    Movie("Honey, I Shrunk the Kids", 1989, 93),
 ]

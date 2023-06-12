@@ -1,8 +1,6 @@
 class Watchable:
-    #class variable for tracking id's
     _id_tracker = 0
 
-    #dunder methods
     def __init__(self, name, year):
         self._name = name.title()
         self.year = year
@@ -15,7 +13,6 @@ class Watchable:
     def __repr__(self):
         return f"{self.__class__.__name__}(name={self.name}, year={self.year}, likes={self.likes}, id={self.id})"
 
-    # getters and setters
     @property
     def name(self):
         return self._name
@@ -46,13 +43,11 @@ class Watchable:
     def type(self):
         return self.__class__.__name__
 
-    #class methods
     @classmethod
     def new_id(cls):
         cls._id_tracker += 1
         return cls._id_tracker
 
-    # instance methods
     def add_like(self, occurrences):
         if occurrences < 0:
             raise ValueError("Can't decrement likes.")
@@ -70,7 +65,7 @@ class Movie(Watchable):
 
     def __str__(self):
         trash = self._add_trashcan_icon()
-        return f"{self.name} ({self.year}) - {self.length} min - {self.likes} {trash}"
+        return f"{self.name} ({self.year}) - {self.length} min - {self.likes} likes {trash}"
 
 
 class Series(Watchable):
@@ -83,11 +78,10 @@ class Series(Watchable):
         formatted_seasons = SmallNumberFormatter.format_small_numbers(
             self.seasons)
         trash = self._add_trashcan_icon()
-        return f"{self.name} ({self.year}) - {formatted_seasons} seasons - {self.likes} {trash}"
+        return f"{self.name} ({self.year}) - {formatted_seasons} seasons - {self.likes} likes {trash}"
 
 
 class SmallNumberFormatter:
-    #static methods
     WORDS = {
         number: word
         for number, word in enumerate(
