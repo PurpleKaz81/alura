@@ -52,10 +52,12 @@ class Series(Watchable):
         super().__init__(name, year)
         self.seasons = seasons
 
+
+class SmallNumberFormatter:
     #static methods
     @staticmethod
     def format_small_numbers(number):
-        numbers_to_words = {
+        words = {
             1: 'one',
             2: 'two',
             3: 'three',
@@ -67,7 +69,7 @@ class Series(Watchable):
             9: 'nine',
             10: 'ten'
         }
-        return numbers_to_words.get(number, number)
+        return words.get(number, number)
 
 
 avengers = Movie("Avengers", 2009, 160)
@@ -80,5 +82,5 @@ print(
 sopranos = Series("Sopranos", 1999, 6)
 sopranos.add_like(2)
 print(
-    f"{sopranos.name} started in {sopranos.year} and ran for {Series.format_small_numbers(sopranos.seasons)} seasons. Likes: {sopranos.likes}",
+    f"{sopranos.name} started in {sopranos.year} and ran for {SmallNumberFormatter.format_small_numbers(sopranos.seasons)} seasons. Likes: {sopranos.likes}",
     "\n")
