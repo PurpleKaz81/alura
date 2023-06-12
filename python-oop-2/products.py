@@ -11,3 +11,9 @@ products["movie_1"].name = "the AveNgers"
 products["series_1"].add_like(2)
 products["movie_2"].add_like(0)
 products["movie_2"].name = "la sentinelLe"
+
+new_movies = [
+    Movie("The Godfather", 1972, 175),
+    Movie("The Godfather: Part II", 1974, 202),
+    Movie("The Dark Knight", 2008, 152),
+]
