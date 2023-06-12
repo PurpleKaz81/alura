@@ -72,7 +72,7 @@ class SmallNumberFormatter:
     WORDS = {
         number: word
         for number, word in enumerate(
-            'zero one two three four five six seven eight nine ten'.split(), 1)
+            'zero one two three four five six seven eight nine ten'.split(), 0)
     }
 
     @staticmethod
