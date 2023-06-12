@@ -80,7 +80,7 @@ class Series:
 
 avengers = Movie("Avengers", 2009, 160)
 avengers.add_like(3)
-avengers.name = "the Avengers"
+avengers.name = "the AveNgers"
 print(f"{avengers.name} is a movie from {avengers.year} with a {avengers.length}-minute runtime. Likes: {avengers.likes}", "\n")
 
 sopranos = Series("Sopranos", 1999, 6)
