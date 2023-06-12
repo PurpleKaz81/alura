@@ -9,9 +9,10 @@ class Watchable:
         self._id = self.new_id()
 
     #dunder methods
-    def __str__(self, name, year):
+    def __str__(self):
         return f"{self.name} ({self.year})"
 
+    # getters and setters
     @property
     def name(self):
         return self._name
@@ -34,11 +35,6 @@ class Watchable:
             raise ValueError("There are no negative likes.")
         self._likes = new_amount
 
-    def add_like(self, occurrences):
-        if occurrences < 0:
-            raise ValueError("Can't decrement likes.")
-        self.likes += occurrences
-
     @property
     def id(self):
         return self._id
@@ -49,6 +45,15 @@ class Watchable:
         cls._id_tracker += 1
         return cls._id_tracker
 
+    # instance methods
+    def add_like(self, occurrences):
+        if occurrences < 0:
+            raise ValueError("Can't decrement likes.")
+        self.likes += occurrences
+
+    @property
+    def type(self):
+        return self.__class__.__name__
 
 class Movie(Watchable):
 
@@ -56,12 +61,22 @@ class Movie(Watchable):
         super().__init__(name, year)
         self.length = length
 
+    def print_info(self):
+        trash = "- \U0001F5D1" if product.likes == 0 else ""
+        return f"{self.name} ({self.year}) - {self.length} min - {self.likes} {trash}"
+
 
 class Series(Watchable):
 
     def __init__(self, name, year, seasons):
         super().__init__(name, year)
         self.seasons = seasons
+
+    def print_info(self):
+        formatted_seasons = SmallNumberFormatter.format_small_numbers(
+            self.seasons)
+        trash = "- \U0001F5D1" if product.likes == 0 else ""
+        return f"{self.name} ({self.year}) - {formatted_seasons} seasons - {self.likes} {trash}"
 
 
 class SmallNumberFormatter:
@@ -80,30 +95,14 @@ class SmallNumberFormatter:
 avengers = Movie("Avengers", 2009, 160)
 avengers.add_like(3)
 avengers.name = "the AveNgers"
-print(
-    f"{avengers.name} (Movie ID: {avengers.id}) is a movie from {avengers.year} with a {avengers.length}-minute runtime. Likes: {avengers.likes}",
-    "\n")
 
 sopranos = Series("Sopranos", 1999, 6)
 sopranos.add_like(2)
-print(
-    f"{sopranos.name} (Series ID: {sopranos.id}) started in {sopranos.year} and ran for {SmallNumberFormatter.format_small_numbers(sopranos.seasons)} seasons. Likes: {sopranos.likes}",
-    "\n")
 
 sentinelle = Movie("Sentinelle", 1992, 139)
 sentinelle.add_like(0)
 sentinelle.name = "la sentinelLe"
-print(
-    f"{sentinelle.name} (Movie ID: {sentinelle.id}) is a movie from {sentinelle.year} with a {sentinelle.length}-minute runtime. It has {sentinelle.likes} likes cuz it's trash.",
-)
 
 movies_and_series = [avengers, sopranos, sentinelle]
 for index, product in enumerate(movies_and_series):
-    print()
-    details = f"{product.length} minutes" if isinstance(
-        product, Movie
-    ) else f"{SmallNumberFormatter.format_small_numbers(product.seasons)} seasons"
-    trash = "- \U0001F5D1" if product.likes == 0 else ""
-    print(
-        f"{index + 1}) {product.name} - {details} - {product.year} - {product.likes} {trash}"
-    )
+    print(f"{index + 1}) {product.print_info()} - ({product.type} id: {product.id})", "\n")
