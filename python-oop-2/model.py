@@ -65,7 +65,7 @@ class Movie(Watchable):
 
     def __str__(self):
         trash = self._add_trashcan_icon()
-        return f"{self.name} ({self.year}) - {self.length} min - {self.likes} likes {trash}"
+        return f"{self.name} ({self.year}) - {self.length} min - {self.likes} likes{trash}"
 
 
 class Series(Watchable):
@@ -78,7 +78,7 @@ class Series(Watchable):
         formatted_seasons = SmallNumberFormatter.format_small_numbers(
             self.seasons)
         trash = self._add_trashcan_icon()
-        return f"{self.name} ({self.year}) - {formatted_seasons} seasons - {self.likes} likes {trash}"
+        return f"{self.name} ({self.year}) - {formatted_seasons} seasons - {self.likes} likes{trash}"
 
 
 class SmallNumberFormatter:
