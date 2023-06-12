@@ -51,7 +51,6 @@ class Movie(Watchable):
     def __init__(self, name, year, length):
         super().__init__(name, year)
         self.length = length
-        Movie._id += 1
         self.id = Movie.new_id()
 
     @classmethod
