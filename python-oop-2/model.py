@@ -96,3 +96,14 @@ sentinelle.name = "la sentinelLe"
 print(
     f"{sentinelle.name} (Movie ID: {sentinelle.id}) is a movie from {sentinelle.year} with a {sentinelle.length}-minute runtime. It has {sentinelle.likes} likes cuz it's trash.",
 )
+
+movies_and_series = [avengers, sopranos, sentinelle]
+for index, watchable in enumerate(movies_and_series):
+    print()
+    details = f"{watchable.length} minutes" if isinstance(
+        watchable, Movie
+    ) else f"{SmallNumberFormatter.format_small_numbers(watchable.seasons)} seasons"
+    trash = "- \U0001F5D1" if watchable.likes == 0 else ""
+    print(
+        f"{index + 1}) {watchable.name} - {details} - {watchable.year} - {watchable.likes} {trash}"
+    )
