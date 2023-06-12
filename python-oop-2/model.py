@@ -98,12 +98,12 @@ print(
 )
 
 movies_and_series = [avengers, sopranos, sentinelle]
-for index, watchable in enumerate(movies_and_series):
+for index, product in enumerate(movies_and_series):
     print()
-    details = f"{watchable.length} minutes" if isinstance(
-        watchable, Movie
-    ) else f"{SmallNumberFormatter.format_small_numbers(watchable.seasons)} seasons"
-    trash = "- \U0001F5D1" if watchable.likes == 0 else ""
+    details = f"{product.length} minutes" if isinstance(
+        product, Movie
+    ) else f"{SmallNumberFormatter.format_small_numbers(product.seasons)} seasons"
+    trash = "- \U0001F5D1" if product.likes == 0 else ""
     print(
-        f"{index + 1}) {watchable.name} - {details} - {watchable.year} - {watchable.likes} {trash}"
+        f"{index + 1}) {product.name} - {details} - {product.year} - {product.likes} {trash}"
     )
