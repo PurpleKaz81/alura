@@ -24,16 +24,19 @@ class Movie:
 
     @likes.setter
     def likes(self, new_amount):
-        if amount is None or amount == "":
-            raise ValueError("Give us an actual amount")
-        elif amount < 0:
-            raise ValueError("There are no negative likes")
+        if not isinstance(new_amount, int):
+            raise TypeError("Amount of likes needs to be an integer.")
+        elif new_amount < 0:
+            raise ValueError("There are no negative likes.")
         else:
             self.__likes = new_amount
 
     #instance methods
     def add_like(self, occurrences):
-        self.__likes += occurrences
+        if occurrences < 0:
+            raise ValueError("Can't decrement likes.")
+        new_likes = self.__likes + occurrences
+        self.likes = new_likes
 
 class Series:
     def __init__(self, name, year, seasons):
@@ -61,16 +64,19 @@ class Series:
 
     @likes.setter
     def likes(self, new_amount):
-        if amount is None or amount == "":
-            raise ValueError("Give us an actual amount")
-        elif amount < 0:
-            raise ValueError("There are no negative likes")
+        if not isinstance(new_amount, int):
+            raise TypeError("Amount of likes needs to be an integer.")
+        elif new_amount < 0:
+            raise ValueError("There are no negative likes.")
         else:
             self.__likes = new_amount
 
     #instance methods
     def add_like(self, occurrences):
-        self.__likes += occurrences
+        if occurrences < 0:
+            raise ValueError("Can't decrement likes.")
+        new_likes = self.__likes + occurrences
+        self.likes = new_likes
 
 avengers = Movie("Avengers", 2009, 160)
 avengers.add_like(3)
