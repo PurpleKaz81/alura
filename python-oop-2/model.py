@@ -81,6 +81,23 @@ class Series(Watchable):
         return f"{self.name} ({self.year}) - {formatted_seasons} seasons - {self.likes} likes{trash}"
 
 
+class Playlist:
+
+    def __init__(self, name, items):
+        self.name = name
+        self.items = items
+
+    def __str__(self):
+        formatted_size = SmallNumberFormatter.format_small_numbers(self.size())
+        playlist_str = f"Here's your {self.name} playlist with {formatted_size} items total:\n"
+        for index, item in enumerate(self.items):
+            playlist_str += f"\n{index + 1}) {item}\n"
+        return playlist_str
+
+    def size(self):
+        return len(self.items)
+
+
 class SmallNumberFormatter:
     WORDS = {
         number: word
