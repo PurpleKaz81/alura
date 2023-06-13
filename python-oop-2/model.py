@@ -91,11 +91,17 @@ class Playlist:
         formatted_size = SmallNumberFormatter.format_small_numbers(self.size())
         playlist_str = f"Here's your {self.name} playlist with {formatted_size} items total:\n"
         for index, item in enumerate(self.items):
-            playlist_str += f"\n{index + 1}) {item}\n"
+            playlist_str += f"{index + 1}) {item}\n"
         return playlist_str
 
     def size(self):
         return len(self.items)
+
+    def average_likes(self):
+        return sum(item.likes for item in self.items) / self.size() if self.size() > 0 else 0
+
+    def total_movie_runtime(self):
+        return sum(item.length for item in self.items if isinstance(item, Movie))
 
 
 class SmallNumberFormatter:

@@ -12,3 +12,5 @@ from products import products, new_movies, items, weekend
 #     print(f"{index + 1}) {repr(movie)}", "\n")
 
 print(weekend)
+print(f"Your collection has an average of {weekend.average_likes():.2f} likes.")
+print(f"Your total movie runtime is {weekend.total_movie_runtime()} minutes.")

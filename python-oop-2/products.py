@@ -22,8 +22,8 @@ new_movies = [
     Movie("Honey, I Shrunk the Kids", 1989, 93),
 ]
 
-new_movies[0].add_like(5)
-new_movies[1].add_like(7)
+new_movies[0].add_like(4)
+new_movies[1].add_like(6)
 new_movies[2].add_like(2)
 
 items = list(products.values()) + new_movies
