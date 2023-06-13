@@ -88,10 +88,10 @@ class Playlist:
         self.items = items
 
     def __str__(self):
-        formatted_size = SmallNumberFormatter.format_small_numbers(self.size())
+        formatted_size = SmallNumberFormatter.format_small_numbers(self.size()) if self.size() >= 10 else self.size()
         playlist_str = f"Here's your {self.name} playlist with {formatted_size} items total:\n"
         for index, item in enumerate(self.items):
-            playlist_str += f"{index + 1}) {item}\n"
+            playlist_str += f"{index + 1}) {item} ({item.id})\n"
         return playlist_str
 
     def size(self):
