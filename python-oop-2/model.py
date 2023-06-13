@@ -98,10 +98,13 @@ class Playlist:
         return len(self.items)
 
     def average_likes(self):
-        return sum(item.likes for item in self.items) / self.size() if self.size() > 0 else 0
+        return sum(
+            item.likes
+            for item in self.items) / self.size() if self.size() > 0 else 0
 
     def total_movie_runtime(self):
-        return sum(item.length for item in self.items if isinstance(item, Movie))
+        return sum(item.length for item in self.items
+                   if isinstance(item, Movie))
 
 
 class SmallNumberFormatter:
