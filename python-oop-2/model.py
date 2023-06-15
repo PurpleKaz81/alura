@@ -61,7 +61,8 @@ class Watchable:
 
     @abstractmethod
     def play(self):
-        pass
+        print("Implement this method in a subclass.")
+        raise NotImplementedError("Subclass must implement abstract method")
 
 
 class Movie(Watchable):

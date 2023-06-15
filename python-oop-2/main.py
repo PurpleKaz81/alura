@@ -31,5 +31,5 @@ from products import products, new_movies, items, weekend
 # for index, item in enumerate(first_four_items):
 #     length_or_seasons = f"{item.length} min" if isinstance(item, Movie) else f"{SmallNumberFormatter.format_small_numbers(item.seasons)} seasons"
 #     print(f"{index + 1} - {item.name}: {length_or_seasons}.")
-
-print(weekend)
+for item in weekend:
+    item.play() if item.year < 2000 and item.year > 1990 else ""
