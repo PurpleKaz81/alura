@@ -106,9 +106,7 @@ class Series(Watchable):
 
     @property
     def description(self):
-        print(
-            f"This series is called {self.name} and it ran for {SmallNumberFormatter.format_small_numbers(self.seasons)} seasons."
-        )
+        return f"This series is called {self.name} and it ran for {SmallNumberFormatter.format_small_numbers(self.seasons)} seasons."
 
 
 class Playlist:
