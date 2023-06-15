@@ -32,3 +32,4 @@ from products import products, new_movies, items, weekend
 #     length_or_seasons = f"{item.length} min" if isinstance(item, Movie) else f"{SmallNumberFormatter.format_small_numbers(item.seasons)} seasons"
 #     print(f"{index + 1} - {item.name}: {length_or_seasons}.")
 
+print(weekend)

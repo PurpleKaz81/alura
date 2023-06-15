@@ -1,3 +1,6 @@
+from abc import ABC, abstractmethod
+
+
 class Watchable:
     _id_tracker = 0
 
@@ -56,6 +59,10 @@ class Watchable:
     def _add_trashcan_icon(self):
         return f" - \U0001F5D1" if self.likes == 0 else ""
 
+    @abstractmethod
+    def play(self):
+        pass
+
 
 class Movie(Watchable):
 
@@ -66,6 +73,9 @@ class Movie(Watchable):
     def __str__(self):
         trash = self._add_trashcan_icon()
         return f"{self.name} ({self.year}) - {self.length} min - {self.likes} likes{trash}"
+
+    def play(self):
+        print(f"Playing movie: {self.name} ({self.year})")
 
 
 class Series(Watchable):
@@ -80,6 +90,8 @@ class Series(Watchable):
         trash = self._add_trashcan_icon()
         return f"{self.name} ({self.year}) - {formatted_seasons} seasons - {self.likes} likes{trash}"
 
+    def play(self):
+        print(f"Playing series: {self.name} ({self.year})")
 
 class Playlist:
 
@@ -89,7 +101,7 @@ class Playlist:
 
     def __str__(self):
         formatted_size = SmallNumberFormatter.format_small_numbers(
-            self.size()) if self.size() >= 10 else self.size()
+            len(self.items) if len(self.items) >= 10 else len(self.items))
         playlist_str = f"Here's your {self.name} playlist with {formatted_size} items total:\n"
         for index, item in enumerate(self.items):
             playlist_str += f"{index + 1}) {item} ({item.id})\n"
@@ -107,7 +119,7 @@ class Playlist:
     def average_likes(self):
         return sum(
             item.likes
-            for item in self.items) / self.size() if self.size() > 0 else 0
+            for item in self.items) / len(self.items) if len(self.items) > 0 else 0
 
     def total_movie_runtime(self):
         return sum(item.length for item in self.items
