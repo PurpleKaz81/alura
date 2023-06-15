@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, abstractproperty
 
 
 class Watchable:
@@ -64,6 +64,12 @@ class Watchable:
         print("Implement this method in a subclass.")
         raise NotImplementedError("Subclass must implement abstract method")
 
+    @property
+    @abstractmethod
+    def description(self):
+        print("Implement this method in a subclass.")
+        raise NotImplementedError("Subclass must implement abstract method")
+
 
 class Movie(Watchable):
 
@@ -77,6 +83,10 @@ class Movie(Watchable):
 
     def play(self):
         print(f"Playing movie: {self.name} ({self.year})")
+
+    @property
+    def description(self):
+        return f"This movie is called {self.name} and it's {self.length} minutes long."
 
 
 class Series(Watchable):
@@ -93,6 +103,13 @@ class Series(Watchable):
 
     def play(self):
         print(f"Playing series: {self.name} ({self.year})")
+
+    @property
+    def description(self):
+        print(
+            f"This series is called {self.name} and it ran for {SmallNumberFormatter.format_small_numbers(self.seasons)} seasons."
+        )
+
 
 class Playlist:
 
@@ -118,9 +135,8 @@ class Playlist:
         return len(self.items)
 
     def average_likes(self):
-        return sum(
-            item.likes
-            for item in self.items) / len(self.items) if len(self.items) > 0 else 0
+        return sum(item.likes for item in self.items) / len(self.items) if len(
+            self.items) > 0 else 0
 
     def total_movie_runtime(self):
         return sum(item.length for item in self.items
