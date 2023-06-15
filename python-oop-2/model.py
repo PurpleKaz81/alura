@@ -71,10 +71,18 @@ class Watchable:
         raise NotImplementedError("Subclass must implement abstract method")
 
 
-class Movie(Watchable):
+class ReleasedItem:
 
-    def __init__(self, name, year, length):
-        super().__init__(name, year)
+    def __init__(self, release_country, network):
+        self.release_country = release_country
+        self.network = network
+
+
+class Movie(Watchable, ReleasedItem):
+
+    def __init__(self, name, year, length, release_country, network=None):
+        Watchable.__init__(self, name, year)
+        ReleasedItem.__init__(self, release_country, network)
         self.length = length
 
     def __str__(self):
@@ -89,10 +97,11 @@ class Movie(Watchable):
         return f"This movie is called {self.name} and it's {self.length} minutes long."
 
 
-class Series(Watchable):
+class Series(Watchable, ReleasedItem):
 
-    def __init__(self, name, year, seasons):
-        super().__init__(name, year)
+    def __init__(self, name, year, seasons, release_country, network):
+        Watchable.__init__(self, name, year)
+        ReleasedItem.__init__(self, release_country, network)
         self.seasons = seasons
 
     def __str__(self):
@@ -118,9 +127,11 @@ class Playlist:
     def __str__(self):
         formatted_size = SmallNumberFormatter.format_small_numbers(
             len(self.items) if len(self.items) >= 10 else len(self.items))
-        playlist_str = f"Here's your {self.name} playlist with {formatted_size} items total:\n"
+        playlist_str = f"Here's your {self.name} playlist with {formatted_size} items total:\n\n"
         for index, item in enumerate(self.items):
-            playlist_str += f"{index + 1}) {item} ({item.id})\n"
+            network_str = f", {item.network}" if isinstance(item,
+                                                            Series) else ""
+            playlist_str += f"{index + 1}) {item} ({item.type.lower()} id: {item.id}, {item.release_country}{network_str})\n"
         return playlist_str
 
     def __getitem__(self, item):
@@ -139,6 +150,16 @@ class Playlist:
     def total_movie_runtime(self):
         return sum(item.length for item in self.items
                    if isinstance(item, Movie))
+
+    def get_non_american(self):
+        non_american_items = [
+            item for item in self.items if item.release_country != "USA"
+        ]
+        return Playlist(f"{self.name} (International)", non_american_items)
+
+    def get_oldies(self):
+        oldies_items = [item for item in self.items if item.year < 1990]
+        return Playlist(f"{self.name} (Oldies)", oldies_items)
 
 
 class SmallNumberFormatter:

@@ -32,7 +32,20 @@ from products import products, new_movies, items, weekend
 #     length_or_seasons = f"{item.length} min" if isinstance(item, Movie) else f"{SmallNumberFormatter.format_small_numbers(item.seasons)} seasons"
 #     print(f"{index + 1} - {item.name}: {length_or_seasons}.")
 
+# for item in weekend:
+#     item.play() if item.year < 2000 and item.year > 1990 else ""
+#     item.description if item.year < 2000 and item.year > 1990 else ""
+#     print()
+
 for item in weekend:
-    item.play() if item.year < 2000 and item.year > 1990 else ""
-    item.description if item.year < 2000 and item.year > 1990 else ""
-    print()
+    item.play() if item.release_country == "France" else ""
+
+print()
+for item in weekend:
+    item.play() if "USA" not in item.release_country else ""
+
+print()
+print(weekend.get_non_american())
+
+print()
+print(weekend.get_oldies())

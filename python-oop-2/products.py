@@ -1,11 +1,11 @@
 from model import Movie, Series, Playlist
 
 products = {
-    "movie_1": Movie("Avengers", 2009, 160),
-    "series_1": Series("Sopranos", 1999, 6),
-    "movie_2": Movie("Sentinelle", 1992, 139),
-    "movie_3": Movie("Scream", 1996, 111),
-    "series_2": Series("The Wire", 2002, 5),
+    "movie_1": Movie("Avengers", 2009, 160, "USA"),
+    "series_1": Series("Sopranos", 1999, 6, "USA", "HBO"),
+    "movie_2": Movie("Sentinelle", 1992, 139, "France"),
+    "movie_3": Movie("Scream", 1996, 111, "USA"),
+    "series_2": Series("Dynasty", 1991, 8, "USA", "ABC"),
 }
 
 products["movie_1"].add_like(3)
@@ -17,9 +17,9 @@ products["movie_3"].add_like(9)
 products["series_2"].add_like(4)
 
 new_movies = [
-    Movie("The Godfather", 1972, 175),
-    Movie("The Dark Knight", 2008, 152),
-    Movie("Honey, I Shrunk the Kids", 1989, 93),
+    Movie("Carlota Joaquina", 1994, 120, "Brazil"),
+    Movie("L'Empire des Sens", 1976, 108, "France"),
+    Movie("Honey, I Shrunk the Kids", 1989, 93, "USA"),
 ]
 
 new_movies[0].add_like(4)
