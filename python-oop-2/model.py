@@ -95,7 +95,13 @@ class Playlist:
             playlist_str += f"{index + 1}) {item} ({item.id})\n"
         return playlist_str
 
-    def size(self):
+    def __getitem__(self, item):
+        return self.items[item]
+
+    def __contains__(self, item):
+        return item in self.items
+
+    def __len__(self):
         return len(self.items)
 
     def average_likes(self):

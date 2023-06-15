@@ -1,3 +1,4 @@
+from model import SmallNumberFormatter, Movie
 from products import products, new_movies, items, weekend
 
 # print("Here's a list of all your products:", "\n")
@@ -11,6 +12,23 @@ from products import products, new_movies, items, weekend
 # for index, movie in enumerate(new_movies):
 #     print(f"{index + 1}) {repr(movie)}", "\n")
 
-print(weekend)
-print(f"Your collection has an average of {weekend.average_likes():.2f} likes.")
-print(f"Your total movie runtime is {weekend.total_movie_runtime()} minutes.")
+# first_item = weekend[0]
+# print(first_item)
+# items_slice = weekend[2:4]
+# for item in weekend:
+#     if item.likes == 2 and "k" in item.name.lower():
+#         print(item)
+
+# if products["movie_3"] in weekend:
+#     print("yes")
+
+# print(f"Your collection has an average of {weekend.average_likes():.2f} likes.")
+# print(f"Your total movie runtime is {weekend.total_movie_runtime()} minutes.")
+
+# print(SmallNumberFormatter.format_small_numbers(len(weekend)).title())
+
+# first_four_items = weekend[:4]
+# for index, item in enumerate(first_four_items):
+#     length_or_seasons = f"{item.length} min" if isinstance(item, Movie) else f"{SmallNumberFormatter.format_small_numbers(item.seasons)} seasons"
+#     print(f"{index + 1} - {item.name}: {length_or_seasons}.")
+
