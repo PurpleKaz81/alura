@@ -106,6 +106,7 @@ class Movie(Watchable, ReleasedItem):
     def __init__(self, name, year, length, release_country, network=None):
         Watchable.__init__(self, name, year)
         ReleasedItem.__init__(self, release_country, network)
+        Identifiable.__init__(self)
         self.length = length
 
     def __str__(self):
@@ -125,6 +126,7 @@ class Series(Watchable, ReleasedItem):
     def __init__(self, name, year, seasons, release_country, network):
         Watchable.__init__(self, name, year)
         ReleasedItem.__init__(self, release_country, network)
+        Identifiable.__init__(self)
         self.seasons = seasons
 
     def __str__(self):
