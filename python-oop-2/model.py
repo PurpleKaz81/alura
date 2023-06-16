@@ -1,13 +1,39 @@
 from abc import ABC, abstractmethod, abstractproperty
 
 
-class Watchable:
+class Likeable:
+
+    def __init__(self):
+        self._likes = 0
+
+    @property
+    def likes(self):
+        return self._likes
+
+    @likes.setter
+    def likes(self, new_amount):
+        if not isinstance(new_amount, int):
+            raise TypeError("Amount of likes needs to be an integer.")
+        if new_amount < 0:
+            raise ValueError("There are no negative likes.")
+        self._likes = new_amount
+
+    def add_like(self, occurrences):
+        if occurrences < 0:
+            raise ValueError("Can't decrement likes.")
+        self.likes += occurrences
+
+    def _add_trashcan_icon(self):
+        return f" - \U0001F5D1" if self.likes == 0 else ""
+
+
+class Watchable(Likeable):
     _id_tracker = 0
 
     def __init__(self, name, year):
+        Likeable.__init__(self)
         self._name = name.title()
         self.year = year
-        self._likes = 0
         self._id = self.new_id()
 
     def __str__(self):
@@ -27,18 +53,6 @@ class Watchable:
         self._name = new_name.title()
 
     @property
-    def likes(self):
-        return self._likes
-
-    @likes.setter
-    def likes(self, new_amount):
-        if not isinstance(new_amount, int):
-            raise TypeError("Amount of likes needs to be an integer.")
-        if new_amount < 0:
-            raise ValueError("There are no negative likes.")
-        self._likes = new_amount
-
-    @property
     def id(self):
         return self._id
 
@@ -50,14 +64,6 @@ class Watchable:
     def new_id(cls):
         cls._id_tracker += 1
         return cls._id_tracker
-
-    def add_like(self, occurrences):
-        if occurrences < 0:
-            raise ValueError("Can't decrement likes.")
-        self.likes += occurrences
-
-    def _add_trashcan_icon(self):
-        return f" - \U0001F5D1" if self.likes == 0 else ""
 
     @abstractmethod
     def play(self):
