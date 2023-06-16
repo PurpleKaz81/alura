@@ -1,6 +1,18 @@
 from abc import ABC, abstractmethod, abstractproperty
 
 
+class SmallNumberFormatter:
+    WORDS = {
+        number: word
+        for number, word in enumerate(
+            'zero one two three four five six seven eight nine ten'.split(), 0)
+    }
+
+    @staticmethod
+    def format_small_numbers(number):
+        return SmallNumberFormatter.WORDS.get(number, str(number))
+
+
 class Likeable:
 
     def __init__(self):
@@ -27,14 +39,28 @@ class Likeable:
         return f" - \U0001F5D1" if self.likes == 0 else ""
 
 
-class Watchable(Likeable):
+class Identifiable:
     _id_tracker = 0
+
+    def __init__(self):
+        self._id = self.new_id()
+
+    @property
+    def id(self):
+        return self._id
+
+    @classmethod
+    def new_id(cls):
+        cls._id_tracker += 1
+        return cls._id_tracker
+
+
+class Watchable(Likeable, Identifiable):
 
     def __init__(self, name, year):
         Likeable.__init__(self)
         self._name = name.title()
         self.year = year
-        self._id = self.new_id()
 
     def __str__(self):
         return f"{self.name} ({self.year}) - {self.likes} likes"
@@ -53,17 +79,8 @@ class Watchable(Likeable):
         self._name = new_name.title()
 
     @property
-    def id(self):
-        return self._id
-
-    @property
     def type(self):
         return self.__class__.__name__
-
-    @classmethod
-    def new_id(cls):
-        cls._id_tracker += 1
-        return cls._id_tracker
 
     @abstractmethod
     def play(self):
@@ -166,15 +183,3 @@ class Playlist:
     def get_oldies(self):
         oldies_items = [item for item in self.items if item.year < 1990]
         return Playlist(f"{self.name} (Oldies)", oldies_items)
-
-
-class SmallNumberFormatter:
-    WORDS = {
-        number: word
-        for number, word in enumerate(
-            'zero one two three four five six seven eight nine ten'.split(), 0)
-    }
-
-    @staticmethod
-    def format_small_numbers(number):
-        return SmallNumberFormatter.WORDS.get(number, str(number))
