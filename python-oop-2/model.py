@@ -183,5 +183,5 @@ class Playlist:
         return Playlist(f"{self.name} (International)", non_american_items)
 
     def get_oldies(self):
-        oldies_items = [item for item in self.items if item.year < 1990]
+        oldies_items = [item for item in self.items if item.year < 1995]
         return Playlist(f"{self.name} (Oldies)", oldies_items)

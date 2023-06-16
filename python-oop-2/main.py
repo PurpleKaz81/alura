@@ -1,4 +1,4 @@
-from model import SmallNumberFormatter, Movie
+from model import SmallNumberFormatter, Movie, Series
 from products import products, new_movies, items, weekend
 
 # print("Here's a list of all your products:", "\n")
