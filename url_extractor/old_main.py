@@ -1,8 +1,3 @@
-def print_with_newline(*args):
-    print(*args, end="\n\n")
-
-url = "https://bytebank.com/cambio?quantidade=190&moedaOrigem=real&moedaDestino=dolar"
-
 url_length = len(url)
 url_parts = url.split("?")
 url_base = url_parts[0]
@@ -14,10 +9,10 @@ origin, destination, quantity = None, None, None
 
 for param in parameters:
     key, value = param.split("=")
-    if key == "moedaOrigem":
-        origin = value
-    elif key == "moedaDestino":
+    if key == "moedaDestino":
         destination = value
+    elif key == "moedaOrigem":
+        origin = value
     elif key == "quantidade":
         quantity = value
 
