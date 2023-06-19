@@ -1,7 +1,7 @@
 def print_with_newline(*args):
     print(*args, end="\n\n")
 
-url = "https://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
+url = "https://bytebank.com/cambio?quantidade=190&moedaOrigem=real&moedaDestino=dolar"
 
 url_parts = url.split("?")
 url_base = url_parts[0]
