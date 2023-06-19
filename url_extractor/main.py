@@ -3,6 +3,7 @@ def print_with_newline(*args):
 
 url = "https://bytebank.com/cambio?quantidade=190&moedaOrigem=real&moedaDestino=dolar"
 
+url_length = len(url)
 url_parts = url.split("?")
 url_base = url_parts[0]
 url_parameters = url_parts[1]
@@ -21,6 +22,7 @@ for param in parameters:
         quantity = value
 
 print_with_newline("URL:", url)
+print_with_newline(f"URL length: {url_length} characters")
 print_with_newline("URL parts:", ", ".join(url_parts))
 print_with_newline("URL parameters:", ", ".join(parameters))
 print_with_newline("Origin currency:", origin)
