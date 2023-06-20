@@ -10,8 +10,8 @@ class URLExtractor:
     def __len__(self):
         return len(self.url)
 
-    """
-    Sanitizes the url. If it's empty, the next function raises a ValueError
+    """sanitize url
+    if url empty string, next function raises ValueError
     """
     def sanitize_url(self, url):
         return url.replace(" ", "").strip() if type(url) == str else ""
