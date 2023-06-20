@@ -10,9 +10,9 @@ class URLExtractor:
     def __len__(self):
         return len(self.url)
 
-    '''
+    """
     Sanitizes the url. If it's empty, the next function raises a ValueError
-    '''
+    """
     def sanitize_url(self, url):
         return url.replace(" ", "").strip() if type(url) == str else ""
 
@@ -40,4 +40,4 @@ class URLExtractor:
         return self.parameters.get(key, None)
 
     def print_with_newline(self, *args):
-        print(*args, end="\n\n")
+        print(*args, end="\n")
