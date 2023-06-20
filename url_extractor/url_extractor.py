@@ -3,7 +3,6 @@ import re
 
 class URLExtractor:
     """A class to extract and manipulate URLs containing currency conversion data from bytebank.com."""
-    origin, destination, amount = None, None, None
 
     def __init__(self, url):
         """Initialize the URLExtractor object and extract the parameters of the input URL."""
@@ -12,27 +11,26 @@ class URLExtractor:
         self.url_parts = self.url.split("?")
         self.parameters = self.extract_parameters()
 
-    def sanitize_url(self, url):
+    @staticmethod
+    def sanitize_url(url):
         """Remove unwanted characters from the URL."""
-        return url.replace(" ", "").strip() if type(url) == str else ""
+        return url.replace(" ", "").strip() if isinstance(url, str) else ""
 
-    def is_valid_url(self, url):
+    @staticmethod
+    def is_valid_url(url):
         """Check if the URL is valid and contains all required components."""
         default_url = re.compile(
             '(http(s)?://)?(www.)?bytebank.com(.br)?/cambio')
+        required_params = ["quantidade", "moedaOrigem", "moedaDestino"]
 
-        return bool(
-            default_url.match(url) and all(
-                param in url
-                for param in ["quantidade", "moedaOrigem", "moedaDestino"]))
+        return bool(default_url.match(url)) and all(
+            param in url for param in required_params)
 
     def validate_url(self):
         """Verify that the input URL is valid and contains all required components."""
         if not self.url:
-            print("The URL is empty.")
             raise ValueError("The URL is empty.")
         elif not self.is_valid_url(self.url):
-            print("The URL is not valid.")
             raise ValueError("The URL is not valid.")
 
     def get_url_base(self):
@@ -47,15 +45,14 @@ class URLExtractor:
         """Extract the parameters from the URL as a dictionary."""
         url_parameters = self.get_url_parameters()
         parameters = url_parameters.split("&")
-        parameters_dict = {}
-        for param in parameters:
-            key, value = param.split("=")
-            parameters_dict[key] = value
-        return parameters_dict
+        return {
+            param.split("=")[0]: param.split("=")[1]
+            for param in parameters
+        }
 
     def get_parameter(self, key):
         """Get the value of a specific parameter in the URL."""
-        return self.parameters.get(key, None)
+        return self.parameters.get(key)
 
     def print_with_newline(self, *args):
         """Print the arguments, ending with a newline character."""
