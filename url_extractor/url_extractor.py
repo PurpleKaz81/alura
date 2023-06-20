@@ -11,7 +11,7 @@ class URLExtractor:
         return len(self.url)
 
     def sanitize_url(self, url):
-        return url.replace(" ", "").strip()
+        return url.replace(" ", "").strip() if type(url) == str else ""
 
     def validate_url(self):
         if not self.url:
