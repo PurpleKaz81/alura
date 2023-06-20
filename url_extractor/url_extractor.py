@@ -12,6 +12,7 @@ class URLExtractor:
         self.parameters = self.extract_parameters()
 
     def __str__(self):
+        """Return a string representation of the URLExtractor object."""
         parameter_keys = list(self.parameters.keys())
         if len(parameter_keys) > 2:
             first_two_parameter_keys_str = ", ".join(parameter_keys[:-1])
