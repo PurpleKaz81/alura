@@ -38,7 +38,3 @@ class URLExtractor:
 
     def print_with_newline(self, *args):
         print(*args, end="\n\n")
-
-url_extractor = URLExtractor("https://bytebank.com/cambio?quantidade=190&moedaOrigem=real&moedaDestino=dolar")
-amount_value = url_extractor.get_parameter("quantidade")
-url_extractor.print_with_newline(amount_value)
