@@ -1,3 +1,6 @@
+import re
+
+
 class URLExtractor:
     """A class to extract and manipulate URLs containing currency conversion data from bytebank.com."""
     origin, destination, amount = None, None, None
@@ -13,6 +16,16 @@ class URLExtractor:
         """Remove unwanted characters from the URL."""
         return url.replace(" ", "").strip() if type(url) == str else ""
 
+    def is_valid_url(self, url):
+        """Check if the URL is valid and contains all required components."""
+        default_url = re.compile(
+            '(http(s)?://)?(www.)?bytebank.com(.br)?/cambio')
+
+        return bool(
+            default_url.match(url) and all(
+                param in url
+                for param in ["quantidade", "moedaOrigem", "moedaDestino"]))
+
     def validate_url(self):
         """Verify that the input URL is valid and contains all required components."""
         if not self.url:
@@ -21,13 +34,6 @@ class URLExtractor:
         elif not self.is_valid_url(self.url):
             print("The URL is not valid.")
             raise ValueError("The URL is not valid.")
-
-    def is_valid_url(self, url):
-        """Check if the URL is valid and contains all required components."""
-        return (
-            url.startswith("https://bytebank.com") and "cambio" in url and all(
-                param in url
-                for param in ["quantidade", "moedaOrigem", "moedaDestino"]))
 
     def get_url_base(self):
         """Return the base URL without parameters."""
