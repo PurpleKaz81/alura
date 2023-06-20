@@ -11,6 +11,9 @@ class URLExtractor:
         self.url_parts = self.url.split("?")
         self.parameters = self.extract_parameters()
 
+    def __len__(self):
+        return len(self.url)
+
     @staticmethod
     def sanitize_url(url):
         """Remove unwanted characters from the URL."""
@@ -56,4 +59,4 @@ class URLExtractor:
 
     def print_with_newline(self, *args):
         """Print the arguments, ending with a newline character."""
-        print(*args, end="\n")
+        print(*args, end="\n\n")
