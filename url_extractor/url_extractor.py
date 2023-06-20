@@ -1,5 +1,4 @@
 import re
-import os
 
 
 class URLExtractor:
@@ -10,11 +9,7 @@ class URLExtractor:
         self.validate_url()
         self.url_parts = self.url.split("?")
         self.parameters = self.extract_parameters()
-        api_key = os.environ['EXCHANGE_API']
-        print(api_key)
-        client = OpenExchangeRatesClient(api_key)
-        rates = client.latest()['rates']
-        self.conversion_rate = {"real": rates['BRL'], "dolar": rates['USD']}
+        self.conversion_rate = {"real": 4.79, "dolar": 1}
 
     def __str__(self):
         """Return a string representation of the URL and its parameters."""
