@@ -4,12 +4,13 @@ import re
 class URLExtractor:
     """A class to extract and manipulate URLs containing currency conversion data from bytebank.com."""
 
-    def __init__(self, url):
+    def __init__(self, url, quantity):
         """Initialize the URLExtractor object and extract the parameters of the input URL."""
-        self.url = self.sanitize_url(url)
+        self.url = self.sanitize_url(url.format(quantidade=quantity))
         self.validate_url()
         self.url_parts = self.url.split("?")
         self.parameters = self.extract_parameters()
+        self.conversion_rate = {"real": 4.79, "dolar": 1}  # hard-coded for now
 
     def __str__(self):
         """Return a string representation of the URL and its parameters."""
@@ -47,6 +48,16 @@ class URLExtractor:
         return bool(default_url.match(url)) and all(
             param in url for param in required_params)
 
+    @staticmethod
+    def format_value_BRL(value):
+        """Format a value as BRL currency."""
+        return f"R${value:.2f}"
+
+    @staticmethod
+    def format_value_USD(value):
+        """Format a value as USD currency."""
+        return f"US${value:.2f}"
+
     def validate_url(self):
         """Verify that the input URL is valid and contains all required components."""
         if not self.url:
@@ -66,10 +77,13 @@ class URLExtractor:
         """Extract the parameters from the URL as a dictionary."""
         url_parameters = self.get_url_parameters()
         parameters = url_parameters.split("&")
-        return {
+        param_dict = {
             param.split("=")[0]: param.split("=")[1]
             for param in parameters
         }
+        # convert quantity to integer
+        param_dict["quantidade"] = float(param_dict["quantidade"])
+        return param_dict
 
     def get_parameter(self, key):
         """Get the value of a specific parameter in the URL."""
@@ -78,3 +92,16 @@ class URLExtractor:
     def print_with_newline(self, *args):
         """Print the arguments, ending with a newline character."""
         print(*args, end="\n\n")
+
+    def calculate_conversion(self):
+        """Calculate the conversion of one currency to another based on the parameters."""
+        origin = self.parameters.get("moedaOrigem")
+        destination = self.parameters.get("moedaDestino")
+        quantity = self.parameters.get("quantidade")
+
+        if origin not in self.conversion_rate or destination not in self.conversion_rate:
+            raise ValueError("Currency not supported.")
+
+        origin_rate = self.conversion_rate[origin]
+        destination_rate = self.conversion_rate[destination]
+        return (quantity / origin_rate) * destination_rate
