@@ -1,16 +1,20 @@
 import re
+import os
 
 
 class URLExtractor:
     """A class to extract and manipulate URLs containing currency conversion data from bytebank.com."""
 
     def __init__(self, url, quantity):
-        """Initialize the URLExtractor object and extract the parameters of the input URL."""
         self.url = self.sanitize_url(url.format(quantidade=quantity))
         self.validate_url()
         self.url_parts = self.url.split("?")
         self.parameters = self.extract_parameters()
-        self.conversion_rate = {"real": 4.79, "dolar": 1}  # hard-coded for now
+        api_key = os.environ['EXCHANGE_API']
+        print(api_key)
+        client = OpenExchangeRatesClient(api_key)
+        rates = client.latest()['rates']
+        self.conversion_rate = {"real": rates['BRL'], "dolar": rates['USD']}
 
     def __str__(self):
         """Return a string representation of the URL and its parameters."""
