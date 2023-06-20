@@ -1,3 +1,5 @@
+from url_extractor import URLExtractor as Extractor
+
 url_length = len(url)
 url_parts = url.split("?")
 url_base = url_parts[0]
