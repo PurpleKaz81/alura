@@ -11,6 +11,18 @@ class URLExtractor:
         self.url_parts = self.url.split("?")
         self.parameters = self.extract_parameters()
 
+    def __str__(self):
+        parameter_keys = list(self.parameters.keys())
+        if len(parameter_keys) > 2:
+            first_two_parameter_keys_str = ", ".join(parameter_keys[:-1])
+            last_parameter_str = parameter_keys[-1]
+            parameters_str = f"{first_two_parameter_keys_str}, and {last_parameter_str}"
+        elif len(parameter_keys) == 1:
+            parameters_str = f"{parameter_keys[0]} and {parameter_keys[1]}"
+        else:
+            parameters_str = parameter_keys[0] if parameter_keys else ""
+        return f"{self.url} has parameters {parameters_str}. The base is {self.get_url_base()}"
+
     def __len__(self):
         return len(self.url)
 
