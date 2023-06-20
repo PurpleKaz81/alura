@@ -1,6 +1,5 @@
 import re
 
-
 class URLExtractor:
     """A class to extract and manipulate URLs containing currency conversion data from bytebank.com."""
 
