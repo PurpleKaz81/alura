@@ -1,7 +1,9 @@
+from functools import total_ordering
 from main_3 import Account, CheckingAccount, SavingsAccount, InvestmentAccount
 from operator import attrgetter
 
 
+@total_ordering
 class WageAccount:
 
     _accounts = []
@@ -29,10 +31,14 @@ class WageAccount:
         return self._account_number == other._account_number and self._balance == other._balance
 
     def __lt__(self, other):
-        return self._balance < other._balance
+        if self._balance != other._balance:
+            return self._balance < other._balance
 
-    def __gt__(self, other):
-        return self._balance > other._balance
+        return self._account_number < other._account_number
+
+    @property
+    def get_account_number(self):
+        return self._account_number
 
     @property
     def get_balance(self):
@@ -44,7 +50,8 @@ class WageAccount:
 
     @classmethod
     def richest_mf(cls):
-        return max(cls._accounts, key=attrgetter("get_balance"))
+        return max(cls._accounts,
+                   key=attrgetter("get_balance", "get_account_number"))
 
 
 class WageMultiple(WageAccount):
@@ -93,9 +100,29 @@ accounts = [account_5, account_6, account_7]
 
 for account in sorted(accounts):
     print(account)
-
 print()
 
 print(
     f"Mirror mirror on the wall, who's the richest of them all? It's Account number {WageAccount.richest_mf()._account_number}!"
 )
+print()
+
+account_8 = WageAccount(1700)
+account_8.deposit(1000)
+
+account_9 = WageAccount(3)
+account_9.deposit(1000)
+
+account_10 = WageAccount(133)
+account_10.deposit(10000)
+
+accounts = [account_8, account_9, account_10]
+
+for account in sorted(accounts):
+    print(account)
+print()
+
+print(account_10 >= account_8)
+print()
+print(account_9 <= account_9)
+print()
